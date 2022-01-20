@@ -28,20 +28,124 @@
         style="background-color: #000000"
       >
       </canvas>
+
+      <!-- ARTIST LOCATION PRESETS -->
+      <label for="pet-select">Artists:</label>
+      <select name="artists">
+        <option value="Default">--Select--</option>
+        <option value="Reid Arowood">Reid Arowood</option>
+        <option value="Nimrod Astarhan">Nimrod Astarhan</option>
+        <option value="Sarah Brophy">Sarah Brophy</option>
+        <option value="Juliana Castro Duperly">Juliana Castro Duperly</option>
+        <option value="Blake Fall-Conroy">Blake Fall-Conroy</option>
+        <option value="Juan Flores">Juan Flores</option>
+        <option value="Tom Gal">Tom Gal</option>
+        <option value="Sydney Gush">Sydney Gush</option>
+        <option value="Mac Pierce">Mac Pierce</option>
+      </select>
+
       <div id="controls" style="padding: 10px">
-        <label for="pet-select">Artists:</label>
-        <select name="artists">
-          <option value="Default">--Select--</option>
-          <option value="Reid Arowood">Reid Arowood</option>
-          <option value="Nimrod Astarhan">Nimrod Astarhan</option>
-          <option value="Sarah Brophy">Sarah Brophy</option>
-          <option value="Juliana Castro Duperly">Juliana Castro Duperly</option>
-          <option value="Blake Fall-Conroy">Blake Fall-Conroy</option>
-          <option value="Juan Flores">Juan Flores</option>
-          <option value="Tom Gal">Tom Gal</option>
-          <option value="Sydney Gush">Sydney Gush</option>
-          <option value="Mac Pierce">Mac Pierce</option>
-        </select>
+        <table>
+          <!-- PAN  -->
+          <tr>
+            <td align="left">
+              <strong style="padding-right: 10px">PAN:</strong>
+            </td>
+            <td><button type="">&#8592;</button></td>
+            <td>
+              <input
+                style="vertical-align: middle"
+                id="pan_slider"
+                type="range"
+                min="5"
+                max="200"
+                step="5"
+                value="100"
+              />
+              <button type="">&#8594;</button>
+            </td>
+          </tr>
+
+          <!-- ZOOM -->
+          <tr>
+            <td align="left">
+              <strong style="padding-right: 10px">ZOOM:</strong>
+            </td>
+            <td><button type="">&#8592;</button></td>
+            <td>
+              <input
+                style="vertical-align: middle"
+                id="zoom_slider"
+                type="range"
+                min="5"
+                max="200"
+                step="5"
+                value="100"
+              />
+              <button type="">&#8594;</button>
+            </td>
+          </tr>
+
+          <!-- TILT -->
+          <tr>
+            <td align="left">
+              <strong style="padding-right: 10px">TILT:</strong>
+            </td>
+            <td><button type="">&#8592;</button></td>
+            <td>
+              <input
+                style="vertical-align: middle"
+                id="tilt_slider"
+                type="range"
+                min="5"
+                max="200"
+                step="5"
+                value="100"
+              />
+              <button type="">&#8594;</button>
+            </td>
+          </tr>
+
+          <!-- FOCUS -->
+          <tr>
+            <td align="left">
+              <strong style="padding-right: 10px">FOCUS:</strong>
+            </td>
+            <td><button type="">&#8592;</button></td>
+            <td>
+              <input
+                style="vertical-align: middle"
+                id="focus_slider"
+                type="range"
+                min="5"
+                max="200"
+                step="5"
+                value="100"
+              />
+              <button type="">&#8594;</button>
+            </td>
+          </tr>
+
+          <!-- IRIS -->
+          <tr>
+            <td align="left">
+              <strong style="padding-right: 10px">IRIS:</strong>
+            </td>
+            <td><button type="">&#8592;</button></td>
+            <td>
+              <input
+                style="vertical-align: middle"
+                id="iris_slider"
+                type="range"
+                min="5"
+                max="200"
+                step="5"
+                value="100"
+              />
+              <button type="">&#8594;</button>
+            </td>
+          </tr>
+        </table>
       </div>
     </div>
   </body>
