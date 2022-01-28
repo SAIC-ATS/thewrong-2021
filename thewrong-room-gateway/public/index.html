@@ -4,12 +4,12 @@
     <title></title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="css/style.css" rel="stylesheet" />
+    <!-- <link href="css/style.css" rel="stylesheet" /> -->
   </head>
   <body>
     <div
       align="center"
-      style="a
+      style="
         border: 1px solid lightgray;
         border-radius: 5px;
         padding: 20px;
@@ -153,19 +153,23 @@
 
     <script>
         function val() {
-            d = document.getElementById("select_id").value;
+            d = document.getElementById("dropdown").value;
             // alert(d);
+
+            const xhttp = new XMLHttpRequest();
+            // Define a callback function
+            xhttp.onload = function() {
+            // Here you can use the Data 
+            }
+
 
             switch (d) {
                 case 'RA':
                     console.log('RA');
                     
                     //-----Send CGI to Cam--------
-                    const xhttp = new XMLHttpRequest();
-                    // Define a callback function
-                    xhttp.onload = function() {
-                        // Here you can use the Data 
-                    }
+                    
+
                     // Send a request
                     xhttp.open("GET", "http://wrong.ats.community/camera/incl/specialzoomcmd.shtml?camNo=1&zoombar=178&coord=153,10");
                     xhttp.send();
@@ -176,11 +180,7 @@
                     console.log('NA');
                     
                     //-----Send CGI to Cam--------
-                    const xhttp = new XMLHttpRequest();
-                    // Define a callback function
-                    xhttp.onload = function() {
-                        // Here you can use the Data 
-                    }
+                   
                     // Send a request
                     xhttp.open("GET", "http://wrong.ats.community/camera/incl/specialzoomcmd.shtml?camNo=1&zoombar=138&coord=53,20");
                     xhttp.send();
@@ -190,11 +190,7 @@
                     console.log('SB');
                                         
                     //-----Send CGI to Cam--------
-                    const xhttp = new XMLHttpRequest();
-                    // Define a callback function
-                    xhttp.onload = function() {
-                        // Here you can use the Data 
-                    }
+      
                     // Send a request
                     xhttp.open("GET", "http://wrong.ats.community/camera/incl/specialzoomcmd.shtml?camNo=1&zoombar=50&coord=80,15");
                     xhttp.send();
@@ -215,9 +211,7 @@
                     break;
                 default:
                     console.log("Nothing picked, error. ");
-}
-
-
+                }
 
         }
         </script>
