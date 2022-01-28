@@ -30,18 +30,18 @@
       </canvas>
 
       <!-- ARTIST LOCATION PRESETS -->
-      <label for="pet-select">Artists:</label>
-      <select name="artists">
+      <label for="artist-select">Artists:</label>
+      <select name="artists" onchange="val()" id="dropdown">
         <option value="Default">--Select--</option>
-        <option value="Reid Arowood">Reid Arowood</option>
-        <option value="Nimrod Astarhan">Nimrod Astarhan</option>
-        <option value="Sarah Brophy">Sarah Brophy</option>
-        <option value="Juliana Castro Duperly">Juliana Castro Duperly</option>
-        <option value="Blake Fall-Conroy">Blake Fall-Conroy</option>
-        <option value="Juan Flores">Juan Flores</option>
-        <option value="Tom Gal">Tom Gal</option>
-        <option value="Sydney Gush">Sydney Gush</option>
-        <option value="Mac Pierce">Mac Pierce</option>
+        <option value="RA">Reid Arowood</option>
+        <option value="NA">Nimrod Astarhan</option>
+        <option value="SB">Sarah Brophy</option>
+        <option value="JCD">Juliana Castro Duperly</option>
+        <option value="BFC">Blake Fall-Conroy</option>
+        <option value="JF">Juan Flores</option>
+        <option value="TG">Tom Gal</option>
+        <option value="SG">Sydney Gush</option>
+        <option value="MP">Mac Pierce</option>
       </select>
 
       <div id="controls" style="padding: 10px">
@@ -148,5 +148,80 @@
         </table>
       </div>
     </div>
+
+
+
+    <script>
+        function val() {
+            d = document.getElementById("select_id").value;
+            // alert(d);
+
+            switch (d) {
+                case 'RA':
+                    console.log('RA');
+                    
+                    //-----Send CGI to Cam--------
+                    const xhttp = new XMLHttpRequest();
+                    // Define a callback function
+                    xhttp.onload = function() {
+                        // Here you can use the Data 
+                    }
+                    // Send a request
+                    xhttp.open("GET", "http://wrong.ats.community/camera/incl/specialzoomcmd.shtml?camNo=1&zoombar=178&coord=153,10");
+                    xhttp.send();
+
+                    break;
+
+                case 'NA':
+                    console.log('NA');
+                    
+                    //-----Send CGI to Cam--------
+                    const xhttp = new XMLHttpRequest();
+                    // Define a callback function
+                    xhttp.onload = function() {
+                        // Here you can use the Data 
+                    }
+                    // Send a request
+                    xhttp.open("GET", "http://wrong.ats.community/camera/incl/specialzoomcmd.shtml?camNo=1&zoombar=138&coord=53,20");
+                    xhttp.send();
+                    break;
+
+                case 'SB':
+                    console.log('SB');
+                                        
+                    //-----Send CGI to Cam--------
+                    const xhttp = new XMLHttpRequest();
+                    // Define a callback function
+                    xhttp.onload = function() {
+                        // Here you can use the Data 
+                    }
+                    // Send a request
+                    xhttp.open("GET", "http://wrong.ats.community/camera/incl/specialzoomcmd.shtml?camNo=1&zoombar=50&coord=80,15");
+                    xhttp.send();
+                    break;
+                    
+                case 'JCD':
+                    console.log('JD');
+                    break;
+                case 'BFC':
+                    break;
+                case 'JF':
+                    break;
+                case 'TG':
+                    break;
+                case 'SG':
+                    break;
+                case 'MP':
+                    break;
+                default:
+                    console.log("Nothing picked, error. ");
+}
+
+
+
+        }
+        </script>
+
+
   </body>
 </html>
