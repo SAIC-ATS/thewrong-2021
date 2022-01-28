@@ -168,8 +168,6 @@
                     console.log('RA');
                     
                     //-----Send CGI to Cam--------
-                    
-
                     // Send a request
                     xhttp.open("GET", "http://wrong.ats.community/camera/incl/specialzoomcmd.shtml?camNo=1&zoombar=178&coord=153,10");
                     xhttp.send();
@@ -180,7 +178,6 @@
                     console.log('NA');
                     
                     //-----Send CGI to Cam--------
-                   
                     // Send a request
                     xhttp.open("GET", "http://wrong.ats.community/camera/incl/specialzoomcmd.shtml?camNo=1&zoombar=138&coord=53,20");
                     xhttp.send();
@@ -190,17 +187,31 @@
                     console.log('SB');
                                         
                     //-----Send CGI to Cam--------
-      
                     // Send a request
                     xhttp.open("GET", "http://wrong.ats.community/camera/incl/specialzoomcmd.shtml?camNo=1&zoombar=50&coord=80,15");
                     xhttp.send();
                     break;
                     
                 case 'JCD':
-                    console.log('JD');
+                    console.log('JCD');
+
+                    //-----Send CGI to Cam--------
+                    // Send a request
+                    xhttp.open("GET", "http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?camera=1&query=position&pan=25.1032&tilt=-8.55&zoom=13736&autofocus=on");
+                    xhttp.send();
+
                     break;
+                
                 case 'BFC':
-                    break;
+                    console.log('BFC');
+
+                    //-----Send CGI to Cam--------
+                    // Send a request
+                    xhttp.open("GET", "http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?camera=1&query=position&pan=25.532&tilt=-23&zoom=736&autofocus=on");
+                    xhttp.send();
+            
+            
+                break;
                 case 'JF':
                     break;
                 case 'TG':
