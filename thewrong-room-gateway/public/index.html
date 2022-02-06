@@ -5,51 +5,194 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- <link href="css/style.css" rel="stylesheet" /> -->
-  </head>
-  <body>
-    <div
-      align="center"
-      style="
-        border: 1px solid lightgray;
-        border-radius: 5px;
-        padding: 20px;
-        width: 800px;
-        margin: auto;
-      "
-    >
-      <div>
-        <h3 style="color: lightblue">Live-Webcam-Remote-Update</h3>
-      </div>
 
+    <style>
 
+        #titlebar {
+            color: darkblue;
+        }
 
-      <div style="position: relative; text-align: center;">
-        <img style="width:100%;" src="/feed"><br />
-        <h1 id="loading" style="display: none; position: absolute; top:50%; left: 50%; transform: translate(-50%, -50%);">Camera loading... </h1>
-      </div>
+        #main {
+            text-align: center;
+            border: 1px solid lightgray;
+            border-radius: 5px;
+            padding: 20px;
+            width: 800px;
+            margin: auto;
+        }
 
+        #videowindow {
+            position: relative; 
+            text-align: center;
+        }
+
+        #videostream {
+            width: 100%;
+        }
+
+        #loading {
+            display: none; 
+            position: absolute; 
+            top:50%; 
+            left: 50%; 
+            transform: translate(-50%, -50%);
+        }
+
+        #artists {
+            margin: auto;
+            max-width: 600px; 
+            text-align: justify; 
+            text-align-last: justify;
+        }
+
+        a {
+            display:inline-block;
+        }
+
+        #controls {
+            padding: 10px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+    
+    <div id="main">
+      
+        <div>
+            <h3 id="titlebar">Live-Webcam</h3>
+        </div>
+
+        <div id="videowindow">
+            <img id="videostream" src="/feed"><br />
+            <h1 id="loading">Camera loading... </h1>
+        </div>
       
 
-      <!-- ARTIST LOCATION PRESETS -->
-      <label for="artist-select">Artists:</label>
-      <select name="artists" onchange="val()" id="dropdown">
-        <option value="Default">--Select--</option>
-        <option value="RA">Reid Arowood</option>
-        <option value="NA">Nimrod Astarhan</option>
-        <option value="SB">Sarah Brophy</option>
-        <option value="JCD">Juliana Castro Duperly</option>
-        <option value="BFC">Blake Fall-Conroy</option>
-        <option value="JF">Juan Flores</option>
-        <option value="TG">Tom Gal</option>
-        <option value="SG">Sydney Gush</option>
-        <option value="MP">Mac Pierce</option>
-      </select>
+        <!-- ARTIST LOCATION PRESETS
+        <label for="artist-select">Artists:</label>
+        <select name="artists" onchange="val()" id="dropdown">
+            <option value="Default">--Select--</option>
+            <option value="RA">Reid Arowood</option>
+            <option value="NA">Nimrod Astarhan</option>
+            <option value="SB">Sarah Brophy</option>
+            <option value="JCD">Juliana Castro Duperly</option>
+            <option value="BFC">Blake Fall-Conroy</option>
+            <option value="JF">Juan Flores</option>
+            <option value="TG">Tom Gal</option>
+            <option value="SG">Sydney Gush</option>
+            <option value="MP">Mac Pierce</option>
+        </select> -->
+
+        <div id="artists">
+        <span style="display:inline-block">Go Directly to:</span> <a id="RA" title="Reid Arowood" href="#" onclick="moveCamToArtist('reid');return false;">Reid Arowood</a>   
+            <a id="NA" title="Nimrod Astarhan" href="#" onclick="moveCamToArtist('nimo');return false;">Nimrod Astarhan</a>   
+            <a id="SB" title="Sarah Brophy" href="#" onclick="moveCamToArtist('sarah');return false;">Sarah Brophy</a>   
+            <a id="JCD" title="Juliana Castro Duperly" href="#" onclick="moveCamToArtist('juliana');return false;">Juliana Castro Duperly</a> 
+            <a id="BFC" title="Blake Fall-Conroy" href="#" onclick="moveCamToArtist('blake');return false;">Blake Fall-Conroy</a> 
+            <a id="JF" title="Juan Flores" href="#" onclick="moveCamToArtist('juan');return false;">Juan Flores</a> 
+            <a id="TG" title="Tom Gal" href="#" onclick="moveCamToArtist('tom');return false;">Tom Gal</a> 
+            <a id="SG" title="Sydney Gush" href="#" onclick="moveCamToArtist('sydney');return false;">Sydney Gush</a> 
+            <a id="MP" title="Mac Pierce" href="#" onclick="moveCamToArtist('mac');return false;">Mac Pierce</a> 
+            <a id="KX" title="Kelly Xi" href="#" onclick="moveCamToArtist('kelly');return false;">Kelly Xi</a> 
+        </div>
 
 
+<script>
+
+    //--- Function that sends camera to individual artist location in gallery ---
+    function moveCamToArtist(person) {
+
+        //--- Set up camera http request ---
+        const xhttp = new XMLHttpRequest();
+            // Define a callback function
+            xhttp.onreadystatechange = function() {
+              // 4 is status return:"done" https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/response
+              if (xhttp.readyState === 4) { 
+                document.getElementById("loading").style.display = "none";
+              }
+            }
+
+        //--- Determine which link was clicked and send camera instruction ---
+        switch (person) {
+            case 'reid':
+                console.log('reid');
+                //--- Set CGI request params ---
+                xhttp.open("GET", "http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos2&camera=1");
+                break;
+
+            case 'nimo':
+                console.log('nimo'); 
+                //--- Set CGI request params ---
+                xhttp.open("GET", "http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos3&camera=1");
+                break;
+
+            case 'sarah':
+                console.log('sarah');
+                //--- Set CGI request params ---
+                xhttp.open("GET", "http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos4&camera=1");
+                break;
+
+            case 'juliana':
+                console.log('juliana');
+                //--- Set CGI request params ---
+                xhttp.open("GET", "http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos2&camera=1");
+                break;
+
+            case 'blake':
+                console.log('blake');
+                //--- Set CGI request params ---
+                xhttp.open("GET", "http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos3&camera=1");
+                break;
+                
+                case 'juan':
+                console.log('juan');
+                //--- Set CGI request params ---
+                xhttp.open("GET", "http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos4&camera=1");
+                break;
+
+            case 'tom':
+                console.log('tom');
+                //--- Set CGI request params ---
+                xhttp.open("GET", "http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos2&camera=1");
+                break;
+
+            case 'sydney':
+                console.log('sydney');
+                //--- Set CGI request params ---
+                xhttp.open("GET", "http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos3&camera=1");
+                break;
+
+            case 'mac':
+                console.log('mac');
+                //--- Set CGI request params ---
+                xhttp.open("GET", "http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos4&camera=1");
+                break;
+
+            case 'kelly':
+                console.log('kelly');
+                //--- Set CGI request params ---
+                xhttp.open("GET", "http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos2&camera=1");
+                break;
+
+            default:
+                console.log("Nothing picked, how did you get here? Error. ");
+        } 
+
+        //--- Send off selected parameters to camera through http request ---
+        xhttp.send();
+        //--- Turn on loading sign until camera calls back "done"
+        document.getElementById("loading").style.display="block";
+
+    }
+
+</script>
 
      
 
-      <div id="controls" style="padding: 10px">
+      <div id="controls">
         <table>
           <!-- PAN  -->
           
@@ -151,25 +294,6 @@
               <button type="">&#8594;</button>
             </td>
 
-
-            <form id="myForm" name="gotopresetForm" method="POST" action="http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi" target="dummyframe"> 
-              <input type="hidden" name="gotoserverpresetname" value="pos4">
-              <input type="hidden" name="camera" value="1">
-            </form>
-
-            <form id="myForm2" name="gotopresetForm" method="POST" action="http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi" target="dummyframe">
-              <input type="hidden" name="gotoserverpresetname" value="pos2">
-              <input type="hidden" name="camera" value="1">
-            </form>
-      
-            <select name="videoList" id="personlist" onChange="val2()" >
-              <option class="gray" value="no_change">&nbsp;----------------</option>
-              <option value="R1">reid</option>
-              <option value="R2">blake</option>
-            </select>
-
-            <iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
-
           </tr>
         </table>
       </div>
@@ -177,39 +301,7 @@
 
 
 
-    <script>
-
-        function val2() {
-
-          let form;
-          let person = document.getElementById("personlist").value;
-
-          switch (person) {
-                case 'R1':
-                  form = document.getElementById("myForm");
-                break;
-
-                case 'R2':
-                  console.log('NA');
-                  form = document.getElementById("myForm2");
-                break;
-                default:
-                    console.log("Nothing picked, error. ");
-          }
-          
-          form.submit();
-          delay(300);
-          form.submit();
-
-
-
-        }
-
-      
-
-
-
-
+    <!-- <script>
 
         function val() {
             d = document.getElementById("dropdown").value;
@@ -218,45 +310,16 @@
             const xhttp = new XMLHttpRequest();
             // Define a callback function
             xhttp.onreadystatechange = function() {
-              // 4 is done https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/response
+              // 4 is status return:"done" https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/response
               if (xhttp.readyState === 4) { 
                 document.getElementById("loading").style.display = "none";
               }
             }
-            
-
-
-
-          //_-------------FETCH------
-            // //url
-            // const url = "http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi";
-            // let Data;
-            // let params={
-            //             headers:{
-            //               "Content-Type": "application/x-www-form-urlencoded"
-            //             },
-            //             body:Data,
-            //             method:"POST"
-            //         };
-            // let response;
-
-
 
             switch (d) {
                 case 'RA':
                     console.log('RA');
 
-                    
-                    // //data
-                    // Data={
-                    //   gotoserverpresetname: "pos4",
-                    //   camera:	"1"
-                    // }
-
-                    // fetch(url, params)
-                    //   .then(response)
-                    //   .then(data => console.log(data));
-                    
                     //-----Send CGI to Cam--------
                     // Send a request
                     xhttp.open("GET", "http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos2&camera=1");
@@ -268,17 +331,6 @@
 
                 case 'NA':
                     console.log('NA');
-                    
-                    // //data
-                    // Data={
-                    //   gotoserverpresetname: "pos3",
-                    //   camera:	"1"
-                    // }
-
-                    // fetch(url, params)
-                    //   .then(response)
-                    //   .then(data => console.log(data));
-
 
                     //-----Send CGI to Cam--------
                     // Send a request
@@ -288,16 +340,6 @@
 
                 case 'SB':
                     console.log('SB');
-
-                    // //data
-                    // Data={
-                    //   gotoserverpresetname: "pos2",
-                    //   camera:	"1"
-                    // }
-
-                    // fetch(url, params)
-                    //   .then(response)
-                    //   .then(data => console.log(data));
                                         
                     //-----Send CGI to Cam--------
                     // Send a request
@@ -322,8 +364,6 @@
                     // Send a request
                     xhttp.open("GET", "http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?camera=1&query=position&pan=25.532&tilt=-23&zoom=736&autofocus=on");
                     xhttp.send();
-            
-            
                 break;
                 case 'JF':
                     break;
@@ -339,7 +379,7 @@
 
         }
 
-        </script>
+        </script> -->
 
 
   </body>
