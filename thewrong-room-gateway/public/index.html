@@ -6,19 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- <link href="css/style.css" rel="stylesheet" /> -->
 
+    <!-- Google Roboto font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&display=swap" rel="stylesheet"> 
+
+
     <style>
 
         #titlebar {
             color: darkblue;
+            text-align: center;
+            font-family: 'Roboto Mono', monospace;
         }
 
         #main {
+            margin: auto;
             text-align: center;
-            border: 1px solid lightgray;
+            border: 1px solid gray;
+            background-color: rgb(245, 245, 245);
             border-radius: 5px;
             padding: 20px;
             width: 800px;
-            margin: auto;
+            
         }
 
         #videowindow {
@@ -36,21 +46,58 @@
             top:50%; 
             left: 50%; 
             transform: translate(-50%, -50%);
+            font-family: 'Roboto Mono', monospace;
+        }
+
+        #explanatory {
+            margin: auto;
+            max-width: 600px; 
+            font-family: 'Roboto Mono', monospace;
+
         }
 
         #artists {
             margin: auto;
             max-width: 600px; 
-            text-align: justify; 
-            text-align-last: justify;
+            /* text-align: justify;  */
+            text-align-last: center;
+            font-family: 'Roboto Mono', monospace;
         }
 
         a {
             display:inline-block;
+            font-family: 'Roboto Mono', monospace;
         }
+        
+        /* unvisited link */
+        a:link {
+            color: red;
+            text-decoration: none;
+        }
+
+        /* visited link */
+        a:visited {
+            color: green;
+            text-decoration: none;
+        }
+
+        /* mouse over link */
+        a:hover {
+            color: hotpink;
+            text-decoration: underline dashed;
+        }
+
+        .artlink {
+
+            padding: 0px 10px;
+        }
+
+
 
         #controls {
             padding: 10px;
+            margin: auto;
+            font-family: 'Roboto Mono', monospace;
         }
 
     </style>
@@ -58,11 +105,13 @@
 </head>
 
 <body>
-    
+
     <div id="main">
       
         <div>
-            <h3 id="titlebar">Live-Webcam</h3>
+           <img src="axis.gif" style="float:left"> 
+           <br /> 
+           <h3 id="titlebar">Live-Webcam</h3>
         </div>
 
         <div id="videowindow">
@@ -86,17 +135,20 @@
             <option value="MP">Mac Pierce</option>
         </select> -->
 
+        <div id="explanatory">Go to: <a id="ET" title="explanatory text" href="#" onclick="moveCamTo('explanatorytext');return false;">explantory text</a></div>
+        <br />
+
         <div id="artists">
-        <span style="display:inline-block">Go Directly to:</span> <a id="RA" title="Reid Arowood" href="#" onclick="moveCamToArtist('reid');return false;">Reid Arowood</a>   
-            <a id="NA" title="Nimrod Astarhan" href="#" onclick="moveCamToArtist('nimo');return false;">Nimrod Astarhan</a>   
-            <a id="SB" title="Sarah Brophy" href="#" onclick="moveCamToArtist('sarah');return false;">Sarah Brophy</a>   
-            <a id="JCD" title="Juliana Castro Duperly" href="#" onclick="moveCamToArtist('juliana');return false;">Juliana Castro Duperly</a> 
-            <a id="BFC" title="Blake Fall-Conroy" href="#" onclick="moveCamToArtist('blake');return false;">Blake Fall-Conroy</a> 
-            <a id="JF" title="Juan Flores" href="#" onclick="moveCamToArtist('juan');return false;">Juan Flores</a> 
-            <a id="TG" title="Tom Gal" href="#" onclick="moveCamToArtist('tom');return false;">Tom Gal</a> 
-            <a id="SG" title="Sydney Gush" href="#" onclick="moveCamToArtist('sydney');return false;">Sydney Gush</a> 
-            <a id="MP" title="Mac Pierce" href="#" onclick="moveCamToArtist('mac');return false;">Mac Pierce</a> 
-            <a id="KX" title="Kelly Xi" href="#" onclick="moveCamToArtist('kelly');return false;">Kelly Xi</a> 
+        <span style="display:inline-block; padding:0px 10px;">Go to:</span> <a id="RA" title="Reid Arowood" href="#" onclick="moveCamToArtist('reid');return false;">Reid Arowood</a>   
+            <a class="artlink" id="NA" title="Nimrod Astarhan" href="#" onclick="moveCamToArtist('nimo');return false;">Nimrod Astarhan</a>   
+            <a class="artlink" id="SB" title="Sarah Brophy" href="#" onclick="moveCamToArtist('sarah');return false;">Sarah Brophy</a>   
+            <a class="artlink" id="JCD" title="Juliana Castro Duperly" href="#" onclick="moveCamToArtist('juliana');return false;">Juliana Castro Duperly</a> 
+            <a class="artlink" id="BFC" title="Blake Fall-Conroy" href="#" onclick="moveCamToArtist('blake');return false;">Blake Fall-Conroy</a> 
+            <a class="artlink" id="JF" title="Juan Flores" href="#" onclick="moveCamToArtist('juan');return false;">Juan Flores</a> 
+            <a class="artlink" id="TG" title="Tom Gal" href="#" onclick="moveCamToArtist('tom');return false;">Tom Gal</a> 
+            <a class="artlink" id="SG" title="Sydney Gush" href="#" onclick="moveCamToArtist('sydney');return false;">Sydney Gush</a> 
+            <a class="artlink" id="MP" title="Mac Pierce" href="#" onclick="moveCamToArtist('mac');return false;">Mac Pierce</a> 
+            <a class="artlink" id="KX" title="Kelly Xi" href="#" onclick="moveCamToArtist('kelly');return false;">Kelly Xi</a> 
         </div>
 
 
@@ -193,7 +245,10 @@
      
 
       <div id="controls">
-        <table>
+
+<br />
+<br />
+        <table style="margin: auto;">
           <!-- PAN  -->
           
           <tr>
@@ -255,49 +310,10 @@
             </td>
           </tr>
 
-          <!-- FOCUS -->
-          <tr>
-            <td align="left">
-              <strong style="padding-right: 10px">FOCUS:</strong>
-            </td>
-            <td><button type="">&#8592;</button></td>
-            <td>
-              <input
-                style="vertical-align: middle"
-                id="focus_slider"
-                type="range"
-                min="5"
-                max="200"
-                step="5"
-                value="100"
-              />
-              <button type="">&#8594;</button>
-            </td>
-          </tr>
-
-          <!-- IRIS -->
-          <tr>
-            <td align="left">
-              <strong style="padding-right: 10px">IRISL:</strong>
-            </td>
-            <td><button type="">&#8592;</button></td>
-            <td>
-              <input
-                style="vertical-align: middle"
-                id="iris_slider"
-                type="range"
-                min="5"
-                max="200"
-                step="5"
-                value="100"
-              />
-              <button type="">&#8594;</button>
-            </td>
-
-          </tr>
         </table>
-      </div>
-    </div>
+      </div><!--controls-->
+    
+    </div> <!--main-->
 
 
 
