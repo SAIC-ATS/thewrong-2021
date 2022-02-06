@@ -23,8 +23,12 @@
 
 
 
+      <div style="position: relative; text-align: center;">
+        <img style="width:100%;" src="/feed"><br />
+        <h1 id="loading" style="display: none; position: absolute; top:50%; left: 50%; transform: translate(-50%, -50%);">Camera loading... </h1>
+      </div>
 
-      <img src="/feed"><br />
+      
 
       <!-- ARTIST LOCATION PRESETS -->
       <label for="artist-select">Artists:</label>
@@ -213,9 +217,13 @@
 
             const xhttp = new XMLHttpRequest();
             // Define a callback function
-            xhttp.onload = function() {
-            // Here you can use the Data 
+            xhttp.onreadystatechange = function() {
+              // 4 is done https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/response
+              if (xhttp.readyState === 4) { 
+                document.getElementById("loading").style.display = "none";
+              }
             }
+            
 
 
 
@@ -253,6 +261,8 @@
                     // Send a request
                     xhttp.open("GET", "http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos2&camera=1");
                     xhttp.send();
+                    document.getElementById("loading").style.display="block";
+                    // TODO: show loadinfg screen 
 
                     break;
 
