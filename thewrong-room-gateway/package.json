@@ -11,7 +11,9 @@
     "express": "~4.16.1",
     "express-http-proxy": "^1.6.3",
     "http-errors": "~1.6.3",
+    "http-proxy-middleware": "^2.0.2",
     "jade": "~1.11.0",
+    "mjpeg-proxy": "^0.3.0",
     "morgan": "~1.9.1",
     "node-http-proxy": "0.2.4"
   }
