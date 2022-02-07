@@ -7,153 +7,199 @@
     <!-- <link href="css/style.css" rel="stylesheet" /> -->
 
     <!-- Google Roboto font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&display=swap" rel="stylesheet"> 
-
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&display=swap"
+      rel="stylesheet"
+    />
 
     <style>
+      #titlebar {
+        color: darkblue;
+        text-align: center;
+        font-family: "Roboto Mono", monospace;
+      }
 
-        #titlebar {
-            color: darkblue;
-            text-align: center;
-            font-family: 'Roboto Mono', monospace;
-        }
+      #main {
+        margin: auto;
+        text-align: center;
+        border: 1px solid gray;
+        background-color: rgb(245, 245, 245);
+        border-radius: 5px;
+        padding: 20px;
+        width: 800px;
+      }
 
+      #videowindow {
+        position: relative;
+        text-align: center;
+      }
+
+      #videostream {
+        width: 100%;
+      }
+
+      #loading {
+        /* display: none;  */
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-family: "Roboto Mono", monospace;
+        z-index: 2;
+      }
+
+      #infoOverlay {
+        /* display: none;  */
+        display: block;
+        position: absolute;
+        background-color: aliceblue;
+        border: 1px solid gray;
+        box-shadow: 5px 5px 5px rgb(200, 200, 200);
+        padding: 15px;
+        top: 21px;
+        font-family: "Roboto Mono", monospace;
+        text-align: justify;
+        z-index: 6;
+      }
+
+      #explanatory {
+        margin: auto;
+        max-width: 600px;
+        font-family: "Roboto Mono", monospace;
+      }
+
+      #artists {
+        margin: auto;
+        max-width: 600px;
+        /* text-align: justify;  */
+        text-align-last: center;
+        font-family: "Roboto Mono", monospace;
+      }
+
+      a {
+        display: inline-block;
+        font-family: "Roboto Mono", monospace;
+      }
+
+      /* unvisited link */
+      a:link {
+        color: red;
+        text-decoration: none;
+      }
+
+      /* visited link */
+      a:visited {
+        color: green;
+        text-decoration: none;
+      }
+
+      /* mouse over link */
+      a:hover {
+        color: hotpink;
+        text-decoration: underline dashed;
+      }
+
+      .artlink {
+        padding: 0px 10px;
+      }
+
+      #controls {
+        padding: 10px;
+        margin: auto;
+        font-family: "Roboto Mono", monospace;
+      }
+
+      .modal {
+        overflow: hidden;
+        transition: transform 0.3s ease-out;
+        height: auto;
+        transform: scaleY(1);
+        transform-origin: top;
+      }
+
+      .modal.collapsed {
+        transform: scaleY(0);
+      }
+
+      @media (max-width: 800px) {
         #main {
-            margin: auto;
-            text-align: center;
-            border: 1px solid gray;
-            background-color: rgb(245, 245, 245);
-            border-radius: 5px;
-            padding: 20px;
-            width: 800px;
-            
+          width: 90%;
+          min-width: 0px;
         }
-
-        #videowindow {
-            position: relative; 
-            text-align: center;
-        }
-
-        #videostream {
-            width: 100%;
-        }
-
-        #loading {
-            /* display: none;  */
-            display: block;
-            position: absolute; 
-            top:50%; 
-            left: 50%; 
-            transform: translate(-50%, -50%);
-            font-family: 'Roboto Mono', monospace;
-            z-index: 2;
-        }
-
-        #infoOverlay {
-            /* display: none;  */
-            display: block;
-            position: absolute; 
-            background-color: aliceblue;
-            border: 1px solid gray;
-            box-shadow: 5px 5px 5px rgb(200, 200, 200);
-            padding: 15px;
-            top:0%; 
-            left: 50%; 
-            transform: translate(-50%, 5%);
-            width: 90%;
-            font-family: 'Roboto Mono', monospace;
-            text-align: justify;
-            
-            z-index: 6;
-
-            transition-duration: 5s;
-            transition-property: transform;
-            transform-origin: top left;
-
-        }
-
-        #explanatory {
-            margin: auto;
-            max-width: 600px; 
-            font-family: 'Roboto Mono', monospace;
-
-        }
-
-        #artists {
-            margin: auto;
-            max-width: 600px; 
-            /* text-align: justify;  */
-            text-align-last: center;
-            font-family: 'Roboto Mono', monospace;
-        }
-
-        a {
-            display:inline-block;
-            font-family: 'Roboto Mono', monospace;
-        }
-        
-        /* unvisited link */
-        a:link {
-            color: red;
-            text-decoration: none;
-        }
-
-        /* visited link */
-        a:visited {
-            color: green;
-            text-decoration: none;
-        }
-
-        /* mouse over link */
-        a:hover {
-            color: hotpink;
-            text-decoration: underline dashed;
-        }
-
-        .artlink {
-
-            padding: 0px 10px;
-        }
-
-
-
-        #controls {
-            padding: 10px;
-            margin: auto;
-            font-family: 'Roboto Mono', monospace;
-        }
-
+      }
     </style>
 
-</head>
+    <script>
+      function toggleInfo() {
+        document.getElementById("infoOverlay").classList.toggle("collapsed");
+      }
+    </script>
+  </head>
 
-<body>
-
+  <body>
     <div id="main">
-      
-        <div>
-           <img src="axis.gif" style="float:left"> 
-           <br /> 
-           <h3 id="titlebar">Live-Webcam</h3>
-           <span id="info" style="float:right" onclick="openInfo();return false;">info</span>
-        </div>
+      <div>
+        <img src="axis.gif" style="float: left" />
+        <br />
+        <h3 id="titlebar">Live-Webcam</h3>
+        <a
+          role="button"
+          tabindex="0"
+          style="
+            float: right;
+            position: relative;
+            z-index: 10;
+            cursor: pointer;
+            user-select: none;
+          "
+        >
+          <span id="info" onclick="toggleInfo(); return false;"> info </span>
+        </a>
+      </div>
 
-        <div id="videowindow">
-            <div id="infoOverlay">
-                Pan-Tilt-Zoom<br/><br/>Minds without a body; phantom flesh; vision without a gaze.  We have opted for our biological body to mutate into a telematic and a Cartesian body. We remotely transit cyberspace territories, we use more than one body, more than one gaze. Our biological body is more like a zombie, because it is there, but in an absent way. We are still here, but our eyes wander in other universes. We have "(...) a sliding and shifting consciousness that is neither &lt;&lt;completely here&gt;&gt;, in this body, nor &lt;&lt;completely there&gt;&gt;, in those bodies." We rely on technology to expand our body; we desire to let the flesh die;  a camera sees better than our eyes. 
-                <br /><br/>
-                The exhibition arises as an idea of permanent visibility, using an artifact of political technology, which is transformed into a device of voyeurism, and telepresence for those eyes that need artificial vision.     The eye-camera is subjected to a device, which many times is not being observed by any person: it is being transmitted to a machine and not to an observer. By whom are we being watched?
-                <br /><br/>
-                The works presented in Pan-Tilt-Zoom have been conceived on small screens to recall the unfolding of the point of view, and to resort to other ocular perceptions. These are works subjected to a field of vision given by the electronic image.
-            </div>
-            <img id="videostream" src="/feed"><br />
-            <h1 id="loading">Camera loading... </h1>
+      <div id="videowindow">
+        <div id="infoOverlay" class="modal collapsible">
+          <p>
+            Pan-Tilt-Zoom<br /><br />Minds without a body; phantom flesh; vision
+            without a gaze. We have opted for our biological body to mutate into
+            a telematic and a Cartesian body. We remotely transit cyberspace
+            territories, we use more than one body, more than one gaze. Our
+            biological body is more like a zombie, because it is there, but in
+            an absent way. We are still here, but our eyes wander in other
+            universes. We have "(...) a sliding and shifting consciousness that
+            is neither &lt;&lt;completely here&gt;&gt;, in this body, nor
+            &lt;&lt;completely there&gt;&gt;, in those bodies." We rely on
+            technology to expand our body; we desire to let the flesh die; a
+            camera sees better than our eyes. <br /><br />
+            The exhibition arises as an idea of permanent visibility, using an
+            artifact of political technology, which is transformed into a device
+            of voyeurism, and telepresence for those eyes that need artificial
+            vision. The eye-camera is subjected to a device, which many times is
+            not being observed by any person: it is being transmitted to a
+            machine and not to an observer. By whom are we being watched?
+            <br /><br />
+            The works presented in Pan-Tilt-Zoom have been conceived on small
+            screens to recall the unfolding of the point of view, and to resort
+            to other ocular perceptions. These are works subjected to a field of
+            vision given by the electronic image.
+            <br /><br />
+            <a
+              role="button"
+              tabindex="0"
+              style="cursor: pointer; user-select: none"
+            >
+              <span id="info" onclick="openInfo(); return false;"> Enter </span>
+            </a>
+          </p>
         </div>
-      
+        <img id="videostream" src="/feed" /><br />
+        <h1 id="loading">Camera loading...</h1>
+      </div>
 
-        <!-- ARTIST LOCATION PRESETS
+      <!-- ARTIST LOCATION PRESETS
         <label for="artist-select">Artists:</label>
         <select name="artists" onchange="val()" id="dropdown">
             <option value="Default">--Select--</option>
@@ -168,122 +214,223 @@
             <option value="MP">Mac Pierce</option>
         </select> -->
 
-        <div id="explanatory">Go to: <a id="ET" title="explanatory text" href="#" onclick="moveCamTo('explanatorytext');return false;">explantory text</a></div>
-        <br />
+      <div id="explanatory">
+        Go to:
+        <a
+          id="ET"
+          title="explanatory text"
+          href="#"
+          onclick="moveCamTo('explanatorytext');return false;"
+          >explantory text</a
+        >
+      </div>
+      <br />
 
-        <div id="artists">
-        <span style="display:inline-block; padding:0px 10px;">Go to:</span> <a id="RA" title="Reid Arowood" href="#" onclick="moveCamToArtist('reid');return false;">Reid Arowood</a>   
-            <a class="artlink" id="NA" title="Nimrod Astarhan" href="#" onclick="moveCamToArtist('nimo');return false;">Nimrod Astarhan</a>   
-            <a class="artlink" id="SB" title="Sarah Brophy" href="#" onclick="moveCamToArtist('sarah');return false;">Sarah Brophy</a>   
-            <a class="artlink" id="JCD" title="Juliana Castro Duperly" href="#" onclick="moveCamToArtist('juliana');return false;">Juliana Castro Duperly</a> 
-            <a class="artlink" id="BFC" title="Blake Fall-Conroy" href="#" onclick="moveCamToArtist('blake');return false;">Blake Fall-Conroy</a> 
-            <a class="artlink" id="JF" title="Juan Flores" href="#" onclick="moveCamToArtist('juan');return false;">Juan Flores</a> 
-            <a class="artlink" id="TG" title="Tom Gal" href="#" onclick="moveCamToArtist('tom');return false;">Tom Gal</a> 
-            <a class="artlink" id="SG" title="Sydney Gush" href="#" onclick="moveCamToArtist('sydney');return false;">Sydney Gush</a> 
-            <a class="artlink" id="MP" title="Mac Pierce" href="#" onclick="moveCamToArtist('mac');return false;">Mac Pierce</a> 
-            <a class="artlink" id="KX" title="Kelly Xi" href="#" onclick="moveCamToArtist('kelly');return false;">Kelly Xi</a> 
-        </div>
+      <div id="artists">
+        <span style="display: inline-block; padding: 0px 10px">Go to:</span>
+        <a
+          id="RA"
+          title="Reid Arowood"
+          href="#"
+          onclick="moveCamToArtist('reid');return false;"
+          >Reid Arowood</a
+        >
+        <a
+          class="artlink"
+          id="NA"
+          title="Nimrod Astarhan"
+          href="#"
+          onclick="moveCamToArtist('nimo');return false;"
+          >Nimrod Astarhan</a
+        >
+        <a
+          class="artlink"
+          id="SB"
+          title="Sarah Brophy"
+          href="#"
+          onclick="moveCamToArtist('sarah');return false;"
+          >Sarah Brophy</a
+        >
+        <a
+          class="artlink"
+          id="JCD"
+          title="Juliana Castro Duperly"
+          href="#"
+          onclick="moveCamToArtist('juliana');return false;"
+          >Juliana Castro Duperly</a
+        >
+        <a
+          class="artlink"
+          id="BFC"
+          title="Blake Fall-Conroy"
+          href="#"
+          onclick="moveCamToArtist('blake');return false;"
+          >Blake Fall-Conroy</a
+        >
+        <a
+          class="artlink"
+          id="JF"
+          title="Juan Flores"
+          href="#"
+          onclick="moveCamToArtist('juan');return false;"
+          >Juan Flores</a
+        >
+        <a
+          class="artlink"
+          id="TG"
+          title="Tom Gal"
+          href="#"
+          onclick="moveCamToArtist('tom');return false;"
+          >Tom Gal</a
+        >
+        <a
+          class="artlink"
+          id="SG"
+          title="Sydney Gush"
+          href="#"
+          onclick="moveCamToArtist('sydney');return false;"
+          >Sydney Gush</a
+        >
+        <a
+          class="artlink"
+          id="MP"
+          title="Mac Pierce"
+          href="#"
+          onclick="moveCamToArtist('mac');return false;"
+          >Mac Pierce</a
+        >
+        <a
+          class="artlink"
+          id="KX"
+          title="Kelly Xi"
+          href="#"
+          onclick="moveCamToArtist('kelly');return false;"
+          >Kelly Xi</a
+        >
+      </div>
 
-
-<script>
-
-    //--- Function that sends camera to individual artist location in gallery ---
-    function moveCamToArtist(person) {
-
-        //--- Set up camera http request ---
-        const xhttp = new XMLHttpRequest();
-            // Define a callback function
-            xhttp.onreadystatechange = function() {
-              // 4 is status return:"done" https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/response
-              if (xhttp.readyState === 4) { 
-                document.getElementById("loading").style.display = "none";
-              }
+      <script>
+        //--- Function that sends camera to individual artist location in gallery ---
+        function moveCamToArtist(person) {
+          //--- Set up camera http request ---
+          const xhttp = new XMLHttpRequest();
+          // Define a callback function
+          xhttp.onreadystatechange = function () {
+            // 4 is status return:"done" https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/response
+            if (xhttp.readyState === 4) {
+              document.getElementById("loading").style.display = "none";
             }
+          };
 
-        //--- Determine which link was clicked and send camera instruction ---
-        switch (person) {
-            case 'reid':
-                console.log('reid');
-                //--- Set CGI request params ---
-                xhttp.open("GET", "http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos2&camera=1");
-                break;
+          //--- Determine which link was clicked and send camera instruction ---
+          switch (person) {
+            case "reid":
+              console.log("reid");
+              //--- Set CGI request params ---
+              xhttp.open(
+                "GET",
+                "http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos2&camera=1"
+              );
+              break;
 
-            case 'nimo':
-                console.log('nimo'); 
-                //--- Set CGI request params ---
-                xhttp.open("GET", "http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos3&camera=1");
-                break;
+            case "nimo":
+              console.log("nimo");
+              //--- Set CGI request params ---
+              xhttp.open(
+                "GET",
+                "http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos3&camera=1"
+              );
+              break;
 
-            case 'sarah':
-                console.log('sarah');
-                //--- Set CGI request params ---
-                xhttp.open("GET", "http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos4&camera=1");
-                break;
+            case "sarah":
+              console.log("sarah");
+              //--- Set CGI request params ---
+              xhttp.open(
+                "GET",
+                "http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos4&camera=1"
+              );
+              break;
 
-            case 'juliana':
-                console.log('juliana');
-                //--- Set CGI request params ---
-                xhttp.open("GET", "http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos2&camera=1");
-                break;
+            case "juliana":
+              console.log("juliana");
+              //--- Set CGI request params ---
+              xhttp.open(
+                "GET",
+                "http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos2&camera=1"
+              );
+              break;
 
-            case 'blake':
-                console.log('blake');
-                //--- Set CGI request params ---
-                xhttp.open("GET", "http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos3&camera=1");
-                break;
-                
-                case 'juan':
-                console.log('juan');
-                //--- Set CGI request params ---
-                xhttp.open("GET", "http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos4&camera=1");
-                break;
+            case "blake":
+              console.log("blake");
+              //--- Set CGI request params ---
+              xhttp.open(
+                "GET",
+                "http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos3&camera=1"
+              );
+              break;
 
-            case 'tom':
-                console.log('tom');
-                //--- Set CGI request params ---
-                xhttp.open("GET", "http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos2&camera=1");
-                break;
+            case "juan":
+              console.log("juan");
+              //--- Set CGI request params ---
+              xhttp.open(
+                "GET",
+                "http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos4&camera=1"
+              );
+              break;
 
-            case 'sydney':
-                console.log('sydney');
-                //--- Set CGI request params ---
-                xhttp.open("GET", "http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos3&camera=1");
-                break;
+            case "tom":
+              console.log("tom");
+              //--- Set CGI request params ---
+              xhttp.open(
+                "GET",
+                "http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos2&camera=1"
+              );
+              break;
 
-            case 'mac':
-                console.log('mac');
-                //--- Set CGI request params ---
-                xhttp.open("GET", "http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos4&camera=1");
-                break;
+            case "sydney":
+              console.log("sydney");
+              //--- Set CGI request params ---
+              xhttp.open(
+                "GET",
+                "http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos3&camera=1"
+              );
+              break;
 
-            case 'kelly':
-                console.log('kelly');
-                //--- Set CGI request params ---
-                xhttp.open("GET", "http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos2&camera=1");
-                break;
+            case "mac":
+              console.log("mac");
+              //--- Set CGI request params ---
+              xhttp.open(
+                "GET",
+                "http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos4&camera=1"
+              );
+              break;
+
+            case "kelly":
+              console.log("kelly");
+              //--- Set CGI request params ---
+              xhttp.open(
+                "GET",
+                "http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos2&camera=1"
+              );
+              break;
 
             default:
-                console.log("Nothing picked, how did you get here? Error. ");
-        } 
+              console.log("Nothing picked, how did you get here? Error. ");
+          }
 
-        //--- Send off selected parameters to camera through http request ---
-        xhttp.send();
-        //--- Turn on loading sign until camera calls back "done"
-        document.getElementById("loading").style.display="block";
-
-    }
-
-</script>
-
-     
+          //--- Send off selected parameters to camera through http request ---
+          xhttp.send();
+          //--- Turn on loading sign until camera calls back "done"
+          document.getElementById("loading").style.display = "block";
+        }
+      </script>
 
       <div id="controls">
-
-<br />
-<br />
-        <table style="margin: auto;">
+        <br />
+        <br />
+        <table style="margin: auto">
           <!-- PAN  -->
-          
+
           <tr>
             <td align="left">
               <strong style="padding-right: 10px">PAN:</strong>
@@ -293,26 +440,6 @@
               <input
                 style="vertical-align: middle"
                 id="pan_slider"
-                type="range"
-                min="5"
-                max="200"
-                step="5"
-                value="100"
-              />
-              <button type="">&#8594;</button>
-            </td>
-          </tr>
-
-          <!-- ZOOM -->
-          <tr>
-            <td align="left">
-              <strong style="padding-right: 10px">ZOOM:</strong>
-            </td>
-            <td><button type="">&#8592;</button></td>
-            <td>
-              <input
-                style="vertical-align: middle"
-                id="zoom_slider"
                 type="range"
                 min="5"
                 max="200"
@@ -343,12 +470,30 @@
             </td>
           </tr>
 
+          <!-- ZOOM -->
+          <tr>
+            <td align="left">
+              <strong style="padding-right: 10px">ZOOM:</strong>
+            </td>
+            <td><button type="">&#8592;</button></td>
+            <td>
+              <input
+                style="vertical-align: middle"
+                id="zoom_slider"
+                type="range"
+                min="5"
+                max="200"
+                step="5"
+                value="100"
+              />
+              <button type="">&#8594;</button>
+            </td>
+          </tr>
         </table>
-      </div><!--controls-->
-    
-    </div> <!--main-->
-
-
+      </div>
+      <!--controls-->
+    </div>
+    <!--main-->
 
     <!-- <script>
 
@@ -429,7 +574,5 @@
         }
 
         </script> -->
-
-
   </body>
 </html>
