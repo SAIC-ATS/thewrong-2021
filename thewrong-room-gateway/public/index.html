@@ -41,12 +41,37 @@
         }
 
         #loading {
-            display: none; 
+            /* display: none;  */
+            display: block;
             position: absolute; 
             top:50%; 
             left: 50%; 
             transform: translate(-50%, -50%);
             font-family: 'Roboto Mono', monospace;
+            z-index: 2;
+        }
+
+        #infoOverlay {
+            /* display: none;  */
+            display: block;
+            position: absolute; 
+            background-color: aliceblue;
+            border: 1px solid gray;
+            box-shadow: 5px 5px 5px rgb(200, 200, 200);
+            padding: 15px;
+            top:0%; 
+            left: 50%; 
+            transform: translate(-50%, 5%);
+            width: 90%;
+            font-family: 'Roboto Mono', monospace;
+            text-align: justify;
+            
+            z-index: 6;
+
+            transition-duration: 5s;
+            transition-property: transform;
+            transform-origin: top left;
+
         }
 
         #explanatory {
@@ -112,9 +137,17 @@
            <img src="axis.gif" style="float:left"> 
            <br /> 
            <h3 id="titlebar">Live-Webcam</h3>
+           <span id="info" style="float:right" onclick="openInfo();return false;">info</span>
         </div>
 
         <div id="videowindow">
+            <div id="infoOverlay">
+                Pan-Tilt-Zoom<br/><br/>Minds without a body; phantom flesh; vision without a gaze.  We have opted for our biological body to mutate into a telematic and a Cartesian body. We remotely transit cyberspace territories, we use more than one body, more than one gaze. Our biological body is more like a zombie, because it is there, but in an absent way. We are still here, but our eyes wander in other universes. We have "(...) a sliding and shifting consciousness that is neither &lt;&lt;completely here&gt;&gt;, in this body, nor &lt;&lt;completely there&gt;&gt;, in those bodies." We rely on technology to expand our body; we desire to let the flesh die;  a camera sees better than our eyes. 
+                <br /><br/>
+                The exhibition arises as an idea of permanent visibility, using an artifact of political technology, which is transformed into a device of voyeurism, and telepresence for those eyes that need artificial vision.     The eye-camera is subjected to a device, which many times is not being observed by any person: it is being transmitted to a machine and not to an observer. By whom are we being watched?
+                <br /><br/>
+                The works presented in Pan-Tilt-Zoom have been conceived on small screens to recall the unfolding of the point of view, and to resort to other ocular perceptions. These are works subjected to a field of vision given by the electronic image.
+            </div>
             <img id="videostream" src="/feed"><br />
             <h1 id="loading">Camera loading... </h1>
         </div>
