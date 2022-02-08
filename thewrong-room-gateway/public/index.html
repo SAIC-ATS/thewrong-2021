@@ -15,20 +15,33 @@
     />
 
     <style>
+
+      #main {
+        margin: auto;
+        margin-bottom:50px;
+        text-align: center;
+        border: 1px solid gray;
+        background-color: rgb(250, 250, 250);
+        border-radius: 5px;
+        padding: 20px;
+        width: 800px;
+      }
+
+      #header {
+        width: 100%;
+        display: block;
+        height: 90px;
+      }
       #titlebar {
         color: darkblue;
         text-align: center;
         font-family: "Roboto Mono", monospace;
+        font-size: 2em;
       }
 
-      #main {
-        margin: auto;
-        text-align: center;
-        border: 1px solid gray;
-        background-color: rgb(245, 245, 245);
-        border-radius: 5px;
-        padding: 20px;
-        width: 800px;
+      .artlink {
+        padding: 3px 10px;
+        text-decoration: underline dashed;
       }
 
       #videowindow {
@@ -116,10 +129,6 @@
         text-decoration: underline dashed;
       }
 
-      .artlink {
-        padding: 0px 10px;
-      }
-
       #controls {
         padding: 10px;
         margin: auto;
@@ -138,6 +147,55 @@
         transform: scaleY(0);
       }
 
+
+
+      .control-container {
+
+        display: grid; 
+        grid-auto-rows: 1fr; 
+        grid-template-columns: 1fr min-content min-content min-content 1fr; 
+        gap: 0px 0px; 
+        /* margin: auto; */
+        /* text-align: center; */
+
+      }
+
+      .label {
+        /* text-align: right; */
+        display: flex;
+        justify-content: right;
+        align-content: center;
+      }
+
+      .left-arrow-div {
+        background-color: white;
+        border: 1px solid gray;
+        border-radius: 4px;
+        height: 100%;
+        vertical-align: middle;
+        padding: 0px 5px;
+        display: inline-block;
+        margin: 0 5px;
+        display: flex;
+        align-items: center;
+        transform: scaleX(-1);
+        /* display: inline-block; */
+      }
+
+      .right-arrow-div {
+        background-color: white;
+        border: 1px solid gray;
+        border-radius: 4px;
+        height: 100%;
+        vertical-align: middle;
+        padding: 0px 5px;
+        display: inline-block;
+        margin: 0 5px;
+        display: flex;
+        align-items: center;
+        /* display: inline-block; */
+      }
+
       .control-bars {
         background-color: white;
         border: 1px solid gray;
@@ -148,6 +206,9 @@
         display: inline-block;
 
       }
+
+
+
 
       @media (max-width: 800px) {
         #main {
@@ -166,10 +227,12 @@
 
   <body>
     <div id="main">
+      <div id="header">
+        <img src="images/ATS-SAIC.png" width="100px" style="float: left" /><img src="images/tw5_logo-7.png" width="175px" style="float:right">
+      </div>
+      
       <div>
-        <img src="images/axis.gif" style="float: left" />
-        <br />
-        <h3 id="titlebar">Live-Webcam</h3>
+        <h1 id="titlebar"><b>Live-Webcam</b></h1>
           <a class="artlink" id="info-button" onclick="toggleInfo(); return false;" href="#" title="info"> info </a>
       </div>
 
@@ -223,7 +286,7 @@
         </select> -->
 
       <div id="explanatory">
-        Go to:
+        Go directly to:
         <a
           id="ET"
           title="explanatory text"
@@ -235,79 +298,18 @@
       <br />
 
       <div id="artists">
-        <span style="display: inline-block; padding: 0px 10px">Go to:</span>
-        <a
-          id="RA"
-          title="Reid Arowood"
-          href="#"
-          onclick="moveCamToArtist('reid');return false;"
-          >Reid Arowood</a
-        >
-        <a
-          class="artlink"
-          id="NA"
-          title="Nimrod Astarhan"
-          href="#"
-          onclick="moveCamToArtist('nimo');return false;"
-          >Nimrod Astarhan</a
-        >
-        <a
-          class="artlink"
-          id="SB"
-          title="Sarah Brophy"
-          href="#"
-          onclick="moveCamToArtist('sarah');return false;"
-          >Sarah Brophy</a
-        >
-        <a
-          class="artlink"
-          id="JCD"
-          title="Juliana Castro Duperly"
-          href="#"
-          onclick="moveCamToArtist('juliana');return false;"
-          >Juliana Castro Duperly</a
-        >
-        <a
-          class="artlink"
-          id="BFC"
-          title="Blake Fall-Conroy"
-          href="#"
-          onclick="moveCamToArtist('blake');return false;"
-          >Blake Fall-Conroy</a
-        >
-        <a
-          class="artlink"
-          id="JF"
-          title="Juan Flores"
-          href="#"
-          onclick="moveCamToArtist('juan');return false;"
-          >Juan Flores</a
-        >
-        <a
-          class="artlink"
-          id="TG"
-          title="Tom Gal"
-          href="#"
-          onclick="moveCamToArtist('tom');return false;"
-          >Tom Gal</a
-        >
+        <span style="display: inline-block; padding: 0px 10px">Go directly to:</span>
+        <a class="artlink" id="RA" title="Reid Arowood" href="#" onclick="moveCamToArtist('reid');return false;">Reid Arowood</a>
+        <a class="artlink" id="NA" title="Nimrod Astarhan" href="#" onclick="moveCamToArtist('nimo');return false;">Nimrod Astarhan</a>
+        <a class="artlink" id="SB" title="Sarah Brophy" href="#" onclick="moveCamToArtist('sarah');return false;">Sarah Brophy</a>
+        <a class="artlink" id="JCD" title="Juliana Castro Duperly" href="#" onclick="moveCamToArtist('juliana');return false;">Juliana Castro Duperly</a>
+        <a class="artlink" id="BFC" title="Blake Fall-Conroy" href="#" onclick="moveCamToArtist('blake');return false;">Blake Fall-Conroy</a>
+        <a class="artlink" id="JF" title="Juan Flores"  href="#" onclick="moveCamToArtist('juan');return false;">Juan Flores</a>
+        <a class="artlink" id="TG" title="Tom Gal" href="#" onclick="moveCamToArtist('tom');return false;">Tom Gal</a>
         <a class="artlink" id="SG" title="Sydney Gush" href="#" onclick="moveCamToArtist('sydney');return false;">Sydney Gush</a>
-        <a
-          class="artlink"
-          id="MP"
-          title="Mac Pierce"
-          href="#"
-          onclick="moveCamToArtist('mac');return false;"
-          >Mac Pierce</a
-        >
-        <a
-          class="artlink"
-          id="KX"
-          title="Kelly Xi"
-          href="#"
-          onclick="moveCamToArtist('kelly');return false;"
-          >Kelly Xi</a
-        >
+        <a class="artlink" id="MP" title="Mac Pierce" href="#" onclick="moveCamToArtist('mac');return false;">Mac Pierce</a>
+        <a class="artlink" id="MP2" title="Michael Powell" href="#" onclick="moveCamToArtist('mac');return false;">Michael Powell</a>
+        <a class="artlink" id="KX" title="Kelly Xi" href="#" onclick="moveCamToArtist('kelly');return false;">Kelly Xi</a>
       </div>
 
 
@@ -430,12 +432,48 @@
 
  
 <div id="controls">
-<br />
-  <div class="control-bars"><img id="pan-bar" src="images/panbar.gif"> </div><br /><br />
-  <div class="control-bars"><img id="tilt-bar" src="images/panbar.gif"></div><br /><br />
-  <div class="control-bars"><img id="zoom-bar" src="images/zoombar.gif"></div><br /><br />
+  <br />
+
+  <div class="control-container">
+
+    <div class="label">Pan: </div>
+    <div class="left-arrow-div"><img width="15px" src=images/arrow.png></div>
+    <div class="control-bars"><img id="pan-bar" src="images/panbar.png"></div>
+    <div class="right-arrow-div"><img width="15px" src=images/arrow.png></div>
+    <div></div>
+  </div>
+
+  <br />
+
+  <div class="control-container">
+
+    <div class="label">Tilt: </div>
+    <div class="left-arrow-div"><img width="15px" src=images/arrow.png></div>
+    <div class="control-bars"><img id="tilt-bar" src="images/panbar.png"></div>
+    <div class="right-arrow-div"><img width="15px" src=images/arrow.png></div>
+    <div></div>
+  </div>
+
+  <br />
+
+  <div class="control-container">
+   
+    <div class="label">Zoom: </div>
+    <div class="left-arrow-div"><img width="15px" src=images/arrow.png></div>
+    <div class="control-bars"><img id="zoom-bar" src="images/zoombar.png"></div>
+    <div class="right-arrow-div"><img width="15px" src=images/arrow.png></div>
+    <div></div>
+  </div>
+
+
+
+  <br />
+  <br />
+
+
 
 </div>
+
 
 <script>
 
@@ -449,74 +487,9 @@
 
 </script>
 
-      <div id="controls">
-        <br />
-        <br />
-        <table style="margin: auto">
-          <!-- PAN  -->
 
-          <tr>
-            <td align="left">
-              <strong style="padding-right: 10px">PAN:</strong>
-            </td>
-            <td><button type="">&#8592;</button></td>
-            <td>
-              <input
-                style="vertical-align: middle"
-                id="pan_slider"
-                type="range"
-                min="5"
-                max="200"
-                step="5"
-                value="100"
-              />
-              <button type="">&#8594;</button>
-            </td>
-          </tr>
 
-          <!-- TILT -->
-          <tr>
-            <td align="left">
-              <strong style="padding-right: 10px">TILT:</strong>
-            </td>
-            <td><button type="">&#8592;</button></td>
-            <td>
-              <input
-                style="vertical-align: middle"
-                id="tilt_slider"
-                type="range"
-                min="5"
-                max="200"
-                step="5"
-                value="100"
-              />
-              <button type="">&#8594;</button>
-            </td>
-          </tr>
-
-          <!-- ZOOM -->
-          <tr>
-            <td align="left">
-              <strong style="padding-right: 10px">ZOOM:</strong>
-            </td>
-            <td><button type="">&#8592;</button></td>
-            <td>
-              <input
-                style="vertical-align: middle"
-                id="zoom_slider"
-                type="range"
-                min="5"
-                max="200"
-                step="5"
-                value="100"
-              />
-              <button type="">&#8594;</button>
-            </td>
-          </tr>
-        </table>
-      </div>
-      <!--controls-->
-    </div>
+    <!-- </div> -->
     <!--main-->
 
     <!-- <script>
