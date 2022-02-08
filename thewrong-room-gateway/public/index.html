@@ -59,7 +59,7 @@
             user-select: none;
 
       }
-      
+
       #infoOverlay {
         /* display: none;  */
         display: block;
@@ -138,6 +138,17 @@
         transform: scaleY(0);
       }
 
+      .control-bars {
+        background-color: white;
+        border: 1px solid gray;
+        border-radius: 4px;
+        height: 100%;
+        vertical-align: middle;
+        padding: 0px 5px;
+        display: inline-block;
+
+      }
+
       @media (max-width: 800px) {
         #main {
           width: 90%;
@@ -156,7 +167,7 @@
   <body>
     <div id="main">
       <div>
-        <img src="axis.gif" style="float: left" />
+        <img src="images/axis.gif" style="float: left" />
         <br />
         <h3 id="titlebar">Live-Webcam</h3>
           <a class="artlink" id="info-button" onclick="toggleInfo(); return false;" href="#" title="info"> info </a>
@@ -280,7 +291,7 @@
           onclick="moveCamToArtist('tom');return false;"
           >Tom Gal</a
         >
-        <a class="artlink id="SG" title="Sydney Gush" href="#" onclick="moveCamToArtist('sydney');return false;">Sydney Gush</a>
+        <a class="artlink" id="SG" title="Sydney Gush" href="#" onclick="moveCamToArtist('sydney');return false;">Sydney Gush</a>
         <a
           class="artlink"
           id="MP"
@@ -298,6 +309,8 @@
           >Kelly Xi</a
         >
       </div>
+
+
 
       <script>
         //--- Function that sends camera to individual artist location in gallery ---
@@ -414,6 +427,27 @@
           document.getElementById("loading").style.display = "block";
         }
       </script>
+
+ 
+<div id="controls">
+<br />
+  <div class="control-bars"><img id="pan-bar" src="images/panbar.gif"> </div><br /><br />
+  <div class="control-bars"><img id="tilt-bar" src="images/panbar.gif"></div><br /><br />
+  <div class="control-bars"><img id="zoom-bar" src="images/zoombar.gif"></div><br /><br />
+
+</div>
+
+<script>
+
+  document.getElementById('pan-bar').onclick = function clickEvent(e) {
+      // e = Mouse click event.
+      var rect = e.target.getBoundingClientRect();
+      var panx = e.clientX - rect.left; //x position within the element.
+      let degrees = (panx/200) * 360;
+      console.log("pan cursor position: " + panx + ", and degrees: " + degrees.toFixed(0));
+    }
+
+</script>
 
       <div id="controls">
         <br />
