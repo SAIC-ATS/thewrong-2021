@@ -148,6 +148,16 @@
       }
 
 
+      #description {
+        background-color: aliceblue;
+        border: 1px solid gray;
+        box-shadow: 5px 5px 5px rgb(200, 200, 200);
+        padding: 15px;
+        top: 21px;
+        font-family: "Roboto Mono", monospace;
+        text-align: justify;
+      }
+
 
       .control-container {
 
@@ -266,7 +276,9 @@
             <br /><br />
           </p>
         </div>
-        <img id="videostream" src="/feed" /><br />
+        <!-- <img id="videostream" src="/feed" /> -->
+        <img id="videostream" src="images/test-image.jpg" />
+        <br />
         <h1 id="loading">Camera loading...</h1>
       </div>
 
@@ -301,10 +313,11 @@
         <a class="artlink" id="TG" title="Tom Gal" href="#" onclick="moveCamToArtist('tom');return false;">Tom Gal</a>
         <a class="artlink" id="SG" title="Sydney Gush" href="#" onclick="moveCamToArtist('sydney');return false;">Sydney Gush</a>
         <a class="artlink" id="MP" title="Mac Pierce" href="#" onclick="moveCamToArtist('mac');return false;">Mac Pierce</a>
-        <a class="artlink" id="MP2" title="Michael Powell" href="#" onclick="moveCamToArtist('mac');return false;">Michael Powell</a>
+        <a class="artlink" id="MP2" title="Michael Powell" href="#" onclick="moveCamToArtist('michael');return false;">Michael Powell</a>
         <a class="artlink" id="KX" title="Kelly Xi" href="#" onclick="moveCamToArtist('kelly');return false;">Kelly Xi</a>
       </div>
 
+      <div id="description"></div>
             
       <div id="controls">
         <br />
@@ -312,9 +325,9 @@
         <div class="control-container">
 
           <div class="label">Pan: </div>
-          <div class="left-arrow-div"><img width="15px" src=images/arrow.png></div>
+          <div id="left-pan" class="left-arrow-div" onclick="moveCamRelative('pan-left');return false;"><img width="15px" src=images/arrow.png></div>
           <div class="control-bars"><img id="pan-bar" src="images/panbar.png"></div>
-          <div class="right-arrow-div"><img width="15px" src=images/arrow.png></div>
+          <div id="right-pan" class="right-arrow-div" onclick="moveCamRelative('pan-right');return false;"><img width="15px" src=images/arrow.png></div>
           <div></div>
         </div>
 
@@ -323,9 +336,9 @@
         <div class="control-container">
 
           <div class="label">Tilt: </div>
-          <div class="left-arrow-div"><img width="15px" src=images/arrow.png></div>
+          <div id="left-tilt" class="left-arrow-div" onclick="moveCamRelative('tilt-left');return false;"><img width="15px" src=images/arrow.png></div>
           <div class="control-bars"><img id="tilt-bar" src="images/panbar.png"></div>
-          <div class="right-arrow-div"><img width="15px" src=images/arrow.png></div>
+          <div id="right-tilt" class="right-arrow-div" onclick="moveCamRelative('tilt-right');return false;"><img width="15px" src=images/arrow.png></div>
           <div></div>
         </div>
 
@@ -334,9 +347,9 @@
         <div class="control-container">
         
           <div class="label">Zoom: </div>
-          <div class="left-arrow-div"><img width="15px" src=images/arrow.png></div>
+          <div id="left-zoom" class="left-arrow-div" onclick="moveCamRelative('zoom-left');return false;"><img width="15px" src=images/arrow.png></div>
           <div class="control-bars"><img id="zoom-bar" src="images/zoombar.png"></div>
-          <div class="right-arrow-div"><img width="15px" src=images/arrow.png></div>
+          <div id="right-zoom" class="right-arrow-div" onclick="moveCamRelative('zoom-right');return false;"><img width="15px" src=images/arrow.png></div>
           <div></div>
         </div>
 
@@ -364,91 +377,69 @@
             case "reid":
               console.log("reid");
               //--- Set CGI request params ---
-              xhttp.open(
-                "GET",
-                "http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos2&camera=1"
-              );
+              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos2&camera=1");
+              document.getElementById("description").innerHTML = "Reid's description goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida lectus lacinia tristique pretium. Praesent pharetra sodales dui nec semper. Fusce id imperdiet sapien, id gravida nulla. Vivamus sit amet mauris dolor. Fusce maximus lectus fermentum, tincidunt turpis in, rutrum ante. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer lacinia ultrices malesuada. In hac habitasse platea dictumst. Aenean in tellus suscipit est egestas venenatis. Aliquam a ullamcorper sem, ac varius urna. Duis rutrum condimentum metus. Cras condimentum mi ac enim blandit tempor. Curabitur eget lobortis dui. Duis erat quam, faucibus sed porta a, vehicula dictum lectus.";
               break;
 
             case "nimo":
               console.log("nimo");
               //--- Set CGI request params ---
-              xhttp.open(
-                "GET",
-                "http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos3&camera=1"
-              );
+              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos3&camera=1");
+              document.getElementById("description").innerHTML = "Nimo's description goes here.";
               break;
 
             case "sarah":
               console.log("sarah");
               //--- Set CGI request params ---
-              xhttp.open(
-                "GET",
-                "http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos4&camera=1"
-              );
+              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos4&camera=1");
               break;
 
             case "juliana":
               console.log("juliana");
               //--- Set CGI request params ---
-              xhttp.open(
-                "GET",
-                "http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos2&camera=1"
-              );
+              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos2&camera=1");
               break;
 
             case "blake":
               console.log("blake");
               //--- Set CGI request params ---
-              xhttp.open(
-                "GET",
-                "http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos3&camera=1"
-              );
+              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos3&camera=1");
               break;
 
             case "juan":
               console.log("juan");
               //--- Set CGI request params ---
-              xhttp.open(
-                "GET",
-                "http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos4&camera=1"
-              );
+              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos4&camera=1");
               break;
 
             case "tom":
               console.log("tom");
               //--- Set CGI request params ---
-              xhttp.open(
-                "GET",
-                "http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos2&camera=1"
-              );
+              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos2&camera=1");
               break;
 
             case "sydney":
               console.log("sydney");
               //--- Set CGI request params ---
-              xhttp.open(
-                "GET",
-                "http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos3&camera=1"
-              );
+              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos3&camera=1");
               break;
 
-            case "mac":
+              case "mac":
               console.log("mac");
               //--- Set CGI request params ---
-              xhttp.open(
-                "GET",
-                "http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos4&camera=1"
-              );
+              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos4&camera=1");
+              break;
+            
+            case "michael":
+              console.log("mac");
+              //--- Set CGI request params ---
+              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos4&camera=1");
               break;
 
             case "kelly":
               console.log("kelly");
               //--- Set CGI request params ---
-              xhttp.open(
-                "GET",
-                "http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos2&camera=1"
-              );
+              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos2&camera=1");
               break;
 
             default:
@@ -519,7 +510,7 @@
               xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?camera=1&tilt" + value);
               break;
 
-            case "pan":
+            case "zoom":
               console.log("commanding abs zoom (0-19999 steps): " + value);
               xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?camera=1&zoom" + value);
               break;
@@ -536,7 +527,8 @@
     } //end moveCamAbsolute
 
 
-    function moveCamRelative(axis, value){
+    function moveCamRelative(axis){
+      console.log("hello");
           //--- Set up camera http request ---
           const xhttp = new XMLHttpRequest();
       // Define a callback function
@@ -547,22 +539,43 @@
         }
       };
 
+
+      let panValue = 5;
+      let tiltValue = 2;
+      let zoomValue = 100;
+
       switch (axis) {
 
-            case "pan":
-              console.log("commanding relative pan: " + value);
-              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?camera=1&rpan=" + value);
+            case "pan-left":
+              console.log("commanding relative pan: " + -panValue);
+              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?camera=1&rpan=" + -panValue);
+              break;
+            
+            case "pan-right":
+              console.log("commanding relative pan: " + panValue);
+              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?camera=1&rpan=" + panValue);
               break;
 
-            case "tilt":
-              console.log("commanding relative tilt: " + value);
+              case "tilt-left":
+              console.log("commanding relative tilt: " + -tiltValue);
               //--- Set CGI request params ---
-              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?camera=1&rtilt" + value);
+              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?camera=1&rtilt" + -tiltValue);
+              break;
+              
+            case "tilt-right":
+              console.log("commanding relative tilt: " + tiltValue);
+              //--- Set CGI request params ---
+              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?camera=1&rtilt" + tiltValue);
               break;
 
-            case "pan":
-              console.log("commanding relative zoom: " + value);
-              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?camera=1&rzoom" + value);
+            case "zoom-left":
+              console.log("commanding relative zoom: " + -zoomValue);
+              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?camera=1&rzoom" + -zoomValue);
+              break;
+            
+            case "zoom-right":
+              console.log("commanding relative zoom: " + zoomValue);
+              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?camera=1&rzoom" + zoomValue);
               break;
 
             default:
