@@ -286,14 +286,7 @@
         </select> -->
 
       <div id="explanatory">
-        Go directly to:
-        <a
-          id="ET"
-          title="explanatory text"
-          href="#"
-          onclick="moveCamTo('explanatorytext');return false;"
-          >explantory text</a
-        >
+        Go directly to: <a id="ET" title="explanatory text" href="#" onclick="moveCamTo('explanatorytext');return false;">explantory text</a>
       </div>
       <br />
 
@@ -312,6 +305,45 @@
         <a class="artlink" id="KX" title="Kelly Xi" href="#" onclick="moveCamToArtist('kelly');return false;">Kelly Xi</a>
       </div>
 
+            
+      <div id="controls">
+        <br />
+
+        <div class="control-container">
+
+          <div class="label">Pan: </div>
+          <div class="left-arrow-div"><img width="15px" src=images/arrow.png></div>
+          <div class="control-bars"><img id="pan-bar" src="images/panbar.png"></div>
+          <div class="right-arrow-div"><img width="15px" src=images/arrow.png></div>
+          <div></div>
+        </div>
+
+        <br />
+
+        <div class="control-container">
+
+          <div class="label">Tilt: </div>
+          <div class="left-arrow-div"><img width="15px" src=images/arrow.png></div>
+          <div class="control-bars"><img id="tilt-bar" src="images/panbar.png"></div>
+          <div class="right-arrow-div"><img width="15px" src=images/arrow.png></div>
+          <div></div>
+        </div>
+
+        <br />
+
+        <div class="control-container">
+        
+          <div class="label">Zoom: </div>
+          <div class="left-arrow-div"><img width="15px" src=images/arrow.png></div>
+          <div class="control-bars"><img id="zoom-bar" src="images/zoombar.png"></div>
+          <div class="right-arrow-div"><img width="15px" src=images/arrow.png></div>
+          <div></div>
+        </div>
+
+        <br />
+        <br />
+
+      </div>
 
 
       <script>
@@ -427,63 +459,122 @@
           xhttp.send();
           //--- Turn on loading sign until camera calls back "done"
           document.getElementById("loading").style.display = "block";
-        }
-      </script>
 
- 
-<div id="controls">
-  <br />
-
-  <div class="control-container">
-
-    <div class="label">Pan: </div>
-    <div class="left-arrow-div"><img width="15px" src=images/arrow.png></div>
-    <div class="control-bars"><img id="pan-bar" src="images/panbar.png"></div>
-    <div class="right-arrow-div"><img width="15px" src=images/arrow.png></div>
-    <div></div>
-  </div>
-
-  <br />
-
-  <div class="control-container">
-
-    <div class="label">Tilt: </div>
-    <div class="left-arrow-div"><img width="15px" src=images/arrow.png></div>
-    <div class="control-bars"><img id="tilt-bar" src="images/panbar.png"></div>
-    <div class="right-arrow-div"><img width="15px" src=images/arrow.png></div>
-    <div></div>
-  </div>
-
-  <br />
-
-  <div class="control-container">
-   
-    <div class="label">Zoom: </div>
-    <div class="left-arrow-div"><img width="15px" src=images/arrow.png></div>
-    <div class="control-bars"><img id="zoom-bar" src="images/zoombar.png"></div>
-    <div class="right-arrow-div"><img width="15px" src=images/arrow.png></div>
-    <div></div>
-  </div>
+        } //end moveCamToArtist
 
 
-
-  <br />
-  <br />
-
-
-
-</div>
-
-
-<script>
-
-  document.getElementById('pan-bar').onclick = function clickEvent(e) {
+    document.getElementById('pan-bar').onclick = function clickEvent(e) {
       // e = Mouse click event.
       var rect = e.target.getBoundingClientRect();
       var panx = e.clientX - rect.left; //x position within the element.
       let degrees = (panx/200) * 360;
       console.log("pan cursor position: " + panx + ", and degrees: " + degrees.toFixed(0));
+      moveCamAbsolute('pan', degrees);
     }
+
+    document.getElementById('tilt-bar').onclick = function clickEvent(e) {
+      // e = Mouse click event.
+      var rect = e.target.getBoundingClientRect();
+      var panx = e.clientX - rect.left; //x position within the element.
+      let degrees = (panx/200) * 90;
+      console.log("tilt cursor position: " + panx + ", and degrees: " + degrees.toFixed(0));
+      moveCamAbsolute('tilt', degrees);
+    }
+
+    document.getElementById('zoom-bar').onclick = function clickEvent(e) {
+      // e = Mouse click event.
+      var rect = e.target.getBoundingClientRect();
+      var panx = e.clientX - rect.left; //x position within the element.
+      let steps = (panx/200) * 19999;
+      steps = steps.toFixed(0);
+      if(steps < 200){
+        steps = 0;
+      }
+      console.log("zoom cursor position: " + panx + ", and steps: " + steps);
+      moveCamAbsolute('zoom', steps);
+    }
+
+
+    function moveCamAbsolute(axis, value) {
+      //--- Set up camera http request ---
+      const xhttp = new XMLHttpRequest();
+      // Define a callback function
+      xhttp.onreadystatechange = function () {
+        // 4 is status return:"done" https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/response
+        if (xhttp.readyState === 4) {
+          document.getElementById("loading").style.display = "none";
+        }
+      };
+
+      switch (axis) {
+
+            case "pan":
+              console.log("commanding abs pan (0-360 degrees): " + value);
+              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?camera=1&pan=" + value);
+              break;
+
+            case "tilt":
+              console.log("commanding abs tilt (0-90 degrees): " + value);
+              //--- Set CGI request params ---
+              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?camera=1&tilt" + value);
+              break;
+
+            case "pan":
+              console.log("commanding abs zoom (0-19999 steps): " + value);
+              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?camera=1&zoom" + value);
+              break;
+
+            default:
+              console.log("No axis picked, how did you get here? Error.");
+          }
+
+          //--- Send off selected parameters to camera through http request ---
+          xhttp.send();
+          //--- Turn on loading sign until camera calls back "done"
+          document.getElementById("loading").style.display = "block";
+     
+    } //end moveCamAbsolute
+
+
+    function moveCamRelative(axis, value){
+          //--- Set up camera http request ---
+          const xhttp = new XMLHttpRequest();
+      // Define a callback function
+      xhttp.onreadystatechange = function () {
+        // 4 is status return:"done" https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/response
+        if (xhttp.readyState === 4) {
+          document.getElementById("loading").style.display = "none";
+        }
+      };
+
+      switch (axis) {
+
+            case "pan":
+              console.log("commanding relative pan: " + value);
+              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?camera=1&rpan=" + value);
+              break;
+
+            case "tilt":
+              console.log("commanding relative tilt: " + value);
+              //--- Set CGI request params ---
+              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?camera=1&rtilt" + value);
+              break;
+
+            case "pan":
+              console.log("commanding relative zoom: " + value);
+              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?camera=1&rzoom" + value);
+              break;
+
+            default:
+              console.log("No relative axis picked, how did you get here? Error.");
+          }
+
+          //--- Send off selected parameters to camera through http request ---
+          xhttp.send();
+          //--- Turn on loading sign until camera calls back "done"
+          document.getElementById("loading").style.display = "block";
+     
+    } //end moveCamRelative
 
 </script>
 
