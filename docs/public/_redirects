@@ -2,8 +2,8 @@
 http://web.ptz.live/* https://ptz-app.netlify.app/:splat 301!
 https://web.ptz.live/* https://ptz-app.netlify.app/:splat 301!
 
-/web https://ptz-app.netlify.app/:splat
-/web/ https://ptz-app.netlify.app/:splat
+/web https://ptz-app.netlify.app/ 301!
+/web/* https://ptz-app.netlify.app/:splat 301!
 
 http://api.ptz.live/* http://wrong.ats.community/:splat 301!
 https://api.ptz.live/* http://wrong.ats.community:splat 301!    
