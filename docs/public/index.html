@@ -37,6 +37,7 @@
         display: block;
         height: 90px;
       }
+
       #titlebar {
         color: darkblue;
         text-align: center;
@@ -95,6 +96,7 @@
       #info-title-bar {
         display: flex;
         justify-content: space-between;
+
       }
 
       #explanatory {
@@ -244,6 +246,10 @@
           width: 90%;
           min-width: 0px;
         }
+	
+	#titlebar {
+	  font-size: 1.0em;
+	}
 
 	.label {
 	  display: none;
@@ -282,13 +288,9 @@
 
   <body>
     <div id="main">
-      <!-- <div id="header"> -->
-      <!--   <img src="images/ATS-SAIC.png" width="10%" style="float: left" /><img src="images/tw5_logo-7.png" width="15%" style="float:right"> -->
-      <!-- </div> -->
-      
       <div>
         <img src="images/ATS-SAIC.png" width="10%" style="float: left" /><img src="images/tw5_logo-7.png" width="15%" style="float:right">
-        <h1 id="titlebar" style="padding-bottom: 20px;"><b>Pan-Tilt-Zoom</b></h1>
+        <h1 id="titlebar" style="padding-bottom: 20px;">Pan-Tilt-Zoom</h1>
         <a class="artlink" id="info-button" onclick="toggleInfo(); return false;" href="#" title="info"> info </a>
       </div>
 
