@@ -94,7 +94,7 @@
 
       #explanatory {
         margin: auto;
-        max-width: 600px;
+        max-width: 650px;
         font-family: "Roboto Mono", monospace;
       }
 
@@ -147,8 +147,16 @@
         transform: scaleY(0);
       }
 
+      #description-box-container {
+        position: relative;
+        text-align: center;
+      }
 
-      #description {
+      #description-box {
+         /* display: none;  */
+         display: block;
+         width: 100%;
+        position: absolute;
         background-color: aliceblue;
         border: 1px solid gray;
         box-shadow: 5px 5px 5px rgb(200, 200, 200);
@@ -156,8 +164,16 @@
         top: 21px;
         font-family: "Roboto Mono", monospace;
         text-align: justify;
+        z-index: 6;
       }
 
+      #description-title {
+        font-weight: bold;
+      }
+
+      #close-window {
+        float: right;
+      }
 
       .control-container {
 
@@ -232,7 +248,13 @@
       function toggleInfo() {
         document.getElementById("infoOverlay").classList.toggle("collapsed");
       }
+
+      function toggleDescription() {
+        document.getElementById("description-box").classList.toggle("collapsed");
+      }
+
     </script>
+
   </head>
 
   <body>
@@ -249,7 +271,7 @@
       <div id="videowindow">
         <div id="infoOverlay" class="modal collapsed">
           <p>
-            <span id="info-title-bar"><b>Pan-Tilt-Zoom</b> <a class="artlink id="close-window" title="close window" href="#" onclick="toggleInfo(); return false;">close window (X)</a></span> 
+            <span id="info-title-bar"><b>Pan-Tilt-Zoom</b> <a class="artlink" id="close-window" title="close" href="#" onclick="toggleInfo(); return false;">close window (X)</a></span> 
             
             <br /><br />Minds without a body; phantom flesh; vision
             without a gaze. We have opted for our biological body to mutate into
@@ -317,8 +339,20 @@
         <a class="artlink" id="KX" title="Kelly Xi" href="#" onclick="moveCamToArtist('kelly');return false;">Kelly Xi</a>
       </div>
 
-      <div id="description"></div>
-            
+      <div id="description-box-container">
+        <div id="description-box" class="modal collapsed"><span id="description-title"><b>Work Title </b></span>&nbsp;<span id="description-year">(year)</span><a class="artlink" id="close-window" title="close window" href="#" onclick="toggleDescription(); return false;">close (X)</a><br />
+          
+          <span id="description-materials">Wood, Metal, Spit, AC Power</span>
+          
+          <br /><br />
+        
+          <p id="description-text">Description goes here.</p>
+        
+        </div>
+      </div>      
+
+
+
       <div id="controls">
         <br />
 
@@ -378,68 +412,86 @@
               console.log("reid");
               //--- Set CGI request params ---
               xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos2&camera=1");
-              document.getElementById("description").innerHTML = "Reid's description goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida lectus lacinia tristique pretium. Praesent pharetra sodales dui nec semper. Fusce id imperdiet sapien, id gravida nulla. Vivamus sit amet mauris dolor. Fusce maximus lectus fermentum, tincidunt turpis in, rutrum ante. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer lacinia ultrices malesuada. In hac habitasse platea dictumst. Aenean in tellus suscipit est egestas venenatis. Aliquam a ullamcorper sem, ac varius urna. Duis rutrum condimentum metus. Cras condimentum mi ac enim blandit tempor. Curabitur eget lobortis dui. Duis erat quam, faucibus sed porta a, vehicula dictum lectus.";
+              toggleDescription();
+              document.getElementById("description-title").innerHTML = "Reid's project";
+              document.getElementById("description-year").innerHTML = "2022";
+              document.getElementById("description-materials").innerHTML = "Wood, Metal, Spit, AC Power";
+              document.getElementById("description-text").innerHTML = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida lectus lacinia tristique pretium. Praesent pharetra sodales dui nec semper. Fusce id imperdiet sapien, id gravida nulla. Vivamus sit amet mauris dolor. Fusce maximus lectus fermentum, tincidunt turpis in, rutrum ante. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer lacinia ultrices malesuada. In hac habitasse platea dictumst. Aenean in tellus suscipit est egestas venenatis. Aliquam a ullamcorper sem, ac varius urna. Duis rutrum condimentum metus.";
               break;
 
             case "nimo":
               console.log("nimo");
               //--- Set CGI request params ---
               xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos3&camera=1");
-              document.getElementById("description").innerHTML = "Nimo's description goes here.";
+              toggleDescription();
+              document.getElementById("description-title").innerHTML = "Nimo's project";
+              document.getElementById("description-year").innerHTML = "2022";
+              document.getElementById("description-materials").innerHTML = "Wood, Metal, Spit, AC Power";
+              document.getElementById("description-text").innerHTML = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida lectus lacinia tristique pretium. Praesent pharetra sodales dui nec semper. Fusce id imperdiet sapien, id gravida nulla. Vivamus sit amet mauris dolor. Fusce maximus lectus fermentum, tincidunt turpis in, rutrum ante. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer lacinia ultrices malesuada. In hac habitasse platea dictumst. Aenean in tellus suscipit est egestas venenatis. Aliquam a ullamcorper sem, ac varius urna. Duis rutrum condimentum metus.";
+
               break;
 
             case "sarah":
               console.log("sarah");
               //--- Set CGI request params ---
               xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos4&camera=1");
+              document.getElementById("description").innerHTML = "Sarah's description goes here.";
               break;
 
             case "juliana":
               console.log("juliana");
               //--- Set CGI request params ---
               xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos2&camera=1");
+              document.getElementById("description").innerHTML = "Juliana's description goes here.";
               break;
 
             case "blake":
               console.log("blake");
               //--- Set CGI request params ---
               xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos3&camera=1");
+              document.getElementById("description").innerHTML = "Blake's description goes here.";
               break;
 
             case "juan":
               console.log("juan");
               //--- Set CGI request params ---
               xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos4&camera=1");
+              document.getElementById("description").innerHTML = "Juan's description goes here.";
               break;
 
             case "tom":
               console.log("tom");
               //--- Set CGI request params ---
               xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos2&camera=1");
+              document.getElementById("description").innerHTML = "Tom's description goes here.";
               break;
 
             case "sydney":
               console.log("sydney");
               //--- Set CGI request params ---
               xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos3&camera=1");
+              document.getElementById("description").innerHTML = "Sydney's description goes here.";
               break;
 
               case "mac":
               console.log("mac");
               //--- Set CGI request params ---
               xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos4&camera=1");
+              document.getElementById("description").innerHTML = "Mac's description goes here.";
               break;
             
             case "michael":
               console.log("mac");
               //--- Set CGI request params ---
               xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos4&camera=1");
+              document.getElementById("description").innerHTML = "Mac's description goes here.";
               break;
 
             case "kelly":
               console.log("kelly");
               //--- Set CGI request params ---
               xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos2&camera=1");
+              document.getElementById("description").innerHTML = "Kelly's description goes here.";
               break;
 
             default:
