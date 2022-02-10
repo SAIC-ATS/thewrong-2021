@@ -7,3 +7,6 @@ https://api.ptz.live/* http://wrong.ats.community:splat 301!
 
 http://soon.ptz.live/* https://ptz-marketing.netlify.app/:splat 301!
 https://soon.ptz.live/* https://ptz-marketing.netlify.app/:splat 301!
+
+http://ptz.live/* https://ptz-marketing.netlify.app/:splat 301!
+https://ptz.live/* https://ptz-marketing.netlify.app/:splat 301!
