@@ -16,6 +16,11 @@
 
     <style>
 
+      html {
+	padding: 0;
+	margin: 0;
+      }
+
       #main {
         margin: auto;
         margin-bottom:50px;
@@ -176,21 +181,22 @@
       }
 
       .control-container {
-
         display: grid; 
         grid-auto-rows: 1fr; 
         grid-template-columns: 1fr min-content min-content min-content 1fr; 
         gap: 0px 0px; 
-        /* margin: auto; */
-        /* text-align: center; */
-
+        margin: auto;
+        text-align: center;
       }
 
       .label {
-        /* text-align: right; */
         display: flex;
         justify-content: right;
         align-content: center;
+      }
+
+      .label-mobile {
+	display: none;
       }
 
       .left-arrow-div {
@@ -233,15 +239,32 @@
 
       }
 
-
-
-
       @media (max-width: 800px) {
         #main {
           width: 90%;
           min-width: 0px;
         }
-      }
+
+	.label {
+	  display: none;
+	}
+
+	.label-mobile {
+	  display: inline;
+	}
+
+	.control-container {
+	  display: flex;	
+	  justify-content: center;
+	}
+
+	.left-arrow-div {
+	  padding: 7px 7px;
+	}
+
+	.right-arrow-div {
+	  padding: 7px 7px;
+	}
     </style>
 
     <script>
@@ -259,13 +282,14 @@
 
   <body>
     <div id="main">
-      <div id="header">
-        <img src="images/ATS-SAIC.png" width="10%" style="float: left" /><img src="images/tw5_logo-7.png" width="15%" style="float:right">
-      </div>
+      <!-- <div id="header"> -->
+      <!--   <img src="images/ATS-SAIC.png" width="10%" style="float: left" /><img src="images/tw5_logo-7.png" width="15%" style="float:right"> -->
+      <!-- </div> -->
       
       <div>
-        <h1 id="titlebar"><b>Live-Webcam</b></h1>
-          <a class="artlink" id="info-button" onclick="toggleInfo(); return false;" href="#" title="info"> info </a>
+        <img src="images/ATS-SAIC.png" width="10%" style="float: left" /><img src="images/tw5_logo-7.png" width="15%" style="float:right">
+        <h1 id="titlebar" style="padding-bottom: 20px;"><b>Pan-Tilt-Zoom</b></h1>
+        <a class="artlink" id="info-button" onclick="toggleInfo(); return false;" href="#" title="info"> info </a>
       </div>
 
       <div id="videowindow">
@@ -356,6 +380,7 @@
       <div id="controls">
         <br />
 
+        <div class="label-mobile">Pan: </div>
         <div class="control-container">
 
           <div class="label">Pan: </div>
@@ -367,6 +392,7 @@
 
         <br />
 
+        <div class="label-mobile">Tilt: </div>
         <div class="control-container">
 
           <div class="label">Tilt: </div>
@@ -378,6 +404,7 @@
 
         <br />
 
+        <div class="label-mobile">Zoom: </div>
         <div class="control-container">
         
           <div class="label">Zoom: </div>
