@@ -279,6 +279,10 @@
           font-size: .7em;
         }
 
+        #pan-bar, #tilt-bar, #zoom-bar {
+          width: 150px;
+        }
+
       }
     </style>
 
@@ -584,7 +588,8 @@
       // e = Mouse click event.
       var rect = e.target.getBoundingClientRect();
       var panx = e.clientX - rect.left; //x position within the element.
-      let degrees = (panx/200) * 360;
+      var sliderWidth = rect.width;
+      let degrees = (panx/width) * 360;
       console.log("pan cursor position: " + panx + ", and degrees: " + degrees.toFixed(0));
       moveCamAbsolute('pan', degrees);
     }
@@ -593,7 +598,8 @@
       // e = Mouse click event.
       var rect = e.target.getBoundingClientRect();
       var panx = e.clientX - rect.left; //x position within the element.
-      let degrees = (panx/200) * 90;
+      var sliderWidth = rect.width;
+      let degrees = (panx/sliderWidth) * 90;
       console.log("tilt cursor position: " + panx + ", and degrees: " + degrees.toFixed(0));
       moveCamAbsolute('tilt', degrees);
     }
@@ -602,7 +608,8 @@
       // e = Mouse click event.
       var rect = e.target.getBoundingClientRect();
       var panx = e.clientX - rect.left; //x position within the element.
-      let steps = (panx/200) * 19999;
+      var sliderWidth = rect.width;
+      let steps = (panx/sliderWidth) * 19999;
       steps = steps.toFixed(0);
       if(steps < 200){
         steps = 0;
