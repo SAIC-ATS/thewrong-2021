@@ -7,4 +7,4 @@ https://api.ptz.live/* http://wrong.ats.community:splat 301!
 
 /feed http://wrong.ats.community/feed 200!
 
-/camera/* http://wrong.ats.community/:splat 200!
+/camera/* http://wrong.ats.community/camera/:splat 200!
