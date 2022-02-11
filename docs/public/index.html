@@ -343,23 +343,10 @@
         <h1 id="loading">Camera loading...</h1>
       </div>
 
-      <!-- ARTIST LOCATION PRESETS
-        <label for="artist-select">Artists:</label>
-        <select name="artists" onchange="val()" id="dropdown">
-            <option value="Default">--Select--</option>
-            <option value="RA">Reid Arowood</option>
-            <option value="NA">Nimrod Astarhan</option>
-            <option value="SB">Sarah Brophy</option>
-            <option value="JCD">Juliana Castro Duperly</option>
-            <option value="BFC">Blake Fall-Conroy</option>
-            <option value="JF">Juan Flores</option>
-            <option value="TG">Tom Gal</option>
-            <option value="SG">Sydney Gush</option>
-            <option value="MP">Mac Pierce</option>
-        </select> -->
+
 
       <div id="explanatory">
-        Go directly to: <a id="ET" title="explanatory text" href="#" onclick="moveCamTo('explanatorytext');return false;">explantory text</a>
+        Go directly to: <a id="ET" title="explanatory text" href="#" onclick="moveCamToArtist('explanatorytext');return false;">explantory text</a>
       </div>
       <br />
 
@@ -375,6 +362,7 @@
         <a class="artlink" id="SG" title="Sydney Gush" href="#" onclick="moveCamToArtist('sydney');return false;">Sydney Gush</a>
         <a class="artlink" id="MP" title="Mac Pierce" href="#" onclick="moveCamToArtist('mac');return false;">Mac Pierce</a>
         <a class="artlink" id="MP2" title="Michael Powell" href="#" onclick="moveCamToArtist('michael');return false;">Michael Powell</a>
+        <a class="artlink" id="JS" title="Jade Sheng" href="#" onclick="moveCamToArtist('jade');return false;">Jade Sheng</a>
         <a class="artlink" id="KX" title="Kelly Xi" href="#" onclick="moveCamToArtist('kelly');return false;">Kelly Xi</a>
       </div>
 
@@ -554,7 +542,7 @@
               document.getElementById("description-text").innerHTML = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida lectus lacinia tristique pretium. Praesent pharetra sodales dui nec semper. Fusce id imperdiet sapien, id gravida nulla. Vivamus sit amet mauris dolor. Fusce maximus lectus fermentum, tincidunt turpis in, rutrum ante. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer lacinia ultrices malesuada. In hac habitasse platea dictumst. Aenean in tellus suscipit est egestas venenatis. Aliquam a ullamcorper sem, ac varius urna. Duis rutrum condimentum metus.";
               break;
             
-            case "michael":
+              case "michael":
               console.log("mac");
               //--- Set CGI request params ---
               xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos4&camera=1");
@@ -565,7 +553,18 @@
               document.getElementById("description-text").innerHTML = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida lectus lacinia tristique pretium. Praesent pharetra sodales dui nec semper. Fusce id imperdiet sapien, id gravida nulla. Vivamus sit amet mauris dolor. Fusce maximus lectus fermentum, tincidunt turpis in, rutrum ante. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer lacinia ultrices malesuada. In hac habitasse platea dictumst. Aenean in tellus suscipit est egestas venenatis. Aliquam a ullamcorper sem, ac varius urna. Duis rutrum condimentum metus.";
               break;
 
-            case "kelly":
+              case "jade":
+              console.log("jade");
+              //--- Set CGI request params ---
+              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos4&camera=1");
+              toggleDescription();
+              document.getElementById("description-title").innerHTML = "Jade's project";
+              document.getElementById("description-year").innerHTML = "2022";
+              document.getElementById("description-materials").innerHTML = "Wood, Metal, Spitr";
+              document.getElementById("description-text").innerHTML = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida lectus lacinia tristique pretium. Praesent pharetra sodales dui nec semper. Fusce id imperdiet sapien, id gravida nulla. Vivamus sit amet mauris dolor. Fusce maximus lectus fermentum, tincidunt turpis in, rutrum ante. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer lacinia ultrices malesuada. In hac habitasse platea dictumst. Aenean in tellus suscipit est egestas venenatis. Aliquam a ullamcorper sem, ac varius urna. Duis rutrum condimentum metus.";
+              break;
+
+              case "kelly":
               console.log("kelly");
               //--- Set CGI request params ---
               xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos2&camera=1");
@@ -574,6 +573,12 @@
               document.getElementById("description-year").innerHTML = "2022";
               document.getElementById("description-materials").innerHTML = "Wood, Metal, Spit";
               document.getElementById("description-text").innerHTML = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida lectus lacinia tristique pretium. Praesent pharetra sodales dui nec semper. Fusce id imperdiet sapien, id gravida nulla. Vivamus sit amet mauris dolor. Fusce maximus lectus fermentum, tincidunt turpis in, rutrum ante. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer lacinia ultrices malesuada. In hac habitasse platea dictumst. Aenean in tellus suscipit est egestas venenatis. Aliquam a ullamcorper sem, ac varius urna. Duis rutrum condimentum metus.";
+              break;
+
+              case "explanatorytext":
+              console.log("explanatorytext");
+              //--- Set CGI request params ---
+              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos2&camera=1");
               break;
 
             default:
@@ -729,88 +734,5 @@
 </script>
 
 
-
-    <!-- </div> -->
-    <!--main-->
-
-    <!-- <script>
-
-        function val() {
-            d = document.getElementById("dropdown").value;
-            // alert(d);
-
-            const xhttp = new XMLHttpRequest();
-            // Define a callback function
-            xhttp.onreadystatechange = function() {
-              // 4 is status return:"done" https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/response
-              if (xhttp.readyState === 4) { 
-                document.getElementById("loading").style.display = "none";
-              }
-            }
-
-            switch (d) {
-                case 'RA':
-                    console.log('RA');
-
-                    //-----Send CGI to Cam--------
-                    // Send a request
-                    xhttp.open("GET", "http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos2&camera=1");
-                    xhttp.send();
-                    document.getElementById("loading").style.display="block";
-                    // TODO: show loadinfg screen 
-
-                    break;
-
-                case 'NA':
-                    console.log('NA');
-
-                    //-----Send CGI to Cam--------
-                    // Send a request
-                    xhttp.open("GET", "http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos3&camera=1");
-                    xhttp.send();
-                    break;
-
-                case 'SB':
-                    console.log('SB');
-                                        
-                    //-----Send CGI to Cam--------
-                    // Send a request
-                    xhttp.open("GET", "http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos4&camera=1");
-                    xhttp.send();
-                    break;
-                    
-                case 'JCD':
-                    console.log('JCD');
-
-                    //-----Send CGI to Cam--------
-                    // Send a request
-                    xhttp.open("GET", "http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?camera=1&pan=25.1032&tilt=-8.55&zoom=13736&autofocus=on");
-                    xhttp.send();
-
-                    break;
-                
-                case 'BFC':
-                    console.log('BFC');
-
-                    //-----Send CGI to Cam--------
-                    // Send a request
-                    xhttp.open("GET", "http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?camera=1&query=position&pan=25.532&tilt=-23&zoom=736&autofocus=on");
-                    xhttp.send();
-                break;
-                case 'JF':
-                    break;
-                case 'TG':
-                    break;
-                case 'SG':
-                    break;
-                case 'MP':
-                    break;
-                default:
-                    console.log("Nothing picked, error. ");
-                }
-
-        }
-
-        </script> -->
   </body>
 </html>
