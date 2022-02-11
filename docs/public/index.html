@@ -439,6 +439,14 @@
           };
 
           //--- Determine which link was clicked and send camera instruction ---
+         
+          var descriptionDims = document.getElementById('description-box').getBoundingClientRect();
+          var descriptionHeight = descriptionDims.height;
+          if (descriptionHeight < 10 && person != 'explanatorytext'){
+            toggleDescription();
+          }
+
+          
 
           switch (person) {
             case "reid":
@@ -446,7 +454,7 @@
               //--- Set CGI request params ---
 
               xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos2&camera=1&autofocus=on&autoiris=on");
-              toggleDescription();
+              // toggleDescription();
               document.getElementById("description-title").innerHTML = "Reid's project";
               document.getElementById("description-year").innerHTML = "2022";
               document.getElementById("description-materials").innerHTML = "Wood, Metal, Spit";
@@ -457,7 +465,7 @@
               console.log("nimo");
               //--- Set CGI request params ---
               xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos3&camera=1&autofocus=on&autoiris=on");
-              toggleDescription();
+              // toggleDescription();
               document.getElementById("description-title").innerHTML = "Nimo's project";
               document.getElementById("description-year").innerHTML = "2022";
               document.getElementById("description-materials").innerHTML = "Wood, Metal, Spit";
@@ -469,8 +477,8 @@
               console.log("sarah");
               //--- Set CGI request params ---
               xhttp.open("GET",baseUrl + "/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos4&camera=1&autofocus=on&autoiris=on");
-              toggleDescription();
-              document.getElementById("description-title").innerHTML = "Nimo's project";
+              // toggleDescription();
+              document.getElementById("description-title").innerHTML = "Sarah's project";
               document.getElementById("description-year").innerHTML = "2022";
               document.getElementById("description-materials").innerHTML = "Wood, Metal, Spit";
               document.getElementById("description-text").innerHTML = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida lectus lacinia tristique pretium. Praesent pharetra sodales dui nec semper. Fusce id imperdiet sapien, id gravida nulla. Vivamus sit amet mauris dolor. Fusce maximus lectus fermentum, tincidunt turpis in, rutrum ante. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer lacinia ultrices malesuada. In hac habitasse platea dictumst. Aenean in tellus suscipit est egestas venenatis. Aliquam a ullamcorper sem, ac varius urna. Duis rutrum condimentum metus.";
@@ -480,8 +488,8 @@
               console.log("juliana");
               //--- Set CGI request params ---
               xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos2&camera=1&autofocus=on&autoiris=on");
-              toggleDescription();
-              document.getElementById("description-title").innerHTML = "Nimo's project";
+              // toggleDescription();
+              document.getElementById("description-title").innerHTML = "Juliana's project";
               document.getElementById("description-year").innerHTML = "2022";
               document.getElementById("description-materials").innerHTML = "Wood, Metal, Spit";
               document.getElementById("description-text").innerHTML = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida lectus lacinia tristique pretium. Praesent pharetra sodales dui nec semper. Fusce id imperdiet sapien, id gravida nulla. Vivamus sit amet mauris dolor. Fusce maximus lectus fermentum, tincidunt turpis in, rutrum ante. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer lacinia ultrices malesuada. In hac habitasse platea dictumst. Aenean in tellus suscipit est egestas venenatis. Aliquam a ullamcorper sem, ac varius urna. Duis rutrum condimentum metus.";
@@ -491,7 +499,7 @@
               console.log("blake");
               //--- Set CGI request params ---
               xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos3&camera=1&autofocus=on&autoiris=on");
-              toggleDescription();
+              // toggleDescription();
               document.getElementById("description-title").innerHTML = "Nimo's project";
               document.getElementById("description-year").innerHTML = "2022";
               document.getElementById("description-materials").innerHTML = "Wood, Metal, Spit";
@@ -502,8 +510,8 @@
               console.log("juan");
               //--- Set CGI request params ---
               xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos4&camera=1&autofocus=on&autoiris=on");
-              toggleDescription();
-              document.getElementById("description-title").innerHTML = "Nimo's project";
+              // toggleDescription();
+              document.getElementById("description-title").innerHTML = "Juan's project";
               document.getElementById("description-year").innerHTML = "2022";
               document.getElementById("description-materials").innerHTML = "Wood, Metal, Spit";
               document.getElementById("description-text").innerHTML = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida lectus lacinia tristique pretium. Praesent pharetra sodales dui nec semper. Fusce id imperdiet sapien, id gravida nulla. Vivamus sit amet mauris dolor. Fusce maximus lectus fermentum, tincidunt turpis in, rutrum ante. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer lacinia ultrices malesuada. In hac habitasse platea dictumst. Aenean in tellus suscipit est egestas venenatis. Aliquam a ullamcorper sem, ac varius urna. Duis rutrum condimentum metus.";
@@ -513,8 +521,8 @@
               console.log("tom");
               //--- Set CGI request params ---
               xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos2&camera=1&autofocus=on&autoiris=on");
-              toggleDescription();
-              document.getElementById("description-title").innerHTML = "Nimo's project";
+              // toggleDescription();
+              document.getElementById("description-title").innerHTML = "Tom's project";
               document.getElementById("description-year").innerHTML = "2022";
               document.getElementById("description-materials").innerHTML = "Wood, Metal, Spit";
               document.getElementById("description-text").innerHTML = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida lectus lacinia tristique pretium. Praesent pharetra sodales dui nec semper. Fusce id imperdiet sapien, id gravida nulla. Vivamus sit amet mauris dolor. Fusce maximus lectus fermentum, tincidunt turpis in, rutrum ante. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer lacinia ultrices malesuada. In hac habitasse platea dictumst. Aenean in tellus suscipit est egestas venenatis. Aliquam a ullamcorper sem, ac varius urna. Duis rutrum condimentum metus.";
@@ -524,8 +532,8 @@
               console.log("sydney");
               //--- Set CGI request params ---
               xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos3&camera=1&autofocus=on&autoiris=on");
-              toggleDescription();
-              document.getElementById("description-title").innerHTML = "Nimo's project";
+              // toggleDescription();
+              document.getElementById("description-title").innerHTML = "Sydney's project";
               document.getElementById("description-year").innerHTML = "2022";
               document.getElementById("description-materials").innerHTML = "Wood, Metal, Spit";
               document.getElementById("description-text").innerHTML = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida lectus lacinia tristique pretium. Praesent pharetra sodales dui nec semper. Fusce id imperdiet sapien, id gravida nulla. Vivamus sit amet mauris dolor. Fusce maximus lectus fermentum, tincidunt turpis in, rutrum ante. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer lacinia ultrices malesuada. In hac habitasse platea dictumst. Aenean in tellus suscipit est egestas venenatis. Aliquam a ullamcorper sem, ac varius urna. Duis rutrum condimentum metus.";
@@ -535,19 +543,19 @@
               console.log("mac");
               //--- Set CGI request params ---
               xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos4&camera=1&autofocus=on&autoiris=on");
-              toggleDescription();
-              document.getElementById("description-title").innerHTML = "Nimo's project";
+              // toggleDescription();
+              document.getElementById("description-title").innerHTML = "Mac's project";
               document.getElementById("description-year").innerHTML = "2022";
               document.getElementById("description-materials").innerHTML = "Wood, Metal, Spit";
               document.getElementById("description-text").innerHTML = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida lectus lacinia tristique pretium. Praesent pharetra sodales dui nec semper. Fusce id imperdiet sapien, id gravida nulla. Vivamus sit amet mauris dolor. Fusce maximus lectus fermentum, tincidunt turpis in, rutrum ante. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer lacinia ultrices malesuada. In hac habitasse platea dictumst. Aenean in tellus suscipit est egestas venenatis. Aliquam a ullamcorper sem, ac varius urna. Duis rutrum condimentum metus.";
               break;
             
               case "michael":
-              console.log("mac");
+              console.log("michael");
               //--- Set CGI request params ---
               xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos4&camera=1&autofocus=on&autoiris=on");
-              toggleDescription();
-              document.getElementById("description-title").innerHTML = "Nimo's project";
+              // toggleDescription();
+              document.getElementById("description-title").innerHTML = "Michael's project";
               document.getElementById("description-year").innerHTML = "2022";
               document.getElementById("description-materials").innerHTML = "Wood, Metal, Spitr";
               document.getElementById("description-text").innerHTML = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida lectus lacinia tristique pretium. Praesent pharetra sodales dui nec semper. Fusce id imperdiet sapien, id gravida nulla. Vivamus sit amet mauris dolor. Fusce maximus lectus fermentum, tincidunt turpis in, rutrum ante. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer lacinia ultrices malesuada. In hac habitasse platea dictumst. Aenean in tellus suscipit est egestas venenatis. Aliquam a ullamcorper sem, ac varius urna. Duis rutrum condimentum metus.";
@@ -557,7 +565,7 @@
               console.log("jade");
               //--- Set CGI request params ---
               xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos4&camera=1&autofocus=on&autoiris=on");
-              toggleDescription();
+              // toggleDescription();
               document.getElementById("description-title").innerHTML = "Jade's project";
               document.getElementById("description-year").innerHTML = "2022";
               document.getElementById("description-materials").innerHTML = "Wood, Metal, Spitr";
@@ -568,8 +576,8 @@
               console.log("kelly");
               //--- Set CGI request params ---
               xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos2&camera=1&autofocus=on&autoiris=on");
-              toggleDescription();
-              document.getElementById("description-title").innerHTML = "Nimo's project";
+              // toggleDescription();
+              document.getElementById("description-title").innerHTML = "Kelly's project";
               document.getElementById("description-year").innerHTML = "2022";
               document.getElementById("description-materials").innerHTML = "Wood, Metal, Spit";
               document.getElementById("description-text").innerHTML = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida lectus lacinia tristique pretium. Praesent pharetra sodales dui nec semper. Fusce id imperdiet sapien, id gravida nulla. Vivamus sit amet mauris dolor. Fusce maximus lectus fermentum, tincidunt turpis in, rutrum ante. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer lacinia ultrices malesuada. In hac habitasse platea dictumst. Aenean in tellus suscipit est egestas venenatis. Aliquam a ullamcorper sem, ac varius urna. Duis rutrum condimentum metus.";
