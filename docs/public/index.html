@@ -337,7 +337,7 @@
             <br /><br />
           </p>
         </div>
-        <img id="videostream" src="/feed" />
+        <img id="videostream" src="http://wrong.ats.community/feed" />
         <!-- <img id="videostream" src="images/test-image.jpg" /> -->
         <br />
         <h1 id="loading">Camera loading...</h1>
@@ -436,6 +436,8 @@
 
 
       <script>
+        const baseUrl = "https://wrong.ats.community";
+
         //--- Function that sends camera to individual artist location in gallery ---
         function moveCamToArtist(person) {
           //--- Set up camera http request ---
@@ -449,11 +451,13 @@
           };
 
           //--- Determine which link was clicked and send camera instruction ---
+
           switch (person) {
             case "reid":
               console.log("reid");
               //--- Set CGI request params ---
-              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos2&camera=1");
+
+              xhttp.open("GET",baseUrl + "/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos2&camera=1");
               toggleDescription();
               document.getElementById("description-title").innerHTML = "Reid's project";
               document.getElementById("description-year").innerHTML = "2022";
@@ -464,7 +468,7 @@
             case "nimo":
               console.log("nimo");
               //--- Set CGI request params ---
-              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos3&camera=1");
+              xhttp.open("GET","baseUrl/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos3&camera=1");
               toggleDescription();
               document.getElementById("description-title").innerHTML = "Nimo's project";
               document.getElementById("description-year").innerHTML = "2022";
@@ -476,7 +480,7 @@
             case "sarah":
               console.log("sarah");
               //--- Set CGI request params ---
-              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos4&camera=1");
+              xhttp.open("GET",baseUrl + "/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos4&camera=1");
               toggleDescription();
               document.getElementById("description-title").innerHTML = "Nimo's project";
               document.getElementById("description-year").innerHTML = "2022";
@@ -487,7 +491,7 @@
             case "juliana":
               console.log("juliana");
               //--- Set CGI request params ---
-              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos2&camera=1");
+              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos2&camera=1");
               toggleDescription();
               document.getElementById("description-title").innerHTML = "Nimo's project";
               document.getElementById("description-year").innerHTML = "2022";
@@ -498,7 +502,7 @@
             case "blake":
               console.log("blake");
               //--- Set CGI request params ---
-              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos3&camera=1");
+              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos3&camera=1");
               toggleDescription();
               document.getElementById("description-title").innerHTML = "Nimo's project";
               document.getElementById("description-year").innerHTML = "2022";
@@ -509,7 +513,7 @@
             case "juan":
               console.log("juan");
               //--- Set CGI request params ---
-              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos4&camera=1");
+              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos4&camera=1");
               toggleDescription();
               document.getElementById("description-title").innerHTML = "Nimo's project";
               document.getElementById("description-year").innerHTML = "2022";
@@ -520,7 +524,7 @@
             case "tom":
               console.log("tom");
               //--- Set CGI request params ---
-              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos2&camera=1");
+              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos2&camera=1");
               toggleDescription();
               document.getElementById("description-title").innerHTML = "Nimo's project";
               document.getElementById("description-year").innerHTML = "2022";
@@ -531,7 +535,7 @@
             case "sydney":
               console.log("sydney");
               //--- Set CGI request params ---
-              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos3&camera=1");
+              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos3&camera=1");
               toggleDescription();
               document.getElementById("description-title").innerHTML = "Nimo's project";
               document.getElementById("description-year").innerHTML = "2022";
@@ -542,7 +546,7 @@
               case "mac":
               console.log("mac");
               //--- Set CGI request params ---
-              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos4&camera=1");
+              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos4&camera=1");
               toggleDescription();
               document.getElementById("description-title").innerHTML = "Nimo's project";
               document.getElementById("description-year").innerHTML = "2022";
@@ -553,7 +557,7 @@
             case "michael":
               console.log("mac");
               //--- Set CGI request params ---
-              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos4&camera=1");
+              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos4&camera=1");
               toggleDescription();
               document.getElementById("description-title").innerHTML = "Nimo's project";
               document.getElementById("description-year").innerHTML = "2022";
@@ -564,7 +568,7 @@
             case "kelly":
               console.log("kelly");
               //--- Set CGI request params ---
-              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos2&camera=1");
+              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos2&camera=1");
               toggleDescription();
               document.getElementById("description-title").innerHTML = "Nimo's project";
               document.getElementById("description-year").innerHTML = "2022";
@@ -634,18 +638,18 @@
 
             case "pan":
               console.log("commanding abs pan (0-360 degrees): " + value);
-              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?camera=1&pan=" + value);
+              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?camera=1&pan=" + value);
               break;
 
             case "tilt":
               console.log("commanding abs tilt (0-90 degrees): " + value);
               //--- Set CGI request params ---
-              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?camera=1&tilt" + value);
+              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?camera=1&tilt" + value);
               break;
 
             case "zoom":
               console.log("commanding abs zoom (0-19999 steps): " + value);
-              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?camera=1&zoom" + value);
+              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?camera=1&zoom" + value);
               break;
 
             default:
@@ -681,34 +685,34 @@
 
             case "pan-left":
               console.log("commanding relative pan: " + -panValue);
-              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?camera=1&rpan=" + -panValue);
+              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?camera=1&rpan=" + -panValue);
               break;
             
             case "pan-right":
               console.log("commanding relative pan: " + panValue);
-              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?camera=1&rpan=" + panValue);
+              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?camera=1&rpan=" + panValue);
               break;
 
               case "tilt-left":
               console.log("commanding relative tilt: " + -tiltValue);
               //--- Set CGI request params ---
-              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?camera=1&rtilt" + -tiltValue);
+              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?camera=1&rtilt" + -tiltValue);
               break;
               
             case "tilt-right":
               console.log("commanding relative tilt: " + tiltValue);
               //--- Set CGI request params ---
-              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?camera=1&rtilt" + tiltValue);
+              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?camera=1&rtilt" + tiltValue);
               break;
 
             case "zoom-left":
               console.log("commanding relative zoom: " + -zoomValue);
-              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?camera=1&rzoom" + -zoomValue);
+              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?camera=1&rzoom" + -zoomValue);
               break;
             
             case "zoom-right":
               console.log("commanding relative zoom: " + zoomValue);
-              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?camera=1&rzoom" + zoomValue);
+              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?camera=1&rzoom" + zoomValue);
               break;
 
             default:
