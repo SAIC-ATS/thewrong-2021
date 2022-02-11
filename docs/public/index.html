@@ -651,12 +651,12 @@
             case "tilt":
               console.log("commanding abs tilt (0-90 degrees): " + value);
               //--- Set CGI request params ---
-              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?camera=1&tilt" + value);
+              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?camera=1&tilt=" + value);
               break;
 
             case "zoom":
               console.log("commanding abs zoom (0-19999 steps): " + value);
-              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?camera=1&zoom" + value);
+              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?camera=1&zoom=" + value);
               break;
 
             default:
