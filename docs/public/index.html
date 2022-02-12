@@ -713,8 +713,6 @@
       };
 
 
-//https://ptz-app.netlify.app/camera/axis-cgi/com/axis-cgi/com/ptzqueue.cgi?TimeoutType=activity&TimeoutTime=1
-
       let panValue = 5;
       let tiltValue = 2;
       let zoomValue = 500;
@@ -757,6 +755,12 @@
               console.log("No relative axis picked, how did you get here? Error.");
           }
 
+          xhttp.setRequestHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8");
+      xhttp.setRequestHeader("Accept-Encoding", "gzip, deflate");
+      xhttp.setRequestHeader("Accept-Language","en-US,en;q=0.5")
+      xhttp.setRequestHeader("Connection","keep-alive")
+      xhttp.setRequestHeader("Upgrade-Insecure-Requests", "1");
+
           //--- Send off selected parameters to camera through http request ---
           xhttp.send();
           //--- Turn on loading sign until camera calls back "done"
@@ -791,6 +795,11 @@
       };
 
       xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?camera=1&center=" + calcX + "," + calcY + "&autofocus=on&autoiris=on");
+      xhttp.setRequestHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8");
+      xhttp.setRequestHeader("Accept-Encoding", "gzip, deflate");
+      xhttp.setRequestHeader("Accept-Language","en-US,en;q=0.5")
+      xhttp.setRequestHeader("Connection","keep-alive")
+      xhttp.setRequestHeader("Upgrade-Insecure-Requests", "1");
 
       //--- Send off selected parameters to camera through http request ---
       xhttp.send();
@@ -799,6 +808,11 @@
      
     } //end moveCamClick
 
+
+
+    //Extra Commands - Query Position:
+
+    //https://ptz-app.netlify.app/camera/axis-cgi/com/ptz.cgi?camera=1&query=position
 
 
 </script>
