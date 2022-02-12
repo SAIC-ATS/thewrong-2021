@@ -192,6 +192,7 @@
         font-family: "Roboto Mono", monospace;
         text-align: justify;
         z-index: 6;
+        margin-bottom: 30px;
       }
 
       #description-title {
@@ -312,6 +313,7 @@
 
       function toggleDescription() {
         document.getElementById("description-box").classList.toggle("collapsed");
+        
       }
 
     </script>
@@ -395,6 +397,8 @@
           <br /><br />
         
           <p id="description-text">Description goes here.</p>
+          <br/>
+          <p id="description-links">Links here</p>
         
         </div>
       </div>      
@@ -499,10 +503,11 @@
               //--- Set CGI request params ---
               xhttp.open("GET",baseUrl + "/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos4&camera=1&autofocus=on&autoiris=on");
               // toggleDescription();
-              document.getElementById("description-title").innerHTML = "Sarah's project";
-              document.getElementById("description-year").innerHTML = "2022";
-              document.getElementById("description-materials").innerHTML = "Wood, Metal, Spit";
-              document.getElementById("description-text").innerHTML = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida lectus lacinia tristique pretium. Praesent pharetra sodales dui nec semper. Fusce id imperdiet sapien, id gravida nulla. Vivamus sit amet mauris dolor. Fusce maximus lectus fermentum, tincidunt turpis in, rutrum ante. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer lacinia ultrices malesuada. In hac habitasse platea dictumst. Aenean in tellus suscipit est egestas venenatis. Aliquam a ullamcorper sem, ac varius urna. Duis rutrum condimentum metus.";
+              document.getElementById("description-title").innerHTML = "<i>Rose Window</i>";
+              document.getElementById("description-year").innerHTML = "(2021)";
+              document.getElementById("description-materials").innerHTML = "Digital animation, iPad, wood";
+              document.getElementById("description-text").innerHTML = 'Apple\'s spinning wait cursor, “the rainbow wheel of death”, presents itself as a joyful pinwheel to distract from the impending sense of doom one feels during an encounter with it, knowing the terrible task of choosing between remaining stuck in frozen computer purgatory or a manual reset resulting in the potential loss of hours of work is imminent. By displaying the spinning animation through an iconic rose window pattern, a stained glass format commonly used in Gothic cathedrals to illustrate the Last Judgment, this seemingly trivial moment of computer glitch is elevated into the realm of religious ceremony. Through absurd exaggeration, Rose Window presents Apple\'s wait cursor as a divine entity, bringing into plain view the comparison of our cultural relationship with computing technology to that of organized religion, promising us happiness, connectedness, and eternal life in paradise -- with the key distinction that technology asserts it can accomplish this here on Earth. In this context, the constant presence of the pinwheel poses the new question, at what cost?';
+              document.getElementById("description-links").innerHTML = '<a href="https://www.sarahbrophy-studio.com" >Artist Page</a>'
               break;
 
             case "juliana":
@@ -514,6 +519,7 @@
               document.getElementById("description-year").innerHTML = "2022";
               document.getElementById("description-materials").innerHTML = "Wood, Metal, Spit";
               document.getElementById("description-text").innerHTML = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida lectus lacinia tristique pretium. Praesent pharetra sodales dui nec semper. Fusce id imperdiet sapien, id gravida nulla. Vivamus sit amet mauris dolor. Fusce maximus lectus fermentum, tincidunt turpis in, rutrum ante. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer lacinia ultrices malesuada. In hac habitasse platea dictumst. Aenean in tellus suscipit est egestas venenatis. Aliquam a ullamcorper sem, ac varius urna. Duis rutrum condimentum metus.";
+              document.getElementById("description-links").innerHTML = '<a href="https://www.macpierce.com" >Artist Page</a>'
               break;
 
             case "blake":
@@ -525,6 +531,7 @@
               document.getElementById("description-year").innerHTML = "2022";
               document.getElementById("description-materials").innerHTML = "Wood, Metal, Spit";
               document.getElementById("description-text").innerHTML = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida lectus lacinia tristique pretium. Praesent pharetra sodales dui nec semper. Fusce id imperdiet sapien, id gravida nulla. Vivamus sit amet mauris dolor. Fusce maximus lectus fermentum, tincidunt turpis in, rutrum ante. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer lacinia ultrices malesuada. In hac habitasse platea dictumst. Aenean in tellus suscipit est egestas venenatis. Aliquam a ullamcorper sem, ac varius urna. Duis rutrum condimentum metus.";
+              document.getElementById("description-links").innerHTML = '<a href="https://www.macpierce.com" >Artist Page</a>'
               break;
 
             case "juan":
@@ -536,6 +543,7 @@
               document.getElementById("description-year").innerHTML = "2022";
               document.getElementById("description-materials").innerHTML = "Wood, Metal, Spit";
               document.getElementById("description-text").innerHTML = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida lectus lacinia tristique pretium. Praesent pharetra sodales dui nec semper. Fusce id imperdiet sapien, id gravida nulla. Vivamus sit amet mauris dolor. Fusce maximus lectus fermentum, tincidunt turpis in, rutrum ante. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer lacinia ultrices malesuada. In hac habitasse platea dictumst. Aenean in tellus suscipit est egestas venenatis. Aliquam a ullamcorper sem, ac varius urna. Duis rutrum condimentum metus.";
+              document.getElementById("description-links").innerHTML = '<a href="https://www.macpierce.com" >Artist Page</a>'
               break;
 
             case "tom":
@@ -544,9 +552,10 @@
               xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?camera=1&pan=119.15&tilt=-15.730&zoom=7900&focus=4741&autoiris=on");
               // toggleDescription();
               document.getElementById("description-title").innerHTML = "Do Not Touch";
-              document.getElementById("description-year").innerHTML = "2022";
+              document.getElementById("description-year").innerHTML = "(2022)";
               document.getElementById("description-materials").innerHTML = "Found electronics, frame, custom code";
               document.getElementById("description-text").innerHTML = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida lectus lacinia tristique pretium. Praesent pharetra sodales dui nec semper. Fusce id imperdiet sapien, id gravida nulla. Vivamus sit amet mauris dolor. Fusce maximus lectus fermentum, tincidunt turpis in, rutrum ante. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer lacinia ultrices malesuada. In hac habitasse platea dictumst. Aenean in tellus suscipit est egestas venenatis. Aliquam a ullamcorper sem, ac varius urna. Duis rutrum condimentum metus.";
+              document.getElementById("description-links").innerHTML = '<a href="https://www.macpierce.com" >Artist Page</a>'
               break;
 
             case "sydney":
@@ -558,6 +567,7 @@
               document.getElementById("description-year").innerHTML = "2022";
               document.getElementById("description-materials").innerHTML = "Wood, Metal, Spit";
               document.getElementById("description-text").innerHTML = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida lectus lacinia tristique pretium. Praesent pharetra sodales dui nec semper. Fusce id imperdiet sapien, id gravida nulla. Vivamus sit amet mauris dolor. Fusce maximus lectus fermentum, tincidunt turpis in, rutrum ante. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer lacinia ultrices malesuada. In hac habitasse platea dictumst. Aenean in tellus suscipit est egestas venenatis. Aliquam a ullamcorper sem, ac varius urna. Duis rutrum condimentum metus.";
+              document.getElementById("description-links").innerHTML = '<a href="https://www.macpierce.com" >Artist Page</a>'
               break;
 
               case "mac":
@@ -565,10 +575,11 @@
               //--- Set CGI request params ---
               xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?camera=1&pan=22.62&tilt=-90&zoom=1&autofocus=on&autoiris=on");
               // toggleDescription();
-              document.getElementById("description-title").innerHTML = "Mac's project";
-              document.getElementById("description-year").innerHTML = "2022";
-              document.getElementById("description-materials").innerHTML = "Wood, Metal, Spit";
-              document.getElementById("description-text").innerHTML = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida lectus lacinia tristique pretium. Praesent pharetra sodales dui nec semper. Fusce id imperdiet sapien, id gravida nulla. Vivamus sit amet mauris dolor. Fusce maximus lectus fermentum, tincidunt turpis in, rutrum ante. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer lacinia ultrices malesuada. In hac habitasse platea dictumst. Aenean in tellus suscipit est egestas venenatis. Aliquam a ullamcorper sem, ac varius urna. Duis rutrum condimentum metus.";
+              document.getElementById("description-title").innerHTML = "Cleaning Up the Neighborhood";
+              document.getElementById("description-year").innerHTML = "(2022)";
+              document.getElementById("description-materials").innerHTML = "Roomba, Print of Digital Render, Corrugated Plastic";
+              document.getElementById("description-text").innerHTML = 'Need a room secured but cannot afford the salary of a guard? No worries! Use the implied threat of both state authority and autonomous robots to secure any space, for far less money than a <a href="https://www.knightscope.com/k5/" >Knightscope K5</a>. <i>Cleaning Up the Neighborhood</i> patrols the space that it is placed in, showcasing  a cutout of a non-descript policeman mounted on top of an iRobot Roomba..';
+              document.getElementById("description-links").innerHTML = '<a href="https://www.macpierce.com" >Artist Page</a>'
               break;
             
               case "michael":
