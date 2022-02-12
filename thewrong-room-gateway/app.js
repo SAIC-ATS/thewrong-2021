@@ -16,7 +16,7 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 
 app.use('/camera', 
     createProxyMiddleware({ 
-        target: 'http://192.168.0.90/', 
+        target: 'http://root:root@192.168.0.90/', 
         changeOrigin: true, 
         hostRewrite: true, 
         logLevel: 'debug',
