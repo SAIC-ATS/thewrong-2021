@@ -357,7 +357,8 @@
             <br /><br />
           </p>
         </div>
-        <img id="videostream" src="/feed" />
+        <!-- original stream is 704x480 -->
+        <img id="videostream" src="/feed"/>
         <!-- <img id="videostream" src="images/test-image.jpg" /> -->
         <!-- <br /> -->
         <h1 id="loading">Camera loading...</h1>
@@ -700,7 +701,7 @@
 
 
     function moveCamRelative(axis){
-      console.log("hello");
+      console.log("move cam relative");
           //--- Set up camera http request ---
           const xhttp = new XMLHttpRequest();
       // Define a callback function
@@ -762,6 +763,43 @@
           document.getElementById("loading").style.display = "block";
      
     } //end moveCamRelative
+
+
+    //--- Move Cam on Video Click ---
+
+    document.getElementById('videostream').onclick = function clickEvent(e) {
+      // e = Mouse click event.
+      var rect = e.target.getBoundingClientRect();
+      var x = e.clientX - rect.left; //x position within the element.
+      var y = e.clientY - rect.top; //y pos in element
+      var imgWidth = rect.width;
+      var imgHeight = rect.height;
+
+      var calcX = Math.round( (x/imgWidth) * 704);
+      var calcY = Math.round( (y/imgHeight) * 480);
+
+      console.log("true x position: "+ x + ", true y pos: " + y);
+      console.log("calculated x: "+ calcX + ", calc y: " + calcY);
+
+      //--- Set up camera http request ---
+      const xhttp = new XMLHttpRequest();
+      // Define a callback function
+      xhttp.onreadystatechange = function () {
+        if (xhttp.readyState === 4) {
+          document.getElementById("loading").style.display = "none";
+        }
+      };
+
+      xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?camera=1&center=" + calcX + "," + calcY + "&autofocus=on&autoiris=on");
+
+      //--- Send off selected parameters to camera through http request ---
+      xhttp.send();
+      //--- Turn on loading sign until camera calls back "done"
+      document.getElementById("loading").style.display = "block";
+     
+    } //end moveCamClick
+
+
 
 </script>
 
