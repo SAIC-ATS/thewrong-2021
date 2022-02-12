@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>PTZ - The Wrong Biennale</title>
+    <title>Pan-Tilt-Zoom</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- <link href="css/style.css" rel="stylesheet" /> -->
@@ -528,7 +528,7 @@
             case "juan":
               console.log("juan");
               //--- Set CGI request params ---
-              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos4&camera=1&autofocus=on&autoiris=on");
+              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?camera=1&pan=46.0413&tilt=-22.5000&zoom=2726&autofocus=on&autoiris=on");
               // toggleDescription();
               document.getElementById("description-title").innerHTML = "Juan's project";
               document.getElementById("description-year").innerHTML = "2022";
@@ -561,7 +561,7 @@
               case "mac":
               console.log("mac");
               //--- Set CGI request params ---
-              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos4&camera=1&autofocus=on&autoiris=on");
+              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?camera=1&pan=22.62&tilt=-90&zoom=1&autofocus=on&autoiris=on");
               // toggleDescription();
               document.getElementById("description-title").innerHTML = "Mac's project";
               document.getElementById("description-year").innerHTML = "2022";
@@ -639,7 +639,7 @@
       let degrees = (panx/sliderWidth) * 90;
       degrees = Math.round(degrees);
       console.log("tilt cursor position: " + panx + ", and degrees: " + degrees);
-      moveCamAbsolute('tilt', degrees);
+      moveCamAbsolute('tilt', -degrees); //degrees need to be negative (0 to -90) when cam is upside down (attached to ceiling!)
     }
 
     document.getElementById('zoom-bar').onclick = function clickEvent(e) {
@@ -710,6 +710,8 @@
         }
       };
 
+
+//https://ptz-app.netlify.app/camera/axis-cgi/com/axis-cgi/com/ptzqueue.cgi?TimeoutType=activity&TimeoutTime=1
 
       let panValue = 5;
       let tiltValue = 2;
