@@ -254,22 +254,20 @@
         #titlebar {
           font-size: 1.0em;
         }
-/* 
-        .label {
-          display: none;
-        } */
-
-        /* .label-mobile {
-          display: inline;
-        } */
 
         .control-container {
-          display: flex;	
-          justify-content: center;
+          /* display: flex;	
+          justify-content: center; */
+          display: grid; 
+          grid-auto-rows: 1fr; 
+         grid-template-columns: 1fr min-content min-content min-content 1fr; 
+          gap: 0px 0px; 
+          margin: auto;
+          text-align: center;
         }
 
         .left-arrow-div, .right-arrow-div {
-          padding: 7px 7px;
+          padding: 0px 7px;
         }
 
         /* .right-arrow-div {
