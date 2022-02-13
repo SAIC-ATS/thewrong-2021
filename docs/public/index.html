@@ -72,7 +72,7 @@
         width: 100%;
         border: 1px solid gray;
         box-shadow: 0px 2px 5px rgb(200, 200, 200);
-
+        cursor: pointer; /* hand */
       }
 
       #loading {
@@ -513,7 +513,7 @@
             case "juliana":
               console.log("juliana");
               //--- Set CGI request params ---
-              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos2&camera=1&autofocus=on&autoiris=on");
+              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?camera=1&pan=-108.8555&tilt=-31.5000&zoom=7900&focus=5356&autoiris=on");
               // toggleDescription();
               document.getElementById("description-title").innerHTML = "<i>Before language there is love. Before love, memory</i>";
               document.getElementById("description-year").innerHTML = "(2022)";
