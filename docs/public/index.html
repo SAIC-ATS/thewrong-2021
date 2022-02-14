@@ -618,7 +618,7 @@
             case "sydney":
               console.log("sydney");
               //--- Set CGI request params ---
-              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos3&camera=1&autofocus=on&autoiris=on");
+              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?camera=1&pan=-50.9944&tilt=-13.9500&zoom=3900&focus=4425&autofocus=off&autoiris=on");
               // toggleDescription();
               document.getElementById("description-title").innerHTML = "<i>OPSEC It's Everyone's Responsibility</i>";
               document.getElementById("description-year").innerHTML = "(2022)";
@@ -683,7 +683,7 @@
               case "explanatorytext":
               console.log("explanatorytext");
               //--- Set CGI request params ---
-              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos2&camera=1&autofocus=on&autoiris=on");
+              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?camera=1&pan=-32.3077&tilt=-31.0500&zoom=6200&autofocus=on&autoiris=on");
               break;
 
             default:
