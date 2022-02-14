@@ -749,23 +749,23 @@
               case "tilt-left":
               console.log("commanding relative tilt: " + tiltValue);
               //--- Set CGI request params ---
-              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?camera=1&rtilt" + -tiltValue + "&autofocus=on&autoiris=on");
+              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?camera=1&rtilt=" + -tiltValue + "&autofocus=on&autoiris=on");
               break;
               
             case "tilt-right":
               console.log("commanding relative tilt: " - tiltValue);
               //--- Set CGI request params ---
-              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?camera=1&rtilt" + tiltValue + "&autofocus=on&autoiris=on");
+              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?camera=1&rtilt=" + tiltValue + "&autofocus=on&autoiris=on");
               break;
 
             case "zoom-left":
               console.log("commanding relative zoom: " + -zoomValue);
-              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?camera=1&rzoom" + -zoomValue + "&autofocus=on&autoiris=on");
+              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?camera=1&rzoom=" + -zoomValue + "&autofocus=on&autoiris=on");
               break;
             
             case "zoom-right":
               console.log("commanding relative zoom: " + zoomValue);
-              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?camera=1&rzoom" + zoomValue + "&autofocus=on&autoiris=on");
+              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?camera=1&rzoom=" + zoomValue + "&autofocus=on&autoiris=on");
               break;
 
             default:
