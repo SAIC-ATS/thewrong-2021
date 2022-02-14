@@ -705,7 +705,7 @@
       var panx = e.clientX - rect.left; //x position within the element.
       var sliderWidth = rect.width;
       let degrees = (panx/sliderWidth) * 360;
-      degrees = Math.round(degrees);
+      degrees = Math.round(degrees-180); //move degrees from (0 to 360) to (-180 to 180)
       console.log("pan cursor position: " + panx + ", and degrees: " + degrees);
       moveCamAbsolute('pan', degrees);
     }
