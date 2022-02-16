@@ -100,6 +100,15 @@
 
       }
 
+      #events-button {
+        float: left;
+            position: relative;
+            z-index: 10;
+            cursor: pointer;
+            user-select: none;
+
+      }
+
       #how-to-button {
         float: right;
             position: relative;
@@ -115,6 +124,20 @@
 
 
       #how-to-overlay {
+        /* display: none;  */
+        display: block;
+        position: absolute;
+        background-color: aliceblue;
+        border: 1px solid gray;
+        box-shadow: 5px 5px 5px rgb(200, 200, 200);
+        padding: 15px;
+        top: 21px;
+        font-family: "Roboto Mono", monospace;
+        text-align: justify;
+        z-index: 6;
+      }
+
+      #events-overlay {
         /* display: none;  */
         display: block;
         position: absolute;
@@ -322,7 +345,7 @@
           padding: 7px 7px;
         } */
 
-        #info-button, #info-overlay, #how-to-button, #how-to-overlay, #artists, #explanatory, #description-box-container {
+        #info-button, #events-button, #how-to-button, #info-overlay, #events-overlay, #how-to-overlay, #artists, #explanatory, #description-box-container {
           font-size: .7em;
         }
 
@@ -346,6 +369,10 @@
         document.getElementById("how-to-overlay").classList.toggle("collapsed");
       }
 
+      function toggleEvents() {
+        document.getElementById("events-overlay").classList.toggle("collapsed");
+      }
+
       function toggleDescription() {
         document.getElementById("description-box").classList.toggle("collapsed");
         
@@ -364,6 +391,7 @@
       </div>
       <div>
         <a class="artlink" id="info-button" onclick="toggleInfo(); return false;" href="#" title="info">&lt;exhibition info&gt;</a> 
+        <a class="artlink" id="events-button" onclick="toggleEvents(); return false;" href="#" title="info">&lt;events&gt;</a> 
         <a class="artlink" id="how-to-button" onclick="toggleUse(); return false;" href="#" title="info">&lt;how to use&gt;</a>
       </div>
 
@@ -383,17 +411,35 @@
           </p>
 
         </div>
+
+
+        <div id="events-overlay" class="modal collapsed">
+          <p>
+            <span id="info-title-bar"><i>Events</i> 
+              <a class="artlink" id="close-window" title="close" href="#" onclick="toggleEvents(); return false;">&lt;close&gt;</a>
+            </span> 
+            <p>A selection of artist talks and discussions are planned to coincide with this exhibition. Check back soon for more details.</p> 
+		  
+          
+          </p>
+
+        </div>
+
+
         <div id="info-overlay" class="modal collapsed">
           <p>
             <span id="info-title-bar"><i>Pan-Tilt-Zoom</i> 
               <a class="artlink" id="close-window" title="close" href="#" onclick="toggleInfo(); return false;">&lt;close&gt;</a>
             </span> 
             
-            <br /><br /><p>Minds without a body; phantom flesh; vision without a gaze. We have opted for our biological body to mutate into a body that is both telematic and cartesian. We remotely transit cyberspace territories, using more than one body, more than one gaze. Our biological body's a zombie, there it is, but in an absent way. We are still here, but our eyes wander elsewhere. We have &ldquo;a sliding and shifting consciousness that is neither &lt;&lt;completely here&gt;&gt;, in this body, nor &lt;&lt;completely there&gt;&gt;, in those bodies.&quot; We rely on technology to expand our body; we desire to let the flesh die; a camera sees better than our eyes.</p>
+            <p>Minds without a body; phantom flesh; vision without a gaze. To remotely transit cyberspace, we opt for our body to mutate into one that is both telematic and cartesian. The biological body's a zombie, still here, but the eyes traverse elsewhere. We have "a sliding and shifting consciousness that is neither &lt;&lt;completely here&gt;&gt;, in this body, nor &lt;&lt;completely there&gt;&gt;, in those bodies."* We rely on technology to expand our body; we desire to let the flesh die; a camera sees better than our eyes. </p>
 
-<p>The exhibition takes place inside a locked room in the Art Institute of Chicago, and the only way of accessing it is through surveilling eyes. An around-the-clock accessible commons, contingent that no bodies may enter unmediated. The physical body is erased, it's no longer useful. These are works subjected to a field of vision given by the electronic image.</p>
-
-<p>12 artists present their work on small screens to recall the unfolding of the point of view and to resort to other ocular perceptions. The exhibition arises as a situation of permanent visibility, using an artifact of political technology, which is transformed into a device of voyeurism and telepresence for those eyes that need artificial vision. The eye-camera is subjected to a device, constantly streaming an image that is oftentimes not being observed by any person: it is being transmitted to a machine and not to an observer. By whom are we being watched?</p>
+            <p>Inside a locked room in the Art Institute of Chicago, an around-the-clock commons is created, contingent that no bodies may enter unmediated - an online space exclusive to the surveilling gaze. The physical body is erased, it's no longer useful. These works are subjected to a field of vision created by the mechanical eye and constrained by the electronic image.</p>
+            
+            <p>The exhibition is a situation of permanent visibility, using an artifact of political technology transformed into a device of voyeurism and telepresence. The eye-camera constantly streams an image that is often unobserved: transmitted from machine to machine. By whom are we being watched? Does disembodied vision disembody the gaze?
+            </p>
+            <p style="float:right; display: inline-block;">castroduperly</p><br/><br/>
+            <p>*Sterlac. <i>Cíborgs, zombies, y quimeras</i>, 2020. p.22 </p>
             <br /><br />
           </p>
         </div>
