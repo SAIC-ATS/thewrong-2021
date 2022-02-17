@@ -208,6 +208,12 @@
         text-decoration: underline dashed;
       }
 
+      #selfie-link {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
       #controls {
         padding: 10px;
         margin: auto;
@@ -401,7 +407,7 @@
 	  </a>
 	</div>
 	<div class="header-section">
-	  <h1 id="title" style="text-align: center; justify-content: center;">Pan-Tilt-Zoom</h1>
+	  <h1 id="title" style="text-align: center; justify-content: center;">Pan-Tilt-<span id="selfie-link" onclick="moveCamToArtist('cam');return false;">Zoom</span></h1>
 	</div>
 	<div class="right-section">
 	  <a href="https://thewrong.org">
@@ -690,7 +696,7 @@
               document.getElementById("description-links").innerHTML = '<a href="http://www.sydgart.com">&lt;Artist Page&gt;</a> <a href="https://www.instagram.com/syd_g_art/" style="float:right;">&lt;Instagram&gt;</a>';
               break;
 
-              case "mac":
+            case "mac":
               console.log("mac");
               //--- Set CGI request params ---
               xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?camera=1&pan=-73.0582&tilt=-62.5500&zoom=1&focus=9999&autofocus=on&autoiris=on");
@@ -703,8 +709,8 @@
               document.getElementById("description-text").innerHTML = 'Need a room secured but cannot afford the salary of a guard? No worries! Use the implied threat of both state authority and autonomous robots to secure any space, for far less money than a <a href="https://www.knightscope.com/k5/" >Knightscope K5</a>. <i>Cleaning Up the Neighborhood</i> patrols the space that it is placed in, showcasing  a cutout of a non-descript policeman mounted on top of an iRobot Roomba..';
               document.getElementById("description-links").innerHTML = '<a href="https://www.macpierce.com">&lt;Artist Page&gt;</a> <a href="https://www.instagram.com/transistor_resistor/" style="float:right;">&lt;Instagram&gt;</a>';
               break;
-            
-              case "michael":
+          
+            case "michael":
               console.log("michael");
               //--- Set CGI request params ---
               xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?camera=1&pan=149.8311&tilt=-48.15&zoom=7800&focus=6861&autofocus=off&autoiris=on");
@@ -717,7 +723,7 @@
               document.getElementById("description-links").innerHTML = '<a href="https://www.demfraga.com">&lt;Artist Page&gt;</a> <a href="https://www.instagram.com/demfraga/" style="float:right;">&lt;Instagram&gt;</a>';
               break;
 
-              case "jade":
+            case "jade":
               console.log("jade");
               //--- Set CGI request params ---
               xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?camera=1&pan=-87.2420&tilt=-12.1500&zoom=8400&focus=5240&autofocus=on&autoiris=on");
@@ -730,7 +736,7 @@
               document.getElementById("description-links").innerHTML = '<a href="https://www.jadesheng.studio" >&lt;Artist Page&gt;</a> <a href="https://www.instagram.com/jadesheng.studio/" style="float:right;">&lt;Instagram&gt;</a>';
               break;
 
-              case "kelly":
+            case "kelly":
               console.log("kelly");
               //--- Set CGI request params ---
               xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?camera=1&pan=-144.2026&tilt=-19.3500&zoom=9363&focus=4098&autofocus=off&autoiris=on");
@@ -743,10 +749,16 @@
               document.getElementById("description-links").innerHTML = '<a href="https://www.xikel.xyz/">&lt;Artist Page&gt;</a> <a href="https://www.instagram.com/cortisol.bliss/" style="float:right;">&lt;Instagram&gt;</a>';
               break;
 
-              case "explanatorytext":
+            case "explanatorytext":
               console.log("explanatorytext");
               //--- Set CGI request params ---
               xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?camera=1&pan=-33.8837&tilt=-37.8000&zoom=5700&focus=6432&autofocus=off&autoiris=on");
+              break;
+
+            case "cam":
+              console.log("the mechanical eye");
+              //--- Set CGI request params ---
+              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?camera=1&pan=121.2383&tilt=-56.70&zoom=13349&focus=8122&autofocus=off&autoiris=on");
               break;
 
             default:
