@@ -33,9 +33,7 @@ var httpsServer  = https.createServer(credentials, app);
 var httpsPort = normalizePort(process.env.HTTPS_PORT || '3001');
 const io = new Server(httpsServer, {
   cors: {
-    origin: "https://ptz.live",
-    origin: "http://localhost",
-    origin: "https://localhost"
+    origin: "wrong.ats.community",
   },
 });
 
