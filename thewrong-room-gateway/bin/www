@@ -10,8 +10,8 @@ var http = require('http');
 var https = require('https');
 
 var fs = require('fs');
-var privateKey  = fs.readFileSync('sslcert/id_rsa_ats.key', 'utf8');
-var certificate = fs.readFileSync('sslcert/id_rsa_ats.cert', 'utf8');
+var privateKey  = fs.readFileSync('/etc/letsencrypt/live/wrong.ats.community/privkey.pem', 'utf8');
+var certificate = fs.readFileSync('/etc/letsencrypt/live/wrong.ats.community/fullchain.pem', 'utf8');
 var credentials = {key: privateKey, cert: certificate};
 
 

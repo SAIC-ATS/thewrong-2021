@@ -14,6 +14,9 @@ var usersRouter = require('./routes/users');
 var app = express();
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
+app.use(express.static(__dirname + '/certbot_webroot', { dotfiles: 'allow' } ));
+
+const TIMEOUT = 8*1000;
 app.use('/camera', 
     createProxyMiddleware({ 
         target: 'http://root:root@192.168.0.90/', 
@@ -27,6 +30,8 @@ app.use('/camera',
         onProxyRes: (proxyRes, req, res) => {
             console.log("proxy RES")
         },
+        proxyTimeout: TIMEOUT,
+        timeout: TIMEOUT,
         autoRewrite: true, 
         pathRewrite: {'^/camera' : '/'}
 }));
