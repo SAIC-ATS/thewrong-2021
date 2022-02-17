@@ -316,6 +316,16 @@
 
       }
 
+      .left-section {
+	width: 25%;
+	float: left;
+      }
+
+      .right-section {
+	width: 25%;
+	float: right;
+      }
+
       @media (max-width: 800px) {
         #main {
           width: 90%;
@@ -384,11 +394,22 @@
 
   <body>
     <div id="main">
-      <div id="title-bar">
-        <img src="images/ATS-SAIC.png" style="margin-top:5px;" width="10%"/>
-        <h1 id="title">Pan-Tilt-Zoom</h1>
-        <img src="images/tw5_logo-7.png" width="15%" style="margin-left:-20px;">
+      <div id="title-bar" style="">
+	<div class="left-section">
+	  <a href="https://www.saic.edu/academics/departments/art-and-technology-studies">
+	    <img src="images/ATS-SAIC.png" style="margin-top:5px; float: left;" width="40%"/>
+	  </a>
+	</div>
+	<div class="header-section">
+	  <h1 id="title" style="text-align: center; justify-content: center;">Pan-Tilt-Zoom</h1>
+	</div>
+	<div class="right-section">
+	  <a href="https://thewrong.org">
+	    <img src="images/tw5_logo-7.png" width="70%" style="float: right;">
+	  </a>
+	</div>
       </div>
+
       <div>
         <a class="artlink" id="info-button" onclick="toggleInfo(); return false;" href="#" title="info">&lt;exhibition info&gt;</a> 
         <a class="artlink" id="events-button" onclick="toggleEvents(); return false;" href="#" title="info">&lt;events&gt;</a> 
