@@ -579,7 +579,7 @@
          
           var descriptionDims = document.getElementById('description-box').getBoundingClientRect();
           var descriptionHeight = descriptionDims.height;
-          if (descriptionHeight < 10 && person != 'explanatorytext'){
+          if (descriptionHeight < 10 && person != 'explanatorytext' && person != 'cam'){
             toggleDescription();
           }
 
@@ -756,9 +756,9 @@
               break;
 
             case "cam":
-              console.log("the mechanical eye");
+              console.log("the mechanical eye! an ouroboros of mediated gaze!");
               //--- Set CGI request params ---
-              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?camera=1&pan=121.2383&tilt=-56.70&zoom=13349&focus=8122&autofocus=off&autoiris=on");
+              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?camera=1&pan=121.2383&tilt=-56.70&zoom=8500&focus=8041&autofocus=off&autoiris=on");
               break;
 
             default:
