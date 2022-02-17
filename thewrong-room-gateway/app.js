@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var proxy = require('express-http-proxy');
+var cors = require('cors')
 
 var mjpegProxy = require("mjpeg-proxy").MjpegProxy;
 var mjpegUrl = "http://192.168.0.90/mjpg/video.mjpg";
@@ -14,6 +15,7 @@ var usersRouter = require('./routes/users');
 var app = express();
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
+app.use(cors);
 app.use(express.static(__dirname + '/certbot_webroot', { dotfiles: 'allow' } ));
 
 const TIMEOUT = 8*1000;
