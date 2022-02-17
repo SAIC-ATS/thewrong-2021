@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title></title>
+    <title>Pan-Tilt-Zoom</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- <link href="css/style.css" rel="stylesheet" /> -->
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico"/>
 
     <!-- Google Roboto font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -17,8 +17,13 @@
     <style>
 
       html {
-	padding: 0;
-	margin: 0;
+	      padding: 0;
+	      margin: 0;
+      }
+
+      body {
+        padding: 8px 0px 0px 0px;
+        margin: 0px;
       }
 
       #main {
@@ -28,7 +33,7 @@
         border: 1px solid gray;
         background-color: rgb(250, 250, 250);
         border-radius: 5px;
-        padding: 20px;
+        padding: 0px 20px 20px 20px;
         width: 800px;
       }
 
@@ -38,7 +43,15 @@
         height: 90px;
       }
 
-      #titlebar {
+      #title-bar {
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        padding: 15px 0px 10px 0px;
+      }
+
+      #title {
+        /* padding-bottom: 20px; */
         color: darkblue;
         text-align: center;
         font-family: "Roboto Mono", monospace;
@@ -57,20 +70,46 @@
 
       #videostream {
         width: 100%;
+        border: 1px solid gray;
+        box-shadow: 0px 2px 5px rgb(200, 200, 200);
+        cursor: pointer; /* hand */
       }
 
       #loading {
-        /* display: none;  */
-        display: block;
+        display: none; 
+        /* display: block; */
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
         font-family: "Roboto Mono", monospace;
+        font-weight: bold;
+        font-size: 1.2em;
+        box-shadow: 0px 2px 2px rgb(200, 200, 200);
+        background-color: white;
+        padding: 2px;
         z-index: 2;
       }
 
       #info-button {
+        float: left;
+            position: relative;
+            z-index: 10;
+            cursor: pointer;
+            user-select: none;
+
+      }
+
+      #events-button {
+        float: left;
+            position: relative;
+            z-index: 10;
+            cursor: pointer;
+            user-select: none;
+
+      }
+
+      #how-to-button {
         float: right;
             position: relative;
             z-index: 10;
@@ -79,7 +118,40 @@
 
       }
 
-      #infoOverlay {
+      li{
+        margin: 10px 0;
+      }
+
+
+      #how-to-overlay {
+        /* display: none;  */
+        display: block;
+        position: absolute;
+        background-color: aliceblue;
+        border: 1px solid gray;
+        box-shadow: 5px 5px 5px rgb(200, 200, 200);
+        padding: 15px;
+        top: 21px;
+        font-family: "Roboto Mono", monospace;
+        text-align: justify;
+        z-index: 6;
+      }
+
+      #events-overlay {
+        /* display: none;  */
+        display: block;
+        position: absolute;
+        background-color: aliceblue;
+        border: 1px solid gray;
+        box-shadow: 5px 5px 5px rgb(200, 200, 200);
+        padding: 15px;
+        top: 21px;
+        font-family: "Roboto Mono", monospace;
+        text-align: justify;
+        z-index: 6;
+      }
+
+      #info-overlay {
         /* display: none;  */
         display: block;
         position: absolute;
@@ -120,13 +192,13 @@
 
       /* unvisited link */
       a:link {
-        color: red;
+        color: #0000EE;;
         text-decoration: none;
       }
 
       /* visited link */
       a:visited {
-        color: green;
+        color: #0000EE;;
         text-decoration: none;
       }
 
@@ -134,6 +206,12 @@
       a:hover {
         color: hotpink;
         text-decoration: underline dashed;
+      }
+
+      #selfie-link {
+        color: darkblue;
+        text-decoration: none;
+        cursor: pointer;
       }
 
       #controls {
@@ -171,6 +249,7 @@
         font-family: "Roboto Mono", monospace;
         text-align: justify;
         z-index: 6;
+        margin-bottom: 30px;
       }
 
       #description-title {
@@ -213,6 +292,7 @@
         align-items: center;
         transform: scaleX(-1);
         /* display: inline-block; */
+        cursor: pointer;
       }
 
       .right-arrow-div {
@@ -227,6 +307,7 @@
         display: flex;
         align-items: center;
         /* display: inline-block; */
+        cursor: pointer;
       }
 
       .control-bars {
@@ -237,7 +318,18 @@
         vertical-align: middle;
         padding: 0px 5px;
         display: inline-block;
+        cursor: pointer;
 
+      }
+
+      .left-section {
+	width: 25%;
+	float: left;
+      }
+
+      .right-section {
+	width: 25%;
+	float: right;
       }
 
       @media (max-width: 800px) {
@@ -246,32 +338,30 @@
           min-width: 0px;
         }
         
-        #titlebar {
+        #title {
           font-size: 1.0em;
         }
-/* 
-        .label {
-          display: none;
-        } */
-
-        /* .label-mobile {
-          display: inline;
-        } */
 
         .control-container {
-          display: flex;	
-          justify-content: center;
+          /* display: flex;	
+          justify-content: center; */
+          display: grid; 
+          grid-auto-rows: 1fr; 
+         grid-template-columns: 1fr min-content min-content min-content 1fr; 
+          gap: 0px 0px; 
+          margin: auto;
+          text-align: center;
         }
 
         .left-arrow-div, .right-arrow-div {
-          padding: 7px 7px;
+          padding: 0px 7px;
         }
 
         /* .right-arrow-div {
           padding: 7px 7px;
         } */
 
-        #info-button, #infoOverlay, #artists, #explanatory, #description-box-container {
+        #info-button, #events-button, #how-to-button, #info-overlay, #events-overlay, #how-to-overlay, #artists, #explanatory, #description-box-container {
           font-size: .7em;
         }
 
@@ -288,11 +378,20 @@
 
     <script>
       function toggleInfo() {
-        document.getElementById("infoOverlay").classList.toggle("collapsed");
+        document.getElementById("info-overlay").classList.toggle("collapsed");
+      }
+
+      function toggleUse() {
+        document.getElementById("how-to-overlay").classList.toggle("collapsed");
+      }
+
+      function toggleEvents() {
+        document.getElementById("events-overlay").classList.toggle("collapsed");
       }
 
       function toggleDescription() {
         document.getElementById("description-box").classList.toggle("collapsed");
+        
       }
 
     </script>
@@ -301,65 +400,87 @@
 
   <body>
     <div id="main">
+      <div id="title-bar" style="">
+	<div class="left-section">
+	  <a href="https://www.saic.edu/academics/departments/art-and-technology-studies">
+	    <img src="images/ATS-SAIC.png" style="margin-top:5px; float: left;" width="40%"/>
+	  </a>
+	</div>
+	<div class="header-section">
+	  <h1 id="title" style="text-align: center; justify-content: center;">Pan-Tilt-<span id="selfie-link" onclick="moveCamToArtist('cam');return false;">Zoom</span></h1>
+	</div>
+	<div class="right-section">
+	  <a href="https://thewrong.org">
+	    <img src="images/tw5_logo-7.png" width="70%" style="float: right;">
+	  </a>
+	</div>
+      </div>
+
       <div>
-        <img src="images/ATS-SAIC.png" width="10%" style="float: left" /><img src="images/tw5_logo-7.png" width="15%" style="float:right">
-        <h1 id="titlebar" style="padding-bottom: 20px;">Pan-Tilt-Zoom</h1>
-        <a class="artlink" id="info-button" onclick="toggleInfo(); return false;" href="#" title="info"> info </a>
+        <a class="artlink" id="info-button" onclick="toggleInfo(); return false;" href="#" title="info">&lt;exhibition info&gt;</a> 
+        <a class="artlink" id="events-button" onclick="toggleEvents(); return false;" href="#" title="info">&lt;events&gt;</a> 
+        <a class="artlink" id="how-to-button" onclick="toggleUse(); return false;" href="#" title="info">&lt;how to use&gt;</a>
       </div>
 
       <div id="videowindow">
-        <div id="infoOverlay" class="modal collapsed">
+        <div id="how-to-overlay" class="modal collapsed">
           <p>
-            <span id="info-title-bar"><b>Pan-Tilt-Zoom</b> <a class="artlink" id="close-window" title="close" href="#" onclick="toggleInfo(); return false;">close (X)</a></span> 
+            <span id="info-title-bar"><i>How to use this site</i> 
+              <a class="artlink" id="close-window" title="close" href="#" onclick="toggleUse(); return false;">&lt;close&gt;</a>
+            </span> 
+            <ul>
+            <li>Click/tap the name of the artist to recenter the image onto that artist's work. </li>		  
+            <li>Click/tap the video window to recenter the image on your selection. </li>
+            <li>Click/tap the camera navigation controls below to pan, tilt, or zoom. Both the arrow controls and the slider bars are operational.</li>
+          </ul>
+		      Keep in mind - the camera might move as the result of another viewer operating it simultaneously. 
+          
+          </p>
+
+        </div>
+
+
+        <div id="events-overlay" class="modal collapsed">
+          <p>
+            <span id="info-title-bar"><i>Events</i> 
+              <a class="artlink" id="close-window" title="close" href="#" onclick="toggleEvents(); return false;">&lt;close&gt;</a>
+            </span> 
+            <p>A selection of artist talks and discussions are planned to coincide with this exhibition. Check back soon for more details.</p> 
+		  
+          
+          </p>
+
+        </div>
+
+
+        <div id="info-overlay" class="modal collapsed">
+          <p>
+            <span id="info-title-bar"><i>Pan-Tilt-Zoom</i> 
+              <a class="artlink" id="close-window" title="close" href="#" onclick="toggleInfo(); return false;">&lt;close&gt;</a>
+            </span> 
             
-            <br /><br />Minds without a body; phantom flesh; vision
-            without a gaze. We have opted for our biological body to mutate into
-            a telematic and a Cartesian body. We remotely transit cyberspace
-            territories, we use more than one body, more than one gaze. Our
-            biological body is more like a zombie, because it is there, but in
-            an absent way. We are still here, but our eyes wander in other
-            universes. We have "(...) a sliding and shifting consciousness that
-            is neither &lt;&lt;completely here&gt;&gt;, in this body, nor
-            &lt;&lt;completely there&gt;&gt;, in those bodies." We rely on
-            technology to expand our body; we desire to let the flesh die; a
-            camera sees better than our eyes. <br /><br />
-            The exhibition arises as an idea of permanent visibility, using an
-            artifact of political technology, which is transformed into a device
-            of voyeurism, and telepresence for those eyes that need artificial
-            vision. The eye-camera is subjected to a device, which many times is
-            not being observed by any person: it is being transmitted to a
-            machine and not to an observer. By whom are we being watched?
-            <br /><br />
-            The works presented in Pan-Tilt-Zoom have been conceived on small
-            screens to recall the unfolding of the point of view, and to resort
-            to other ocular perceptions. These are works subjected to a field of
-            vision given by the electronic image.
+            <p>Minds without a body; phantom flesh; vision without a gaze. To remotely transit cyberspace, we opt for our body to mutate into one that is both telematic and cartesian. The biological body's a zombie, still here, but the eyes traverse elsewhere. We have "a sliding and shifting consciousness that is neither &lt;&lt;completely here&gt;&gt;, in this body, nor &lt;&lt;completely there&gt;&gt;, in those bodies."* We rely on technology to expand our body; we desire to let the flesh die; a camera sees better than our eyes. </p>
+
+            <p>Inside a locked room in the Art Institute of Chicago, an around-the-clock commons is created, contingent that no bodies may enter unmediated - an online space exclusive to the surveilling gaze. The physical body is erased, it's no longer useful. These works are subjected to a field of vision created by the mechanical eye and constrained by the electronic image.</p>
+            
+            <p>The exhibition is a situation of permanent visibility, using an artifact of political technology transformed into a device of voyeurism and telepresence. The eye-camera constantly streams an image that is often unobserved: transmitted from machine to machine. By whom are we being watched? Does disembodied vision disembody the gaze?
+            </p>
+            <p style="float:right; display: inline-block;">castroduperly</p><br/><br/>
+            <p>*Stelarc. <i>Cíborgs, zombies, y quimeras</i>, 2020. p.22 </p>
             <br /><br />
           </p>
         </div>
-        <img id="videostream" src="/feed" />
+        <!-- original stream is 704x480 -->
+        <img id="videostream" src="https://wrong.ats.community/feed"/>
         <!-- <img id="videostream" src="images/test-image.jpg" /> -->
-        <br />
+        <!-- <br /> -->
         <h1 id="loading">Camera loading...</h1>
       </div>
 
-      <!-- ARTIST LOCATION PRESETS
-        <label for="artist-select">Artists:</label>
-        <select name="artists" onchange="val()" id="dropdown">
-            <option value="Default">--Select--</option>
-            <option value="RA">Reid Arowood</option>
-            <option value="NA">Nimrod Astarhan</option>
-            <option value="SB">Sarah Brophy</option>
-            <option value="JCD">Juliana Castro Duperly</option>
-            <option value="BFC">Blake Fall-Conroy</option>
-            <option value="JF">Juan Flores</option>
-            <option value="TG">Tom Gal</option>
-            <option value="SG">Sydney Gush</option>
-            <option value="MP">Mac Pierce</option>
-        </select> -->
+
 
       <div id="explanatory">
-        Go directly to: <a id="ET" title="explanatory text" href="#" onclick="moveCamTo('explanatorytext');return false;">explantory text</a>
+        Go directly to: <a id="ET" title="explanatory text" href="#" onclick="moveCamToArtist('explanatorytext');return false;">explanatory text</a>
       </div>
       <br />
 
@@ -375,17 +496,21 @@
         <a class="artlink" id="SG" title="Sydney Gush" href="#" onclick="moveCamToArtist('sydney');return false;">Sydney Gush</a>
         <a class="artlink" id="MP" title="Mac Pierce" href="#" onclick="moveCamToArtist('mac');return false;">Mac Pierce</a>
         <a class="artlink" id="MP2" title="Michael Powell" href="#" onclick="moveCamToArtist('michael');return false;">Michael Powell</a>
+        <a class="artlink" id="JS" title="Jade Sheng" href="#" onclick="moveCamToArtist('jade');return false;">Jade Sheng</a>
         <a class="artlink" id="KX" title="Kelly Xi" href="#" onclick="moveCamToArtist('kelly');return false;">Kelly Xi</a>
       </div>
 
       <div id="description-box-container">
-        <div id="description-box" class="modal collapsed"><span id="description-title"><b>Work Title </b></span>&nbsp;<span id="description-year">(year)</span><a class="artlink" id="close-window" title="close window" href="#" onclick="toggleDescription(); return false;">close (X)</a><br />
+        <div id="description-box" class="modal collapsed"><span id="description-title"><b>Work Title </b></span>&nbsp;<span id="description-year">(year)</span><a class="artlink" id="close-window" title="close window" href="#" onclick="toggleDescription(); return false;">&lt;close&gt;</a><br /><br />
           
           <span id="description-materials">Wood, Metal, Spit, AC Power</span>
           
-          <br /><br />
+          <br />
+          <p id="alt-views"></p>
         
           <p id="description-text">Description goes here.</p>
+          <br/>
+          <p id="description-links">Links here</p>
         
         </div>
       </div>      
@@ -436,6 +561,8 @@
 
 
       <script>
+        const baseUrl = "";
+
         //--- Function that sends camera to individual artist location in gallery ---
         function moveCamToArtist(person) {
           //--- Set up camera http request ---
@@ -449,127 +576,189 @@
           };
 
           //--- Determine which link was clicked and send camera instruction ---
+         
+          var descriptionDims = document.getElementById('description-box').getBoundingClientRect();
+          var descriptionHeight = descriptionDims.height;
+          if (descriptionHeight < 10 && person != 'explanatorytext' && person != 'cam'){
+            toggleDescription();
+          }
+
+          
+
           switch (person) {
             case "reid":
               console.log("reid");
               //--- Set CGI request params ---
-              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos2&camera=1");
-              toggleDescription();
-              document.getElementById("description-title").innerHTML = "Reid's project";
-              document.getElementById("description-year").innerHTML = "2022";
-              document.getElementById("description-materials").innerHTML = "Wood, Metal, Spit";
-              document.getElementById("description-text").innerHTML = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida lectus lacinia tristique pretium. Praesent pharetra sodales dui nec semper. Fusce id imperdiet sapien, id gravida nulla. Vivamus sit amet mauris dolor. Fusce maximus lectus fermentum, tincidunt turpis in, rutrum ante. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer lacinia ultrices malesuada. In hac habitasse platea dictumst. Aenean in tellus suscipit est egestas venenatis. Aliquam a ullamcorper sem, ac varius urna. Duis rutrum condimentum metus.";
+
+              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?camera=1&pan=-136.5479&tilt=-65.25&zoom=9075&autofocus=on&autoiris=on");
+              // toggleDescription();
+              document.getElementById("description-title").innerHTML = "<i>Recently Deleted</i>";
+              document.getElementById("description-year").innerHTML = "(2022)";
+              document.getElementById("description-materials").innerHTML = "AI Generated Film, iPhone.";
+              document.getElementById("alt-views").innerHTML = "";
+              document.getElementById("description-text").innerHTML = "<i>Recently Deleted</i> is a fluid collection of digital bodies generated by artificial intelligence. These forms question the role of the flesh in hybrid bodies that exist in both virtual and physical space.";
+              document.getElementById("description-links").innerHTML = '<a href="https://reidarowood.com/" >&lt;Artist Page&gt;</a> <a href="https://www.instagram.com/reidstuff/" style="float:right;">&lt;Instagram&gt;</a>';
               break;
 
             case "nimo":
               console.log("nimo");
               //--- Set CGI request params ---
-              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos3&camera=1");
-              toggleDescription();
-              document.getElementById("description-title").innerHTML = "Nimo's project";
-              document.getElementById("description-year").innerHTML = "2022";
-              document.getElementById("description-materials").innerHTML = "Wood, Metal, Spit";
-              document.getElementById("description-text").innerHTML = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida lectus lacinia tristique pretium. Praesent pharetra sodales dui nec semper. Fusce id imperdiet sapien, id gravida nulla. Vivamus sit amet mauris dolor. Fusce maximus lectus fermentum, tincidunt turpis in, rutrum ante. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer lacinia ultrices malesuada. In hac habitasse platea dictumst. Aenean in tellus suscipit est egestas venenatis. Aliquam a ullamcorper sem, ac varius urna. Duis rutrum condimentum metus.";
-
+		// pan=80.7130
+		// tilt=-22.5000
+		// zoom=1
+		// focus=9999
+		// autofocus=off
+		// autoiris=on
+              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?camera=1&pan=82.2889&tilt=-29.70&zoom=1&focus=9999&autoiris=on");
+              // toggleDescription();
+              document.getElementById("description-title").innerHTML = "<i>Between the Poles</i>";
+              document.getElementById("description-year").innerHTML = "(2022)";
+              document.getElementById("description-materials").innerHTML = "Glass, copper, electronic mechanism, electromagnetic energy.";
+              document.getElementById("alt-views").innerHTML = "";
+              document.getElementById("description-text").innerHTML = "The work announces the use and utilization of electromagnetic energy as an artistic medium and antennas as generative sculptures. It is an act of revealing, a set of devices and techniques for deepening a relationship with unseen hierarchies and structures. This practice involves the creation of electronic mechanisms and custom software for the transmission and reception of electromagnetic energy, including the construction of antennas whose dimensions, materials and structure are defined by communication frequencies. The locality of the work as well as its earthly origins are highlighted by the aesthetics of the use of local Michigan copper alongside Indiana glass, both old time sources of materials for the construction of telecommunication infrastructure in the United States.<br /><br />From recent uprisings against 5G cellular network expansion, through critical media groups assessing network accessibility, to amateur radio workshops, the social landscape in which this work is situated as well as its urgency are illustrated by the state of the relationship we have with the increasingly populated, rigorously managed and helplessly dependable electromagnetic spectrum.";
+              document.getElementById("description-links").innerHTML = '<a href="https://nimrodastarhan.com/" >&lt;Artist Page&gt;</a> <a href="https://www.instagram.com/nimrodastarhan/" style="float:right;">&lt;Instagram&gt;</a>';
               break;
 
             case "sarah":
               console.log("sarah");
               //--- Set CGI request params ---
-              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos4&camera=1");
-              toggleDescription();
-              document.getElementById("description-title").innerHTML = "Nimo's project";
-              document.getElementById("description-year").innerHTML = "2022";
-              document.getElementById("description-materials").innerHTML = "Wood, Metal, Spit";
-              document.getElementById("description-text").innerHTML = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida lectus lacinia tristique pretium. Praesent pharetra sodales dui nec semper. Fusce id imperdiet sapien, id gravida nulla. Vivamus sit amet mauris dolor. Fusce maximus lectus fermentum, tincidunt turpis in, rutrum ante. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer lacinia ultrices malesuada. In hac habitasse platea dictumst. Aenean in tellus suscipit est egestas venenatis. Aliquam a ullamcorper sem, ac varius urna. Duis rutrum condimentum metus.";
+              xhttp.open("GET",baseUrl + "/camera/axis-cgi/com/ptz.cgi?camera=1&pan=167.8424&tilt=-18.9&zoom=8200&focus=5035&autofocus=off&autoiris=on");
+              // toggleDescription();
+              document.getElementById("description-title").innerHTML = "<i>Rose Window</i>";
+              document.getElementById("description-year").innerHTML = "(2021)";
+              document.getElementById("description-materials").innerHTML = "Digital animation, iPad, wood.";
+              document.getElementById("alt-views").innerHTML = "";
+              document.getElementById("description-text").innerHTML = 'Apple\'s spinning wait cursor, “the rainbow wheel of death”, presents itself as a joyful pinwheel to distract from the impending sense of doom one feels during an encounter with it, knowing the terrible task of choosing between remaining stuck in frozen computer purgatory or a manual reset resulting in the potential loss of hours of work is imminent. By displaying the spinning animation through an iconic rose window pattern, a stained glass format commonly used in Gothic cathedrals to illustrate the Last Judgment, this seemingly trivial moment of computer glitch is elevated into the realm of religious ceremony. Through absurd exaggeration, Rose Window presents Apple\'s wait cursor as a divine entity, bringing into plain view the comparison of our cultural relationship with computing technology to that of organized religion, promising us happiness, connectedness, and eternal life in paradise -- with the key distinction that technology asserts it can accomplish this here on Earth. In this context, the constant presence of the pinwheel poses the new question, at what cost? <a href="https://vimeo.com/629663108" >&lt;previous documentation&gt;</a>';
+              document.getElementById("description-links").innerHTML = '<a href="https://www.sarahbrophy-studio.com" >&lt;Artist Page&gt;</a> <a href="https://www.instagram.com/sarahbrophystudio/" style="float:right;">&lt;Instagram&gt;</a>';
               break;
 
             case "juliana":
               console.log("juliana");
               //--- Set CGI request params ---
-              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos2&camera=1");
-              toggleDescription();
-              document.getElementById("description-title").innerHTML = "Nimo's project";
-              document.getElementById("description-year").innerHTML = "2022";
-              document.getElementById("description-materials").innerHTML = "Wood, Metal, Spit";
-              document.getElementById("description-text").innerHTML = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida lectus lacinia tristique pretium. Praesent pharetra sodales dui nec semper. Fusce id imperdiet sapien, id gravida nulla. Vivamus sit amet mauris dolor. Fusce maximus lectus fermentum, tincidunt turpis in, rutrum ante. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer lacinia ultrices malesuada. In hac habitasse platea dictumst. Aenean in tellus suscipit est egestas venenatis. Aliquam a ullamcorper sem, ac varius urna. Duis rutrum condimentum metus.";
+              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?camera=1&pan=-108.8555&tilt=-31.5000&zoom=7900&focus=5356&autoiris=on");
+              // toggleDescription();
+              document.getElementById("description-title").innerHTML = "<i>The eye sees, but the eye can\'t hold</i>";
+              document.getElementById("description-year").innerHTML = "(2022)";
+              document.getElementById("description-materials").innerHTML = "Video.";
+              // document.getElementById("alt-views").innerHTML = '<a class="artlink" id="" title="" href="#" onclick="moveToAltView("juliana-alt1");return false;">&lt;alt view 1&gt;</a>';
+              document.getElementById("description-text").innerHTML = "These videos were captured by a Paik/Abe video synthesizer designed in the 1970s. They arise as an exercise of experimentation, where I decide to navigate through Chatroulette and have the most boring conversation with a stranger. It reveals a certain nostalgia in the gaze that seeks to look back to the past.<br /><br />Now the gaze is given by a surveillance camera, by the electronic eyes, and with it there is a change of perception, a loss of the gaze.<br /><br />What is it that is lost? The eye sees, but the eye can\'t hold.";
+              document.getElementById("description-links").innerHTML = '<a href="http://castroduperly.com/" >&lt;Artist Page&gt;</a> <a href="https://www.instagram.com/castroduperly/" style="float:right;">&lt;Instagram&gt;</a>';
               break;
 
             case "blake":
               console.log("blake");
               //--- Set CGI request params ---
-              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos3&camera=1");
-              toggleDescription();
-              document.getElementById("description-title").innerHTML = "Nimo's project";
-              document.getElementById("description-year").innerHTML = "2022";
-              document.getElementById("description-materials").innerHTML = "Wood, Metal, Spit";
-              document.getElementById("description-text").innerHTML = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida lectus lacinia tristique pretium. Praesent pharetra sodales dui nec semper. Fusce id imperdiet sapien, id gravida nulla. Vivamus sit amet mauris dolor. Fusce maximus lectus fermentum, tincidunt turpis in, rutrum ante. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer lacinia ultrices malesuada. In hac habitasse platea dictumst. Aenean in tellus suscipit est egestas venenatis. Aliquam a ullamcorper sem, ac varius urna. Duis rutrum condimentum metus.";
+              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?camera=1&pan=148.7054&tilt=-2.70&zoom=8400&focus=5043&autoiris=on");
+              // toggleDescription();
+              document.getElementById("description-title").innerHTML = "<i>Untitled (Patchwork Sky 1)</i>";
+              document.getElementById("description-year").innerHTML = "(2022)";
+              document.getElementById("alt-views").innerHTML = "";
+              document.getElementById("description-materials").innerHTML = "Three live surveillance camera feeds found unsecured on the internet, cropped to the sky, patterned, overlaid.";
+              document.getElementById("description-links").innerHTML = '<a href="https://www.blakefallconroy.com">&lt;Artist Page&gt;</a> <a href="https://www.instagram.com/b.b.fc/" style="float:right;">&lt;Instagram&gt;</a>';
               break;
 
             case "juan":
               console.log("juan");
               //--- Set CGI request params ---
-              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos4&camera=1");
-              toggleDescription();
-              document.getElementById("description-title").innerHTML = "Nimo's project";
-              document.getElementById("description-year").innerHTML = "2022";
-              document.getElementById("description-materials").innerHTML = "Wood, Metal, Spit";
-              document.getElementById("description-text").innerHTML = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida lectus lacinia tristique pretium. Praesent pharetra sodales dui nec semper. Fusce id imperdiet sapien, id gravida nulla. Vivamus sit amet mauris dolor. Fusce maximus lectus fermentum, tincidunt turpis in, rutrum ante. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer lacinia ultrices malesuada. In hac habitasse platea dictumst. Aenean in tellus suscipit est egestas venenatis. Aliquam a ullamcorper sem, ac varius urna. Duis rutrum condimentum metus.";
+              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?camera=1&pan=46.0413&tilt=-24.3&zoom=2726&autofocus=on&autoiris=on");
+              // toggleDescription();
+              document.getElementById("description-title").innerHTML = "<i>Translation</i>";
+              document.getElementById("description-year").innerHTML = "(2022)";
+              document.getElementById("description-materials").innerHTML = "3D printed parts, Arduino with CNC shield that controls single axis movement, GlslViewer running on raspberrypi";
+              document.getElementById("alt-views").innerHTML = "";
+              document.getElementById("description-text").innerHTML = "Repetitive back and forth travel between two ideas can reveal ambiguity and the absurd. Translation is about focusing on the the in-between movements rather than the moments of stillness and clarity in the destinations.";
+              document.getElementById("description-links").innerHTML = '<a href="https://juanedflores.com/">&lt;Artist Page&gt;</a> <a href="https://www.instagram.com/juanedflores/" style="float:right;">&lt;Instagram&gt;</a>';
               break;
 
             case "tom":
               console.log("tom");
               //--- Set CGI request params ---
-              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos2&camera=1");
-              toggleDescription();
-              document.getElementById("description-title").innerHTML = "Nimo's project";
-              document.getElementById("description-year").innerHTML = "2022";
-              document.getElementById("description-materials").innerHTML = "Wood, Metal, Spit";
-              document.getElementById("description-text").innerHTML = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida lectus lacinia tristique pretium. Praesent pharetra sodales dui nec semper. Fusce id imperdiet sapien, id gravida nulla. Vivamus sit amet mauris dolor. Fusce maximus lectus fermentum, tincidunt turpis in, rutrum ante. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer lacinia ultrices malesuada. In hac habitasse platea dictumst. Aenean in tellus suscipit est egestas venenatis. Aliquam a ullamcorper sem, ac varius urna. Duis rutrum condimentum metus.";
+              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?camera=1&pan=119.15&tilt=-15.730&zoom=7900&focus=4741&autoiris=on");
+              // toggleDescription();
+              document.getElementById("description-title").innerHTML = "<i>DO NOT TOUCH</i>";
+              document.getElementById("description-year").innerHTML = "(2022)";
+              document.getElementById("description-materials").innerHTML = "Found electronics, frame, custom code.";
+              document.getElementById("alt-views").innerHTML = "";
+              document.getElementById("description-text").innerHTML = 'There is an order to art - a set of commends the artist and spectator follow to take part in heterotopia. One of the more accepted rules pertaining to the experience of art concerns the limitation of sensory experience and maintaining distance from art. The politely imperious request of the spectator to “Not touch”, hides within itself the humility demanded of the spectator standing in front of the piece. The simple, polluted human might contaminate what is a wo/manmade synthetic object. We perceive art as a living thing, touched by the divine. Like the pedestal, the “suggestion” not to touch conditions the work. <br/><br />In “Do Not touch, Tom Gal elevates the sign itself, putting forward new questions about touch in a virtual world - What is a digital touch?';
+              document.getElementById("description-links").innerHTML = '<a href="https://www.instagram.com/artezahen/" >&lt;Artist Page&gt;</a> <a href="https://www.instagram.com/artezahen/" style="float:right;">&lt;Instagram&gt;</a>';
               break;
 
             case "sydney":
               console.log("sydney");
               //--- Set CGI request params ---
-              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos3&camera=1");
-              toggleDescription();
-              document.getElementById("description-title").innerHTML = "Nimo's project";
-              document.getElementById("description-year").innerHTML = "2022";
-              document.getElementById("description-materials").innerHTML = "Wood, Metal, Spit";
-              document.getElementById("description-text").innerHTML = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida lectus lacinia tristique pretium. Praesent pharetra sodales dui nec semper. Fusce id imperdiet sapien, id gravida nulla. Vivamus sit amet mauris dolor. Fusce maximus lectus fermentum, tincidunt turpis in, rutrum ante. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer lacinia ultrices malesuada. In hac habitasse platea dictumst. Aenean in tellus suscipit est egestas venenatis. Aliquam a ullamcorper sem, ac varius urna. Duis rutrum condimentum metus.";
+              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?camera=1&pan=-49.8687&tilt=-12.60&zoom=6600&focus=4926&autofocus=off&autoiris=on");
+              // toggleDescription();
+              document.getElementById("description-title").innerHTML = "<i>OPSEC It's Everyone's Responsibility</i>";
+              document.getElementById("description-year").innerHTML = "(2022)";
+              document.getElementById("description-materials").innerHTML = "surveillance footage (2020), home videos (2000-2004),<br />AFN commercials (2000-2008)";
+              document.getElementById("alt-views").innerHTML = "";
+              document.getElementById("description-text").innerHTML = "<i>OPSEC, it\'s Everyone\'s Responsibility</i>, examines parallels between post 9/11 programming within military culture, the COVID-19 pandemic, the absorptive nature of a child\'s brain, and the power of the exploitation of fear. It is composed of home videos from 2000-2004 when my family was stationed in Stuttgart, Germany, surveillance footage of my living quarters during the first year of the pandemic from February to December of 2020, and PSAs broadcast by the Armed Forces Network (AFN) across the United States European Command (EUCOM) network from 2000-2008.<br /><br />For twenty years my father served in the United States Army as an Arabic linguist. As a military dependent, I was raised in a panoptic bubble; I was made aware that I could be under surveillance at any time, by my father\'s superiors, MPs, surveillance cameras, my parents, home recording devices, listened to through our phones, computers, cell phones, and in conversation on or off base. Our primary responsibility was to uphold OPSEC, Operation Security, for the safety of ourselves and our military community.<br /><br />I was completely desensitized to this by the age of five and I consumed indoctrinating, and often emotionally manipulative PSAs in place of commercial advertising from the age of five to fifteen. AFN was able to receive and broadcast a variety of U.S. television programming for service members overseas for free under the condition that there could be no commercial advertising on our network. Because of this, I absorbed messages meant mostly for active duty service members, and what I consumed as a child is chilling to watch now as an adult.<br /><br />The pandemic brought many of us to our knees emotionally and through that fog I reverted to my most basic self and found fear. My fear of home invasion drove me to install a security camera in early 2020, which proceeded to record my life for an entire year. During that year I dove into my childhood and digitized thousands of hours of home video, but it was not until I rediscovered the AFN PSAs that synchronicities in my timeline and their relationship to fear in my life began to align.<br /><br />We experience time through memory; in order to formulate our present, we are constantly remembering the past and imagining the future. That process drives us forward, but if you dissect these memories and imaginings in the right moments the reality of the simultaneity of time is revealed. <br /> <a href='https://www.youtube.com/watch?v=1YtvRpKcp9o' >&lt;full documentation&gt;</a>";
+              document.getElementById("description-links").innerHTML = '<a href="http://www.sydgart.com">&lt;Artist Page&gt;</a> <a href="https://www.instagram.com/syd_g_art/" style="float:right;">&lt;Instagram&gt;</a>';
               break;
 
-              case "mac":
+            case "mac":
               console.log("mac");
               //--- Set CGI request params ---
-              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos4&camera=1");
-              toggleDescription();
-              document.getElementById("description-title").innerHTML = "Nimo's project";
-              document.getElementById("description-year").innerHTML = "2022";
-              document.getElementById("description-materials").innerHTML = "Wood, Metal, Spit";
-              document.getElementById("description-text").innerHTML = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida lectus lacinia tristique pretium. Praesent pharetra sodales dui nec semper. Fusce id imperdiet sapien, id gravida nulla. Vivamus sit amet mauris dolor. Fusce maximus lectus fermentum, tincidunt turpis in, rutrum ante. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer lacinia ultrices malesuada. In hac habitasse platea dictumst. Aenean in tellus suscipit est egestas venenatis. Aliquam a ullamcorper sem, ac varius urna. Duis rutrum condimentum metus.";
+              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?camera=1&pan=-73.0582&tilt=-62.5500&zoom=1&focus=9999&autofocus=on&autoiris=on");
+              // toggleDescription();
+              document.getElementById("description-title").innerHTML = "<i>Cleaning Up the Neighborhood</i>";
+              document.getElementById("description-year").innerHTML = "(2022)";
+              
+              document.getElementById("description-materials").innerHTML = "Roomba, Print of Digital Render, Corrugated Plastic.";
+              document.getElementById("alt-views").innerHTML = "";
+              document.getElementById("description-text").innerHTML = 'Need a room secured but cannot afford the salary of a guard? No worries! Use the implied threat of both state authority and autonomous robots to secure any space, for far less money than a <a href="https://www.knightscope.com/k5/" >Knightscope K5</a>. <i>Cleaning Up the Neighborhood</i> patrols the space that it is placed in, showcasing  a cutout of a non-descript policeman mounted on top of an iRobot Roomba..';
+              document.getElementById("description-links").innerHTML = '<a href="https://www.macpierce.com">&lt;Artist Page&gt;</a> <a href="https://www.instagram.com/transistor_resistor/" style="float:right;">&lt;Instagram&gt;</a>';
               break;
-            
+          
             case "michael":
-              console.log("mac");
+              console.log("michael");
               //--- Set CGI request params ---
-              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos4&camera=1");
-              toggleDescription();
-              document.getElementById("description-title").innerHTML = "Nimo's project";
-              document.getElementById("description-year").innerHTML = "2022";
-              document.getElementById("description-materials").innerHTML = "Wood, Metal, Spitr";
-              document.getElementById("description-text").innerHTML = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida lectus lacinia tristique pretium. Praesent pharetra sodales dui nec semper. Fusce id imperdiet sapien, id gravida nulla. Vivamus sit amet mauris dolor. Fusce maximus lectus fermentum, tincidunt turpis in, rutrum ante. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer lacinia ultrices malesuada. In hac habitasse platea dictumst. Aenean in tellus suscipit est egestas venenatis. Aliquam a ullamcorper sem, ac varius urna. Duis rutrum condimentum metus.";
+              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?camera=1&pan=149.8311&tilt=-48.15&zoom=7800&focus=6861&autofocus=off&autoiris=on");
+              // toggleDescription();
+              document.getElementById("description-title").innerHTML = "<i>Courses Still in a Less Interesting Loop</i>";
+              document.getElementById("description-year").innerHTML = "(2022)";
+              document.getElementById("description-materials").innerHTML = "Camera, Wood, Plexiglass, Projector, <br/>Raspberry Pi, '03/04 SAIC Course Catalog.";
+              document.getElementById("alt-views").innerHTML = "";
+              document.getElementById("description-text").innerHTML = "Using autoexposure and the flicker of a projector's micromirror array, this work reflects on just how similar the Art & Technology Studies department's current course offerings are to courses from almost 20 years ago.";
+              document.getElementById("description-links").innerHTML = '<a href="https://www.demfraga.com">&lt;Artist Page&gt;</a> <a href="https://www.instagram.com/demfraga/" style="float:right;">&lt;Instagram&gt;</a>';
+              break;
+
+            case "jade":
+              console.log("jade");
+              //--- Set CGI request params ---
+              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?camera=1&pan=-87.2420&tilt=-12.1500&zoom=8400&focus=5240&autofocus=on&autoiris=on");
+              // toggleDescription();
+              document.getElementById("description-title").innerHTML = "<i>Urban Neural Fabric</i>";
+              document.getElementById("description-year").innerHTML = "(2022)";
+              document.getElementById("description-materials").innerHTML = "Digital poetry.";
+              document.getElementById("alt-views").innerHTML = "";
+              document.getElementById("description-text").innerHTML = "Urban Neural Fabric is a bird\'s eye view visualization of the complex connections and evolution of roles in the urban environment. It is a failed attempt at playing God and seeking out the truth and meaning in one\'s state of being, before eventually coming to terms with mortality and the fact that one cannot be everything all at once.";
+              document.getElementById("description-links").innerHTML = '<a href="https://www.jadesheng.studio" >&lt;Artist Page&gt;</a> <a href="https://www.instagram.com/jadesheng.studio/" style="float:right;">&lt;Instagram&gt;</a>';
               break;
 
             case "kelly":
               console.log("kelly");
               //--- Set CGI request params ---
-              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos2&camera=1");
-              toggleDescription();
-              document.getElementById("description-title").innerHTML = "Nimo's project";
-              document.getElementById("description-year").innerHTML = "2022";
-              document.getElementById("description-materials").innerHTML = "Wood, Metal, Spit";
-              document.getElementById("description-text").innerHTML = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida lectus lacinia tristique pretium. Praesent pharetra sodales dui nec semper. Fusce id imperdiet sapien, id gravida nulla. Vivamus sit amet mauris dolor. Fusce maximus lectus fermentum, tincidunt turpis in, rutrum ante. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer lacinia ultrices malesuada. In hac habitasse platea dictumst. Aenean in tellus suscipit est egestas venenatis. Aliquam a ullamcorper sem, ac varius urna. Duis rutrum condimentum metus.";
+              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?camera=1&pan=-144.2026&tilt=-19.3500&zoom=9363&focus=4098&autofocus=off&autoiris=on");
+              //focus=3870
+              // toggleDescription();
+              document.getElementById("description-title").innerHTML = "<i>All Watched Over by Machines of Loving Grace</i>";
+              document.getElementById("description-year").innerHTML = "(2022)";
+              document.getElementById("description-materials").innerHTML = "extruded clay, food waste & packaging compost,<br/> invertebrates, infrared thermographic imaging.";
+              document.getElementById("description-text").innerHTML = '“I\'m here for a very short time,” bargains media artist Kim Alpert in <a href="https://www.youtube.com/watch?v=PDKQ5VbxaaY">recent discourse</a> on NFTs and the Metaversal turn. Do we ask younger people, inheritors of ecocide, what they feel about the metaverse?—perhaps, do they want to live in a planetary landfill? Do we consider species or perspectives outside our temporospatial limitations?<br /><br />To produce an art that conceals its own artifice, landscape is the medium and the gaze by which ecocide "the evil of imperialist exploit" is veiled and naturalized. \'The Use and Abuse of Vegetational Concepts\' comes to mind. Accordingly, it must be the focus of historical, political and aesthetic alertness, warns WJT Mitchell, to expansionist efforts to claim nature and not assimilation or "ideal, not real estate"—the relations of property and labor belied by "transcendence." An act of contemporary landscape in line with the naturalizing of convention, of \'progressive\' ecocide, is the Metaverse.<br/>[ Complete text : <a href="https://www.xikel.xyz/ptz">xikel.xyz/ptz</a> ]';
+              document.getElementById("description-links").innerHTML = '<a href="https://www.xikel.xyz/">&lt;Artist Page&gt;</a> <a href="https://www.instagram.com/cortisol.bliss/" style="float:right;">&lt;Instagram&gt;</a>';
+              break;
+
+            case "explanatorytext":
+              console.log("explanatorytext");
+              //--- Set CGI request params ---
+              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?camera=1&pan=-33.8837&tilt=-37.8000&zoom=5700&focus=6432&autofocus=off&autoiris=on");
+              break;
+
+            case "cam":
+              console.log("the mechanical eye! an ouroboros of mediated gaze!");
+              //--- Set CGI request params ---
+              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?camera=1&pan=121.2383&tilt=-56.70&zoom=8500&focus=8041&autofocus=off&autoiris=on");
               break;
 
             default:
@@ -589,8 +778,9 @@
       var rect = e.target.getBoundingClientRect();
       var panx = e.clientX - rect.left; //x position within the element.
       var sliderWidth = rect.width;
-      let degrees = (panx/width) * 360;
-      console.log("pan cursor position: " + panx + ", and degrees: " + degrees.toFixed(0));
+      let degrees = (panx/sliderWidth) * 360;
+      degrees = Math.round(degrees-180); //move degrees from (0 to 360) to (-180 to 180)
+      console.log("pan cursor position: " + panx + ", and degrees: " + degrees);
       moveCamAbsolute('pan', degrees);
     }
 
@@ -600,8 +790,9 @@
       var panx = e.clientX - rect.left; //x position within the element.
       var sliderWidth = rect.width;
       let degrees = (panx/sliderWidth) * 90;
-      console.log("tilt cursor position: " + panx + ", and degrees: " + degrees.toFixed(0));
-      moveCamAbsolute('tilt', degrees);
+      degrees = Math.round(degrees);
+      console.log("tilt cursor position: " + panx + ", and degrees: " + degrees);
+      moveCamAbsolute('tilt', -degrees); //degrees need to be negative (0 to -90) when cam is upside down (attached to ceiling!)
     }
 
     document.getElementById('zoom-bar').onclick = function clickEvent(e) {
@@ -610,7 +801,7 @@
       var panx = e.clientX - rect.left; //x position within the element.
       var sliderWidth = rect.width;
       let steps = (panx/sliderWidth) * 19999;
-      steps = steps.toFixed(0);
+      steps = Math.round(steps);
       if(steps < 200){
         steps = 0;
       }
@@ -634,18 +825,18 @@
 
             case "pan":
               console.log("commanding abs pan (0-360 degrees): " + value);
-              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?camera=1&pan=" + value);
+              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?camera=1&pan=" + value + "&autofocus=on&autoiris=on");
               break;
 
             case "tilt":
               console.log("commanding abs tilt (0-90 degrees): " + value);
               //--- Set CGI request params ---
-              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?camera=1&tilt" + value);
+              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?camera=1&tilt=" + value + "&autofocus=on&autoiris=on");
               break;
 
             case "zoom":
               console.log("commanding abs zoom (0-19999 steps): " + value);
-              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?camera=1&zoom" + value);
+              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?camera=1&zoom=" + value + "&autofocus=on&autoiris=on");
               break;
 
             default:
@@ -661,7 +852,7 @@
 
 
     function moveCamRelative(axis){
-      console.log("hello");
+      console.log("move cam relative");
           //--- Set up camera http request ---
           const xhttp = new XMLHttpRequest();
       // Define a callback function
@@ -673,47 +864,53 @@
       };
 
 
-      let panValue = 5;
-      let tiltValue = 2;
-      let zoomValue = 100;
+      let panValue = 10;
+      let tiltValue = 4;
+      let zoomValue = 400;
 
       switch (axis) {
 
             case "pan-left":
               console.log("commanding relative pan: " + -panValue);
-              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?camera=1&rpan=" + -panValue);
+              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?camera=1&rpan=" + -panValue + "&autofocus=on&autoiris=on");
               break;
             
             case "pan-right":
               console.log("commanding relative pan: " + panValue);
-              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?camera=1&rpan=" + panValue);
+              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?camera=1&rpan=" + panValue + "&autofocus=on&autoiris=on");
               break;
 
               case "tilt-left":
-              console.log("commanding relative tilt: " + -tiltValue);
+              console.log("commanding relative tilt: " + tiltValue);
               //--- Set CGI request params ---
-              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?camera=1&rtilt" + -tiltValue);
+              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?camera=1&rtilt=" + tiltValue + "&autofocus=on&autoiris=on");
               break;
               
             case "tilt-right":
-              console.log("commanding relative tilt: " + tiltValue);
+              console.log("commanding relative tilt: " + -tiltValue);
               //--- Set CGI request params ---
-              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?camera=1&rtilt" + tiltValue);
+              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?camera=1&rtilt=" + -tiltValue + "&autofocus=on&autoiris=on");
               break;
 
             case "zoom-left":
               console.log("commanding relative zoom: " + -zoomValue);
-              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?camera=1&rzoom" + -zoomValue);
+              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?camera=1&rzoom=" + -zoomValue + "&autofocus=on&autoiris=on");
               break;
             
             case "zoom-right":
               console.log("commanding relative zoom: " + zoomValue);
-              xhttp.open("GET","http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?camera=1&rzoom" + zoomValue);
+              xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?camera=1&rzoom=" + zoomValue + "&autofocus=on&autoiris=on");
               break;
 
             default:
               console.log("No relative axis picked, how did you get here? Error.");
           }
+
+          xhttp.setRequestHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8");
+      xhttp.setRequestHeader("Accept-Encoding", "gzip, deflate");
+      xhttp.setRequestHeader("Accept-Language","en-US,en;q=0.5")
+      xhttp.setRequestHeader("Connection","keep-alive")
+      xhttp.setRequestHeader("Upgrade-Insecure-Requests", "1");
 
           //--- Send off selected parameters to camera through http request ---
           xhttp.send();
@@ -722,91 +919,89 @@
      
     } //end moveCamRelative
 
+
+    //--- Move Cam on Video Click ---
+
+    document.getElementById('videostream').onclick = function clickEvent(e) {
+      // e = Mouse click event.
+      var rect = e.target.getBoundingClientRect();
+      var x = e.clientX - rect.left; //x position within the element.
+      var y = e.clientY - rect.top; //y pos in element
+      var imgWidth = rect.width;
+      var imgHeight = rect.height;
+
+      var calcX = Math.round( (x/imgWidth) * 704);
+      var calcY = Math.round( (y/imgHeight) * 480);
+
+      console.log("true x position: "+ x + ", true y pos: " + y);
+      console.log("calculated x: "+ calcX + ", calc y: " + calcY);
+
+      //--- Set up camera http request ---
+      const xhttp = new XMLHttpRequest();
+      // Define a callback function
+      xhttp.onreadystatechange = function () {
+        if (xhttp.readyState === 4) {
+          document.getElementById("loading").style.display = "none";
+        }
+      };
+
+      xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?camera=1&center=" + calcX + "," + calcY + "&autofocus=on&autoiris=on");
+      xhttp.setRequestHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8");
+      xhttp.setRequestHeader("Accept-Encoding", "gzip, deflate");
+      xhttp.setRequestHeader("Accept-Language","en-US,en;q=0.5")
+      xhttp.setRequestHeader("Connection","keep-alive")
+      xhttp.setRequestHeader("Upgrade-Insecure-Requests", "1");
+
+      //--- Send off selected parameters to camera through http request ---
+      xhttp.send();
+      //--- Turn on loading sign until camera calls back "done"
+      document.getElementById("loading").style.display = "block";
+     
+    } //end moveCamClick
+
+
+
+    function moveToAltView(altview) {
+      console.log("move cam relative");
+          //--- Set up camera http request ---
+          const xhttp = new XMLHttpRequest();
+      // Define a callback function
+      xhttp.onreadystatechange = function () {
+        // 4 is status return:"done" https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/response
+        if (xhttp.readyState === 4) {
+          document.getElementById("loading").style.display = "none";
+        }
+      };
+
+      switch (altview) {
+
+        case "juliana-alt1":
+          console.log("Juliana alt view 1");
+          xhttp.open("GET", baseUrl + "/camera/axis-cgi/com/ptz.cgi?camera=1&pan=-104.35&tilt=-32.40&zoom=13174&focus=6111&autoiris=on");
+          break;
+
+
+        default:
+          console.log("No alt view picked, how did you get here? Error.");
+      }
+
+      //--- Send off selected parameters to camera through http request ---
+      xhttp.send();
+      //--- Turn on loading sign until camera calls back "done"
+      document.getElementById("loading").style.display = "block";
+
+    } //move to alt view
+
+
+
+
+    //Extra Commands - Query Position:
+
+    //https://ptz-app.netlify.app/camera/axis-cgi/com/ptz.cgi?camera=1&query=position&autofocus=off
+
+
 </script>
 
 
-
-    <!-- </div> -->
-    <!--main-->
-
-    <!-- <script>
-
-        function val() {
-            d = document.getElementById("dropdown").value;
-            // alert(d);
-
-            const xhttp = new XMLHttpRequest();
-            // Define a callback function
-            xhttp.onreadystatechange = function() {
-              // 4 is status return:"done" https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/response
-              if (xhttp.readyState === 4) { 
-                document.getElementById("loading").style.display = "none";
-              }
-            }
-
-            switch (d) {
-                case 'RA':
-                    console.log('RA');
-
-                    //-----Send CGI to Cam--------
-                    // Send a request
-                    xhttp.open("GET", "http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos2&camera=1");
-                    xhttp.send();
-                    document.getElementById("loading").style.display="block";
-                    // TODO: show loadinfg screen 
-
-                    break;
-
-                case 'NA':
-                    console.log('NA');
-
-                    //-----Send CGI to Cam--------
-                    // Send a request
-                    xhttp.open("GET", "http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos3&camera=1");
-                    xhttp.send();
-                    break;
-
-                case 'SB':
-                    console.log('SB');
-                                        
-                    //-----Send CGI to Cam--------
-                    // Send a request
-                    xhttp.open("GET", "http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?gotoserverpresetname=pos4&camera=1");
-                    xhttp.send();
-                    break;
-                    
-                case 'JCD':
-                    console.log('JCD');
-
-                    //-----Send CGI to Cam--------
-                    // Send a request
-                    xhttp.open("GET", "http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?camera=1&pan=25.1032&tilt=-8.55&zoom=13736&autofocus=on");
-                    xhttp.send();
-
-                    break;
-                
-                case 'BFC':
-                    console.log('BFC');
-
-                    //-----Send CGI to Cam--------
-                    // Send a request
-                    xhttp.open("GET", "http://wrong.ats.community/camera/axis-cgi/com/ptz.cgi?camera=1&query=position&pan=25.532&tilt=-23&zoom=736&autofocus=on");
-                    xhttp.send();
-                break;
-                case 'JF':
-                    break;
-                case 'TG':
-                    break;
-                case 'SG':
-                    break;
-                case 'MP':
-                    break;
-                default:
-                    console.log("Nothing picked, error. ");
-                }
-
-        }
-
-        </script> -->
   </body>
 </html>
