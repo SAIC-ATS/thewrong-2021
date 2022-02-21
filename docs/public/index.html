@@ -579,7 +579,7 @@
          
           var descriptionDims = document.getElementById('description-box').getBoundingClientRect();
           var descriptionHeight = descriptionDims.height;
-          if (descriptionHeight < 10 && person != 'explanatorytext' && person != 'cam'){
+          if (descriptionHeight < 5 && person != 'explanatorytext' && person != 'cam'){
             toggleDescription();
           }
 
@@ -652,8 +652,9 @@
               // toggleDescription();
               document.getElementById("description-title").innerHTML = "<i>Untitled (Patchwork Sky 1)</i>";
               document.getElementById("description-year").innerHTML = "(2022)";
+              document.getElementById("description-materials").innerHTML = "custom electronics, javascript, python";
               document.getElementById("alt-views").innerHTML = "";
-              document.getElementById("description-materials").innerHTML = "Three live surveillance camera feeds found unsecured on the internet, cropped to the sky, patterned, overlaid.";
+              document.getElementById("description-text").innerHTML = "Three live surveillance camera feeds found unsecured on the internet, cropped to the sky, patterned, overlaid.";
               document.getElementById("description-links").innerHTML = '<a href="https://www.blakefallconroy.com">&lt;Artist Page&gt;</a> <a href="https://www.instagram.com/b.b.fc/" style="float:right;">&lt;Instagram&gt;</a>';
               break;
 
