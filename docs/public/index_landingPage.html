@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Pan-Tilt-Zoom</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico"/>
+
+    <!-- Google Roboto font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+
+      html {
+	      padding: 0;
+	      margin: 0;
+      }
+
+      body {
+        padding: 8px 0px 0px 0px;
+        margin: 0px;
+      }
+
+      #main {
+        margin: auto;
+        margin-bottom:50px;
+        text-align: center;
+        border: 1px solid gray;
+        background-color: rgb(250, 250, 250);
+        border-radius: 5px;
+        padding: 0px 20px 20px 20px;
+        width: 800px;
+      }
+
+      #header {
+        width: 100%;
+        display: block;
+        height: 90px;
+      }
+
+      #title-bar {
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        padding: 15px 0px 10px 0px;
+      }
+
+      #title {
+        /* padding-bottom: 20px; */
+        color: darkblue;
+        text-align: center;
+        font-family: "Roboto Mono", monospace;
+        font-size: 2em;
+      }
+
+      .artlink {
+        padding: 3px 10px;
+        text-decoration: underline dashed;
+      }
+
+      #videowindow {
+        position: relative;
+        text-align: center;
+      }
+
+      #videostream {
+        width: 100%;
+        border: 1px solid gray;
+        box-shadow: 0px 2px 5px rgb(200, 200, 200);
+        cursor: pointer; /* hand */
+      }
+
+      #loading {
+        display: none; 
+        /* display: block; */
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-family: "Roboto Mono", monospace;
+        font-weight: bold;
+        font-size: 1.2em;
+        box-shadow: 0px 2px 2px rgb(200, 200, 200);
+        background-color: white;
+        padding: 2px;
+        z-index: 2;
+      }
+
+      #info-button {
+        float: left;
+            position: relative;
+            z-index: 10;
+            cursor: pointer;
+            user-select: none;
+
+      }
+
+      #events-button {
+        float: left;
+            position: relative;
+            z-index: 10;
+            cursor: pointer;
+            user-select: none;
+
+      }
+
+      #how-to-button {
+        float: right;
+            position: relative;
+            z-index: 10;
+            cursor: pointer;
+            user-select: none;
+
+      }
+
+      li{
+        margin: 10px 0;
+      }
+
+
+      #how-to-overlay {
+        /* display: none;  */
+        display: block;
+        position: absolute;
+        background-color: aliceblue;
+        border: 1px solid gray;
+        box-shadow: 5px 5px 5px rgb(200, 200, 200);
+        padding: 15px;
+        top: 21px;
+        font-family: "Roboto Mono", monospace;
+        text-align: justify;
+        z-index: 6;
+      }
+
+      #events-overlay {
+        /* display: none;  */
+        display: block;
+        position: absolute;
+        background-color: aliceblue;
+        border: 1px solid gray;
+        box-shadow: 5px 5px 5px rgb(200, 200, 200);
+        padding: 15px;
+        top: 21px;
+        font-family: "Roboto Mono", monospace;
+        text-align: justify;
+        z-index: 6;
+      }
+
+      #info-overlay {
+        /* display: none;  */
+        display: block;
+        position: absolute;
+        background-color: aliceblue;
+        border: 1px solid gray;
+        box-shadow: 5px 5px 5px rgb(200, 200, 200);
+        padding: 15px;
+        top: 21px;
+        font-family: "Roboto Mono", monospace;
+        text-align: justify;
+        z-index: 6;
+      }
+
+      #info-title-bar {
+        display: flex;
+        justify-content: space-between;
+
+      }
+
+      #explanatory {
+        margin: auto;
+        max-width: 650px;
+        font-family: "Roboto Mono", monospace;
+      }
+
+      #artists {
+        margin: auto;
+        max-width: 600px;
+        /* text-align: justify;  */
+        text-align-last: center;
+        font-family: "Roboto Mono", monospace;
+      }
+
+      a {
+        display: inline-block;
+        font-family: "Roboto Mono", monospace;
+      }
+
+      /* unvisited link */
+      a:link {
+        color: #0000EE;;
+        text-decoration: none;
+      }
+
+      /* visited link */
+      a:visited {
+        color: #0000EE;;
+        text-decoration: none;
+      }
+
+      /* mouse over link */
+      a:hover {
+        color: hotpink;
+        text-decoration: underline dashed;
+      }
+
+      #selfie-link {
+        color: darkblue;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      #controls {
+        padding: 10px;
+        margin: auto;
+        font-family: "Roboto Mono", monospace;
+      }
+
+      .modal {
+        overflow: hidden;
+        transition: transform 0.3s ease-out;
+        height: auto;
+        transform: scaleY(1);
+        transform-origin: top;
+      }
+
+      .modal.collapsed {
+        transform: scaleY(0);
+      }
+
+      #description-box-container {
+        position: relative;
+        text-align: center;
+      }
+
+      #description-box {
+         /* display: none;  */
+         display: block;
+        position: absolute;
+        background-color: aliceblue;
+        border: 1px solid gray;
+        box-shadow: 5px 5px 5px rgb(200, 200, 200);
+        padding: 15px;
+        top: 21px;
+        font-family: "Roboto Mono", monospace;
+        text-align: justify;
+        z-index: 6;
+        margin-bottom: 30px;
+      }
+
+      #description-title {
+        font-weight: bold;
+      }
+
+      #close-window {
+        float: right;
+      }
+
+      .control-container {
+        display: grid; 
+        grid-auto-rows: 1fr; 
+        grid-template-columns: 1fr min-content min-content min-content 1fr; 
+        gap: 0px 0px; 
+        margin: auto;
+        text-align: center;
+      }
+
+      .label {
+        display: flex;
+        justify-content: right;
+        align-content: center;
+      }
+
+      .label-mobile {
+	      display: none;
+      }
+
+
+ 
+
+
+
+      .left-section {
+	width: 25%;
+	float: left;
+      }
+
+      .right-section {
+	width: 25%;
+	float: right;
+      }
+
+      @media (max-width: 800px) {
+        #main {
+          width: 90%;
+          min-width: 0px;
+        }
+        
+        #title {
+          font-size: 1.0em;
+        }
+
+     
+
+        .left-arrow-div, .right-arrow-div {
+          padding: 0px 7px;
+        }
+
+        /* .right-arrow-div {
+          padding: 7px 7px;
+        } */
+
+        #info-button, #events-button, #how-to-button, #info-overlay, #events-overlay, #how-to-overlay, #artists, #explanatory, #description-box-container {
+          font-size: .7em;
+        }
+
+        .label {
+          font-size: .7em;
+        }
+
+        #pan-bar, #tilt-bar, #zoom-bar {
+          width: 150px;
+        }
+
+      }
+    </style>
+
+    <script>
+      function toggleInfo() {
+        document.getElementById("info-overlay").classList.toggle("collapsed");
+      }
+
+      function toggleUse() {
+        document.getElementById("how-to-overlay").classList.toggle("collapsed");
+      }
+
+      function toggleEvents() {
+        document.getElementById("events-overlay").classList.toggle("collapsed");
+      }
+
+      function toggleDescription() {
+        document.getElementById("description-box").classList.toggle("collapsed");
+        
+      }
+
+    </script>
+
+  </head>
+
+  <body onload="script(typeOut);">
+    <div id="main">
+      <div id="title-bar" style="">
+	<div class="left-section">
+	  <a href="https://www.saic.edu/academics/departments/art-and-technology-studies">
+	    <img src="images/ATS-SAIC.png" style="margin-top:5px; float: left;" width="40%"/>
+	  </a>
+	</div>
+	<div class="header-section">
+	  <h1 id="title" style="text-align: center; justify-content: center;">Pan-Tilt-<span id="selfie-link" onclick="moveCamToArtist('cam');return false;">Zoom</span></h1>
+	</div>
+	<div class="right-section">
+	  <a href="https://thewrong.org">
+	    <img src="images/tw5_logo-7.png" width="70%" style="float: right;">
+	  </a>
+	</div>
+      </div>
+
+      <div>
+        <a class="artlink" id="info-button" onclick="toggleInfo(); return false;" href="#" title="info">&lt;exhibition info&gt;</a> 
+      </div>
+
+      <div id="videowindow">
+
+
+        <div id="info-overlay" class="modal collapsed">
+          <p>
+            <span id="info-title-bar"><i>Pan-Tilt-Zoom</i> 
+              <a class="artlink" id="close-window" title="close" href="#" onclick="toggleInfo(); return false;">&lt;close&gt;</a>
+            </span> 
+            
+            <p>Minds without a body; phantom flesh; vision without a gaze. To remotely transit cyberspace, we opt for our body to mutate into one that is both telematic and cartesian. The biological body's a zombie, still here, but the eyes traverse elsewhere. We have "a sliding and shifting consciousness that is neither &lt;&lt;completely here&gt;&gt;, in this body, nor &lt;&lt;completely there&gt;&gt;, in those bodies."* We rely on technology to expand our body; we desire to let the flesh die; a camera sees better than our eyes. </p>
+
+            <p>Inside a locked room in the Art Institute of Chicago, an around-the-clock commons is created, contingent that no bodies may enter unmediated - an online space exclusive to the surveilling gaze. The physical body is erased, it's no longer useful. These works are subjected to a field of vision created by the mechanical eye and constrained by the electronic image.</p>
+            
+            <p>The exhibition is a situation of permanent visibility, using an artifact of political technology transformed into a device of voyeurism and telepresence. The eye-camera constantly streams an image that is often unobserved: transmitted from machine to machine. By whom are we being watched? Does disembodied vision disembody the gaze?
+            </p>
+            <p style="float:right; display: inline-block;">castroduperly</p><br/><br/>
+            <p>*Stelarc. <i>Cíborgs, zombies, y quimeras</i>, 2020. p.22 </p>
+            <br /><br />
+          </p>
+        </div id="main-body">
+        <!-- original stream is 704x480 -->
+        <img id="background" src="images/wrong_landing.jpg"/>
+        <!-- <img id="videostream" src="images/test-image.jpg" /> -->
+        <!-- <br /> -->
+        <h1 id="loading">Camera loading...</h1>
+      </div>
+
+
+
+
+  
+
+    <script>
+
+      function typeOut() {
+
+        var i = 0;
+    var txt = 'Lorem ipsum dummy text blabla.';
+    var speed = 50;
+
+    function typeWriter() {
+      if (i < txt.length) {
+        document.getElementById("type").innerHTML += txt.charAt(i);
+        i++;
+        setTimeout(typeWriter, speed);
+      }
+    }
+      }
+
+    </script>
+
+
+  </body>
+</html>
