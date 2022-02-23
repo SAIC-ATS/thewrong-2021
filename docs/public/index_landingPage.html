@@ -65,7 +65,16 @@
 
       #videowindow {
         position: relative;
-        text-align: center;
+        /* text-align: center; */
+      }
+
+
+      #main-body {
+        position: relative;
+        text-align: left;
+        font-size: 1.2em;
+        font-family: "Roboto Mono", monospace;
+
       }
 
       #videostream {
@@ -177,14 +186,6 @@
         font-family: "Roboto Mono", monospace;
       }
 
-      #artists {
-        margin: auto;
-        max-width: 600px;
-        /* text-align: justify;  */
-        text-align-last: center;
-        font-family: "Roboto Mono", monospace;
-      }
-
       a {
         display: inline-block;
         font-family: "Roboto Mono", monospace;
@@ -260,14 +261,7 @@
         float: right;
       }
 
-      .control-container {
-        display: grid; 
-        grid-auto-rows: 1fr; 
-        grid-template-columns: 1fr min-content min-content min-content 1fr; 
-        gap: 0px 0px; 
-        margin: auto;
-        text-align: center;
-      }
+  
 
       .label {
         display: flex;
@@ -354,13 +348,13 @@
   <body onload="script(typeOut);">
     <div id="main">
       <div id="title-bar" style="">
-	<div class="left-section">
-	  <a href="https://www.saic.edu/academics/departments/art-and-technology-studies">
-	    <img src="images/ATS-SAIC.png" style="margin-top:5px; float: left;" width="40%"/>
-	  </a>
-	</div>
+            <div class="left-section">
+            <a href="https://www.saic.edu/academics/departments/art-and-technology-studies">
+                <img src="images/ATS-SAIC.png" style="margin-top:5px; float: left;" width="40%"/>
+            </a>
+            </div>
 	<div class="header-section">
-	  <h1 id="title" style="text-align: center; justify-content: center;">Pan-Tilt-<span id="selfie-link" onclick="moveCamToArtist('cam');return false;">Zoom</span></h1>
+	  <h1 id="title" style="text-align: center; justify-content: center;">Pan-Tilt-Zoom</h1>
 	</div>
 	<div class="right-section">
 	  <a href="https://thewrong.org">
@@ -369,14 +363,14 @@
 	</div>
       </div>
 
-      <div>
+      <!-- <div>
         <a class="artlink" id="info-button" onclick="toggleInfo(); return false;" href="#" title="info">&lt;exhibition info&gt;</a> 
-      </div>
+      </div> -->
 
       <div id="videowindow">
 
 
-        <div id="info-overlay" class="modal collapsed">
+        <!-- <div id="info-overlay" class="modal collapsed">
           <p>
             <span id="info-title-bar"><i>Pan-Tilt-Zoom</i> 
               <a class="artlink" id="close-window" title="close" href="#" onclick="toggleInfo(); return false;">&lt;close&gt;</a>
@@ -392,19 +386,23 @@
             <p>*Stelarc. <i>Cíborgs, zombies, y quimeras</i>, 2020. p.22 </p>
             <br /><br />
           </p>
-        </div id="main-body">
-        <!-- original stream is 704x480 -->
-        <img id="background" src="images/wrong_landing.jpg"/>
-        <!-- <img id="videostream" src="images/test-image.jpg" /> -->
-        <!-- <br /> -->
-        <h1 id="loading">Camera loading...</h1>
+          </div> -->
+
+        <div id="main-body" style="margin: 10px;">
+            <p><b>Monday February 28th, 5PM-6PM:</b> A virtual exhibition walkthrough and discussion with <a href="https://www.garrettlaroyjohnson.com/">Garrett Laroy Johnson</a>, a visiting SAIC Art and Tech Studies faculty member and PhD candidate in Media Arts and Sciences and Critical Theory at Arizona State University. A selection of artists will discuss their work with Johnson, talk about the concept of the show, and take general questions. A zoom link is posted below and on <a href="https://ats.community/">ats.community</a>. Open to the public.<br /><br />
+            
+                "Johnson works with responsive media environments to probe, condition, engender, and refract relations between technological determinations and productions of subjectivity. He designs and creates digital-physical systems activating sound, light, and expressive materials in immersive and quotidian spaces. Johnson's dissertation deals with the diagram (as instantiated in Guattari and Deleuze) as a conceptual figure for animating transdisciplinary practice with computational media. Through his own research-creation and digital-physical sciences, Johnson explores how socially engaged media arts can engage with contemporary subjectivity." (excerpt from Garrett Laroy Johnon's <a href="https://www.garrettlaroyjohnson.com/">website</a>)</p>
+
+<p> Zoom Link:  <a href="https://saic-edu.zoom.us/j/87053112004 ">&lt;click here&gt;</a></p>
+<p>Ongoing Exhibition Website: <a href="https://www.ptz.live/">&lt;click here&gt;</a></p>
+           
       </div>
 
 
 
 
-  
-
+  </div>
+</div>
     <script>
 
       function typeOut() {
