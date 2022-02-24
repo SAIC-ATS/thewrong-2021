@@ -6,6 +6,9 @@ https://api.ptz.live/* http://wrong.ats.community:splat 301!
 http://zoom.ptz.live/* https://www.ptz.live/index_landingpage.html 301!
 https://zoom.ptz.live/* https://www.ptz.live/index_landingpage.html 301!
 
+http://web.ptz.live/* https://www.ptz.live/:splat 301!
+https://web.ptz.live/* https://www.ptz.live/:splat.html 301!
+
 /api/* http://wrong.ats.community/:splat 301! 
 
 /feed http://wrong.ats.community/feed 200!
