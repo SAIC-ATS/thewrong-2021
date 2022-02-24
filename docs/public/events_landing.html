@@ -105,94 +105,8 @@
 
       }
 
-      #loading {
-        display: none; 
-        /* display: block; */
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        font-family: "Roboto Mono", monospace;
-        font-weight: bold;
-        font-size: 1.2em;
-        box-shadow: 0px 2px 2px rgb(200, 200, 200);
-        background-color: white;
-        padding: 2px;
-        z-index: 2;
-      }
-
-      #info-button {
-        float: left;
-            position: relative;
-            z-index: 10;
-            cursor: pointer;
-            user-select: none;
-
-      }
-
-      #events-button {
-        float: left;
-            position: relative;
-            z-index: 10;
-            cursor: pointer;
-            user-select: none;
-
-      }
-
-      #how-to-button {
-        float: right;
-            position: relative;
-            z-index: 10;
-            cursor: pointer;
-            user-select: none;
-
-      }
-
       li{
         margin: 10px 0;
-      }
-
-
-      #how-to-overlay {
-        /* display: none;  */
-        display: block;
-        position: absolute;
-        background-color: aliceblue;
-        border: 1px solid gray;
-        box-shadow: 5px 5px 5px rgb(200, 200, 200);
-        padding: 15px;
-        top: 21px;
-        font-family: "Roboto Mono", monospace;
-        text-align: justify;
-        z-index: 6;
-      }
-
-      #events-overlay {
-        /* display: none;  */
-        display: block;
-        position: absolute;
-        background-color: aliceblue;
-        border: 1px solid gray;
-        box-shadow: 5px 5px 5px rgb(200, 200, 200);
-        padding: 15px;
-        top: 21px;
-        font-family: "Roboto Mono", monospace;
-        text-align: justify;
-        z-index: 6;
-      }
-
-      #info-overlay {
-        /* display: none;  */
-        display: block;
-        position: absolute;
-        background-color: aliceblue;
-        border: 1px solid gray;
-        box-shadow: 5px 5px 5px rgb(200, 200, 200);
-        padding: 15px;
-        top: 21px;
-        font-family: "Roboto Mono", monospace;
-        text-align: justify;
-        z-index: 6;
       }
 
       #info-title-bar {
@@ -230,30 +144,6 @@
         text-decoration: underline dashed;
       }
 
-      #selfie-link {
-        color: darkblue;
-        text-decoration: none;
-        cursor: pointer;
-      }
-
-      #controls {
-        padding: 10px;
-        margin: auto;
-        font-family: "Roboto Mono", monospace;
-      }
-
-      .modal {
-        overflow: hidden;
-        transition: transform 0.3s ease-out;
-        height: auto;
-        transform: scaleY(1);
-        transform-origin: top;
-      }
-
-      .modal.collapsed {
-        transform: scaleY(0);
-      }
-
       #description-box-container {
         position: relative;
         text-align: center;
@@ -278,12 +168,6 @@
         font-weight: bold;
       }
 
-      #close-window {
-        float: right;
-      }
-
-  
-
       .label {
         display: flex;
         justify-content: right;
@@ -293,11 +177,6 @@
       .label-mobile {
 	      display: none;
       }
-
-
- 
-
-
 
       .left-section {
 	width: 25%;
@@ -313,6 +192,10 @@
         #main {
           width: 90%;
           min-width: 0px;
+        }
+
+        #main-body {
+          font-size: 0.8em;
         }
         
         #title, #title2, #person-title {
