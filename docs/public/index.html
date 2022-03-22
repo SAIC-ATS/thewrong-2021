@@ -76,8 +76,8 @@
       }
 
       #loading {
-          display: none;
-          /* display: block; */
+          /* display: none; */
+          display: block;
           position: absolute;
           top: 50%;
           left: 50%;
@@ -89,6 +89,7 @@
           background-color: white;
           padding: 2px;
           z-index: 2;
+          opacity: .8;
       }
 
       #info-button {
@@ -550,10 +551,13 @@
       </p>
     </div>
     <!-- original stream is 704x480 -->
-    <img id="videostream" src="https://wrong.ats.community/feed" />
+    <!-- <img id="videostream" src="https://wrong.ats.community/feed" /> -->
     <!-- <img id="videostream" src="images/test-image.jpg" /> -->
+    <video id="videostream" autoplay playsinline loop>
+      <source src="images/static.mp4" type="video/mp4">
+    </video> 
     <!-- <br /> -->
-    <h1 id="loading">Camera loading...</h1>
+    <h1 id="loading"><span>Camera offline.</span><br />Febrary 15th - March 21, 2022.<br /><br />A video walkthrough has been recorded and will be posted/archived when available.</h1>
   </div>
 
 
@@ -670,7 +674,7 @@
       xhttp.onreadystatechange = function() {
         // 4 is status return:"done" https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/response
         if (xhttp.readyState === 4) {
-          document.getElementById("loading").style.display = "none";
+          // document.getElementById("loading").style.display = "none";
         }
       };
 
@@ -922,7 +926,7 @@
       xhttp.onreadystatechange = function() {
         // 4 is status return:"done" https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/response
         if (xhttp.readyState === 4) {
-          document.getElementById("loading").style.display = "none";
+          // document.getElementById("loading").style.display = "none";
         }
       };
 
@@ -964,7 +968,7 @@
       xhttp.onreadystatechange = function() {
         // 4 is status return:"done" https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/response
         if (xhttp.readyState === 4) {
-          document.getElementById("loading").style.display = "none";
+          // document.getElementById("loading").style.display = "none";
         }
       };
 
@@ -1046,7 +1050,7 @@
       // Define a callback function
       xhttp.onreadystatechange = function() {
         if (xhttp.readyState === 4) {
-          document.getElementById("loading").style.display = "none";
+          // document.getElementById("loading").style.display = "none";
         }
       };
 
@@ -1073,7 +1077,7 @@
       xhttp.onreadystatechange = function() {
         // 4 is status return:"done" https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/response
         if (xhttp.readyState === 4) {
-          document.getElementById("loading").style.display = "none";
+          // document.getElementById("loading").style.display = "none";
         }
       };
 
